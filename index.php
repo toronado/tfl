@@ -46,7 +46,6 @@
 		$('#main-menu').on('click', 'a', function() {
 			var href = $(this).attr('href');
 			mainHeading.innerHTML = href + ' selected!';
-			//alert(href);
 			return false;
 		});
 	</script>
