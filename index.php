@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>TFL Train Times</title>
-	<?php include '../include/bootstrap_css.php'; ?>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/tfl.css">
 </head>
 <body>
@@ -39,15 +39,8 @@
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 		</div>
 	</div>
-	<?php include '../include/jquery.php'; ?>
-	<?php include '../include/bootstrap_js.php'; ?>
-	<script type="text/javascript">
-		var mainHeading = document.getElementById('main-heading');
-		$('#main-menu').on('click', 'a', function() {
-			var href = $(this).attr('href');
-			mainHeading.innerHTML = href + ' selected!';
-			return false;
-		});
-	</script>
+	<script src="/js/jquery-2.1.3.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="js/tfl.js"></script>
 </body>
 </html>
