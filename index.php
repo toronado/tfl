@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <head>
 	<title>TFL Train Times</title>
 	<?php include '../include/bootstrap_css.php'; ?>
