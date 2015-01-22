@@ -1,1 +1,4 @@
 body { font-family: helvetica,arial,sans-serif; font-size:16px; }
+
+#stations { margin: 0; padding: 0; list-style: none; }
+#stations li { display: inline-block; width:100px; padding:30px; border: #ccc solid 1px; margin:5px; }
