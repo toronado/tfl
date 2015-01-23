@@ -29,14 +29,10 @@
 	</nav>
 	<div class="container">
 		<div class="col-md-12">
-			<ul id="stations">
-				<li>KSX</li>
-				<li>LHR</li>
-				<li>DXB</li>
-				<li>BKE</li>
-				<li>CHX</li>
-				<li>LAX</li>
-			</ul>
+			<div id="stations">
+				results
+				<p id="button">click</p>
+			</div>
 		</div>
 	</div>
 	<script src="/js/jquery-2.1.3.min.js"></script>
