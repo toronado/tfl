@@ -11,7 +11,7 @@ $('#button').on('click', function() {
 
 function getStns(line) {
 	$.ajax({
-        url: 'resources/station-data/circle.js',
+        url: 'resources/station-data/central.js',
         dataType: 'json',
         timeout: 30000
     })
@@ -26,13 +26,14 @@ function getStns(line) {
             	if (prop == 'naptanId') {
             		var naptanId = data[i]['naptanId'].substring(8,11);
             		var name = data[i]['commonName'].replace(' Underground Station', '');
-            		var lines = data[i]['lineModeGroups'];
+            		var lines = data[i]['lineGroup'];
             		$results.append('<p value="'+naptanId+'">'+name+ ' - ' + naptanId + ' - ' + lines[lines.length-1].lineIdentifier + '</p>');
             		break;
             	}
             	count+=1;
         	}
 		}
+		$results.prepend('<h2>'+count+' stations</h2>');
 		console.log(count);
     });
 }
