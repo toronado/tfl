@@ -1,4 +1,37 @@
+//Station Background Colours
+$bakerlooBkd: #AE6118;
+$centralBkd: #E41F1F;
+$circleBkd: #F8D42D;
+$districtBkd: #007229;
+$hammersmithCityBkd: #E899A8;
+$jubileeBkd: #686E72;
+$metropolitanBkd: #893267;
+$northernBkd: #000;
+$piccadillyBkd: #0450A1;
+$victoriaBkd: #009FE0;
+$waterlooCityBkd: #70C3CE;
+
+//Station Text Colours
+$defaultStnTextColor: #fff;
+$alternateStnTextColor: #113892;
+
+//Station Class Names
+.bakerloo { background-color:$bakerlooBkd; color:$defaultStnTextColor; }
+.central { background-color:$centralBkd; color:$defaultStnTextColor; }
+.circle { background-color:$circleBkd; color:$alternateStnTextColor; }
+.district { background-color:$districtBkd; color:$defaultStnTextColor; }
+.hammersmith-city { background-color:$hammersmithCityBkd; color:$alternateStnTextColor; }
+.jubilee { background-color:$jubileeBkd; color:$defaultStnTextColor; }
+.metropolitan { background-color:$metropolitanBkd; color:$defaultStnTextColor; }
+.northern { background-color:$northernBkd; color:$defaultStnTextColor; }
+.piccadilly { background-color:$piccadillyBkd; color:$defaultStnTextColor; }
+.victoria { background-color:$victoriaBkd; color:$defaultStnTextColor; }
+.waterloo-city { background-color:$waterlooCityBkd; color:$alternateStnTextColor; }
+
+
 body { font-family: helvetica,arial,sans-serif; font-size:16px; }
 
 #stations { margin: 0; padding: 0; list-style: none; }
-#stations li { display: inline-block; width:100px; padding:30px; border: #ccc solid 1px; margin:5px; }
+#stations li { display: inline-block; width:200px; padding:30px; margin:3px 1px; border:#ddd solid 1px; text-align: center; }
+.stn-code { display:block; }
+.stn-name { font-size:10px; line-height: 10px; }

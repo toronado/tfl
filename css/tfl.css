@@ -1,3 +1,47 @@
+.bakerloo {
+  background-color: #ae6118;
+  color: white; }
+
+.central {
+  background-color: #e41f1f;
+  color: white; }
+
+.circle {
+  background-color: #f8d42d;
+  color: #113892; }
+
+.district {
+  background-color: #007229;
+  color: white; }
+
+.hammersmith-city {
+  background-color: #e899a8;
+  color: #113892; }
+
+.jubilee {
+  background-color: #686e72;
+  color: white; }
+
+.metropolitan {
+  background-color: #893267;
+  color: white; }
+
+.northern {
+  background-color: black;
+  color: white; }
+
+.piccadilly {
+  background-color: #0450a1;
+  color: white; }
+
+.victoria {
+  background-color: #009fe0;
+  color: white; }
+
+.waterloo-city {
+  background-color: #70c3ce;
+  color: #113892; }
+
 body {
   font-family: helvetica,arial,sans-serif;
   font-size: 16px; }
@@ -9,7 +53,15 @@ body {
 
 #stations li {
   display: inline-block;
-  width: 100px;
+  width: 200px;
   padding: 30px;
-  border: #ccc solid 1px;
-  margin: 5px; }
+  margin: 3px 1px;
+  border: #ddd solid 1px;
+  text-align: center; }
+
+.stn-code {
+  display: block; }
+
+.stn-name {
+  font-size: 10px;
+  line-height: 10px; }
