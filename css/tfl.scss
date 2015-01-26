@@ -31,7 +31,7 @@ $alternateStnTextColor: #113892;
 
 body { font-family: helvetica,arial,sans-serif; font-size:16px; }
 
-#stations { margin: 0; padding: 0; list-style: none; }
-#stations li { display: inline-block; width:200px; padding:30px; margin:3px 1px; border:#ddd solid 1px; text-align: center; }
+#stations ul { margin: 0; padding: 0; list-style: none; }
+#stations li { /*display: inline-block; width:200px; padding:30px; margin:3px 1px; border:#ddd solid 1px; text-align: center;*/ padding:5px 10px; }
 .stn-code { display:block; }
 .stn-name { font-size:10px; line-height: 10px; }
