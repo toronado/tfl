@@ -1,59 +1,144 @@
 .bakerloo {
-  background-color: #ae6118;
-  color: white; }
+  color: #AE6118 !important; }
 
 .central {
-  background-color: #e41f1f;
-  color: white; }
+  color: #E41F1F !important; }
 
 .circle {
-  background-color: #f8d42d;
-  color: #113892; }
+  color: #F8D42D !important; }
 
 .district {
-  background-color: #007229;
-  color: white; }
+  color: #007229 !important; }
 
-.hammersmith-city {
-  background-color: #e899a8;
-  color: #113892; }
+.hammersmith {
+  color: #E899A8 !important; }
 
 .jubilee {
-  background-color: #686e72;
-  color: white; }
+  color: #686E72 !important; }
 
 .metropolitan {
-  background-color: #893267;
-  color: white; }
+  color: #893267 !important; }
 
 .northern {
-  background-color: black;
-  color: white; }
+  color: #000 !important; }
 
 .piccadilly {
-  background-color: #0450a1;
-  color: white; }
+  color: #0450A1 !important; }
 
 .victoria {
-  background-color: #009fe0;
-  color: white; }
+  color: #009FE0 !important; }
 
-.waterloo-city {
-  background-color: #70c3ce;
-  color: #113892; }
+.waterloo {
+  color: #70C3CE !important; }
+
+.bg-bakerloo {
+  background-color: #AE6118 !important; }
+
+.bg-central {
+  background-color: #E41F1F !important; }
+
+.bg-circle {
+  background-color: #F8D42D !important; }
+
+.bg-district {
+  background-color: #007229 !important; }
+
+.bg-hammersmith {
+  background-color: #E899A8 !important; }
+
+.bg-jubilee {
+  background-color: #686E72 !important; }
+
+.bg-metropolitan {
+  background-color: #893267 !important; }
+
+.bg-northern {
+  background-color: #000 !important; }
+
+.bg-piccadilly {
+  background-color: #0450A1 !important; }
+
+.bg-victoria {
+  background-color: #009FE0 !important; }
+
+.bg-waterloo {
+  background-color: #70C3CE !important; }
+
+.bd-bakerloo {
+  border-color: #AE6118 !important; }
+
+.bd-central {
+  border-color: #E41F1F !important; }
+
+.bd-circle {
+  border-color: #F8D42D !important; }
+
+.bd-district {
+  border-color: #007229 !important; }
+
+.bd-hammersmith {
+  border-color: #E899A8 !important; }
+
+.bd-jubilee {
+  border-color: #686E72 !important; }
+
+.bd-metropolitan {
+  border-color: #893267 !important; }
+
+.bd-northern {
+  border-color: #000 !important; }
+
+.bd-piccadilly {
+  border-color: #0450A1 !important; }
+
+.bd-victoria {
+  border-color: #009FE0 !important; }
+
+.bd-waterloo {
+  border-color: #70C3CE !important; }
 
 body {
   font-family: helvetica,arial,sans-serif;
-  font-size: 16px; }
+  font-size: 16px;
+  background-color: #363D47;
+  -webkit-font-smoothing: antialiased;
+  color: #fff; }
 
-#stations ul {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
+.navbar-default {
+  background-color: #444;
+  border-radius: 0;
+  border: none;
+  min-height: 3px; }
 
-#stations li {
-  /*display: inline-block; width:200px; padding:30px; margin:3px 1px; border:#ddd solid 1px; text-align: center;*/
-  padding: 5px 10px; }
+.navbar-default .col-md-1 {
+  padding: 0; }
+
+.badge {
+  background: none;
+  color: #000;
+  display: none; }
+
+.line a {
+  display: block;
+  width: 100%;
+  height: 3px;
+  text-indent: -1000px;
+  border-bottom: #ddd solid 3px;
+  overflow: hidden; }
+
+#stations li span {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #fff; }
+
+.station {
+  padding: 20px 10px;
+  border-bottom: #666 solid 1px; }
+
+span.station-name {
+  font-size: 12px; }
 
 .stn-code {
   display: block; }
@@ -61,3 +146,5 @@ body {
 .stn-name {
   font-size: 10px;
   line-height: 10px; }
+
+/*# sourceMappingURL=tfl.css.map */

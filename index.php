@@ -1,59 +1,70 @@
-<!DOCTYPE html>
-<?php
-$mysqli = new mysqli("localhost", "toro", "nado", "tfl");
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-} else {
-	$result = $mysqli->query("SELECT id FROM stations LIMIT 10");
-	printf("Select returned %d rows.\n", $result->num_rows);
 
-    /* free result set */
-    $result->close();
-}
-?>
+<!DOCTYPE html>
+<html data-ng-app="tubeApp">
 <head>
-	<title>TFL Train Times</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/tfl.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TFL BETA</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/tfl.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-default">
-  		<div class="container-fluid">
-  			<div class="navbar-header">
-      			<a class="navbar-brand" href="#">
-        			TFL
-      			</a>
-    		</div>	
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      	<ul class="nav navbar-nav">
-		        	<li class="dropdown">
-		          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lines <span class="caret"></span></a>
-		          		<ul id="main-menu" class="dropdown-menu" role="menu">
-		            		<li><a href="#bakerloo">bakerloo</a></li>
-		            		<li><a href="#central">central</a></li>
-		            		<li><a href="#circle">circle</a></li>
-		            		<li><a href="#district">district</a></li>
-		            		<li><a href="#hammersmith-city">hammersmith-city</a></li>
-		            		<li><a href="#jubilee">jubilee</a></li>
-		            		<li><a href="#metropolitan">metropolitan</a></li>
-		            		<li><a href="#northern">northern</a></li>
-		            		<li><a href="#piccadilly">piccadilly</a></li>
-		            		<li><a href="#victoria">victoria</a></li>
-		            		<li><a href="#waterloo-city">waterloo-city</a></li>
-		          		</ul>
-		        	</li>
-		      	</ul>
-		    </div><!-- /.navbar-collapse -->
-  		</div><!-- /.container-fluid -->
-	</nav>
-	<div class="container">
-		<div class="col-md-12">
-			<div id="stations"></div>
-		</div>
-	</div>
-	<script src="/js/jquery-2.1.3.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="js/tfl.js"></script>
-</body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-unstyled" id="tube-lines">
+    				<li class="col-md-1 line">
+				    	<a style="border-color:#222;" class="bg" href="#/?line=all">All</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-bakerloo" href="#/?line=bakerloo">Ba</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-central" href="#/?line=central">Ce</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-circle" href="#/?line=circle">Ci</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-district" href="#/?line=district">Di</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-hammersmith" href="#/?line=hammersmith">Ha</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-jubilee" href="#/?line=jubilee">Ju</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-metropolitan" href="#/?line=metropolitan">Me</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-northern" href="#/?line=northern">No</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-piccadilly" href="#/?line=piccadilly">Pi</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-victoria" href="#/?line=victoria">Vi</a>
+				  	</li>
+				  	<li class="col-md-1 line">
+				    	<a class="bd-waterloo" href="#/?line=waterloo">Wa</a>
+				  	</li>
+				</ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-3">
+    			
+    		</div>
+       		<div class="col-md-12" id="data" data-ng-view></div>
+       	</div>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-sanitize.min.js"></script>
+    <script src="js/tfl.js"></script>
+
 </html>

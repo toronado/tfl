@@ -1,42 +1,75 @@
-$('#main-menu').on('click', 'a', function() {
-	var line = $(this).attr('href').split('#')[1];
-	getStns(line);
-	return false;
+var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
+
+tubeApp.config(function ($routeProvider){
+    $routeProvider.
+        when('/', {
+            templateUrl: 'templates/station-list.html',
+            controller: 'stationListCtrl'
+        }).
+        when('/arrivals/', {
+            templateUrl: 'templates/arrival-list.html',
+            controller: 'arrivalListCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
 });
 
-function getStns(line) {
+tubeApp.factory('stations', function ($http) {
+    return {
+        query: '',
+        list: function (callback) {
+            $http({
+                method: 'GET',
+                url: 'sql.php?q='+this.query,
+                cache: true
+            }).success(callback);
+        }
+    }
+});
 
-	$.ajax({
-        url: 'resources/station-data/'+line+'.js',
-        dataType: 'json',
-        timeout: 30000
-    })
-    .done(function (data){
-    	var $results = $('#stations');
-    	var stations = '';
-		var i;
-		var d = data.length;
-		var count = 0;
-
-		for (i=0; i<d; i++) {
-			for (var prop in data[i]) {
-            	if (prop == '$type') {
-            		var naptanId = data[i]['naptanId'].substring(8,11);
-            		var name = data[i]['commonName'].replace(' Underground Station', '');
-            		var lineType = data[i]['lineModeGroups'].length;
-            		var lines = '';
-            		for (var j=0; j<lineType; j++) {
-            			if (data[i]['lineModeGroups'][j].modeName === 'tube') {
-            				lines = data[i]['lineModeGroups'][j].lineIdentifier;
-            				break;
-            			}
-            		}
-            		stations += '<li value="'+naptanId+'">' + naptanId + ' - ' + name + ' - ' + lines + '</li>';
-            		count+=1;
-            		break;
-            	}
-        	}
-		}
-		$results.html('<h2>'+line+' line - '+count+' stations</h2>' + '<ul class="'+line+'">' + stations + '</ul>');
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
+    stations.query = $routeParams.line;
+    stations.list(function (data) {
+        if (!data) return;
+        $scope.totalStations = data.line.stops;
+        $scope.lineName = data.line.name;
+        $scope.stations = data.line.stations;
     });
-}
+});
+
+tubeApp.factory('arrivals', function ($http) {
+    return {
+        query: {
+            url: '',
+            base: {
+                arrivals: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?app_id=3a9a79b8&app_key=028f9bbc54baa89d77c46b9b2b5ba833&stopPointId=940GZZLU',
+                stations: 'sql.php?q='
+            },
+            station: '',
+            line: ''
+        },
+        list: function (url, callback) {
+            switch (url) {
+                case 'arrivals':
+                    this.query.url = this.query.base.arrivals+this.query.station+'&ids='+this.query.line;
+                    break;
+                case 'stations':
+                    this.query.url = this.query.base.stations+this.query.station;
+                    break;
+            }
+            $http({
+                method: 'GET',
+                url: this.query.url
+            }).success(callback)
+        }
+    }
+});
+
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals){
+    arrivals.query.station = $routeParams.station;
+    arrivals.query.line = $routeParams.line;
+    arrivals.list('arrivals', function (data){
+        $scope.arrivals = data;
+    });
+})
