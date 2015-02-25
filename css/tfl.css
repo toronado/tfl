@@ -132,7 +132,6 @@ body {
 
 #stations li span {
   display: block;
-  text-align: center;
   overflow: hidden;
   white-space: nowrap;
   color: #fff; }
