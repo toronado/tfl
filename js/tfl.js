@@ -15,22 +15,9 @@ tubeApp.config(function ($routeProvider){
         });
 });
 
-tubeApp.factory('stations', function ($http) {
-    return {
-        query: '',
-        list: function (callback) {
-            $http({
-                method: 'GET',
-                url: 'sql.php?q='+this.query,
-                cache: true
-            }).success(callback);
-        }
-    }
-});
-
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
-    stations.query = $routeParams.line;
-    stations.list(function (data) {
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, dataFetch){
+    dataFetch.query.line = $routeParams.line;
+    dataFetch.list('stations', function (data) {
         if (!data) return;
         $scope.totalStations = data.line.stops;
         $scope.lineName = data.line.name;
@@ -38,7 +25,7 @@ tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
     });
 });
 
-tubeApp.factory('arrivals', function ($http) {
+tubeApp.factory('dataFetch', function ($http) {
     return {
         query: {
             url: '',
@@ -55,21 +42,22 @@ tubeApp.factory('arrivals', function ($http) {
                     this.query.url = this.query.base.arrivals+this.query.station+'&ids='+this.query.line;
                     break;
                 case 'stations':
-                    this.query.url = this.query.base.stations+this.query.station;
+                    this.query.url = this.query.base.stations+this.query.line;
                     break;
             }
             $http({
                 method: 'GET',
                 url: this.query.url
+                //cache: true
             }).success(callback)
         }
     }
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals){
-    arrivals.query.station = $routeParams.station;
-    arrivals.query.line = $routeParams.line;
-    arrivals.list('arrivals', function (data){
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, dataFetch){
+    dataFetch.query.station = $routeParams.station;
+    dataFetch.query.line = $routeParams.line;
+    dataFetch.list('arrivals', function (data){
         $scope.arrivals = data;
     });
 });
