@@ -1,5 +1,6 @@
+<h1>Arrivals</h1>
 <ul id="arrivals" class="list-unstyled">
 	<li class="arrival" data-ng-repeat="arrival in arrivals">
-		{{arrival.timeToStation}} ({{arrival.currentLocation}})
+		{{arrival.timeToStation | convertTime}} | {{arrival.towards}}
 	</li>
 </ul>

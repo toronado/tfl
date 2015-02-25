@@ -56,10 +56,7 @@
     </nav>
     <div class="container">
     	<div class="row">
-    		<div class="col-md-3">
-    			
-    		</div>
-       		<div class="col-md-12" id="data" data-ng-view></div>
+       		<div class="col-md-12" id="data" style="margin-top:50px;" data-ng-view></div>
        	</div>
     </div>
     <script src="js/angular.min.js"></script>

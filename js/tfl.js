@@ -72,4 +72,12 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals){
     arrivals.list('arrivals', function (data){
         $scope.arrivals = data;
     });
-})
+});
+
+
+tubeApp.filter('convertTime', function() {
+    return function(input) {
+        return Math.round(input/60) + ' min';
+    }
+});
+
