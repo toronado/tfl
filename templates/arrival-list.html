@@ -1,6 +1,9 @@
-<h1>Arrivals</h1>
-<ul id="arrivals" class="list-unstyled">
-	<li class="arrival" data-ng-repeat="arrival in arrivals">
-		{{arrival.timeToStation | convertTime}} | {{arrival.towards}}
-	</li>
-</ul>
+<div class="col-md-6">
+	<h1>{{station}}</h1>
+	<ul id="arrivals" class="list-group">
+		<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals">
+			<span class="badge">{{arrival.timeToStation | convertTime}}</span>
+			{{arrival.towards}}
+		</li>
+	</ul>
+</div>

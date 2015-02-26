@@ -61,10 +61,12 @@ body { font-family: helvetica,arial,sans-serif; font-size:16px; background-color
 h1 { margin: 0; text-transform: capitalize; }
 .navbar-default { background-color:#000; border-radius:0; border:none; min-height: 0; padding:0; }
 .navbar-default .col-md-1 { padding:0; }
-#line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:10px 0; }
+#line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:10px 0; font-size:14px; }
 #tfl-data { margin-top:80px; }
 #stations li span { display:block; overflow: hidden; white-space: nowrap; color: #fff; }
 .station { padding:20px 10px 20px 0; border-bottom:#666 solid 1px; }
 span.station-name { font-size:12px; }
 .stn-code { display:block; }
 .stn-name { font-size:10px; line-height: 10px; }
+.arrival {  background: none; border: none; padding:10px 0; border-bottom:#2f353f solid 1px; border-radius:0 !important; }
+.badge { background:none; }
