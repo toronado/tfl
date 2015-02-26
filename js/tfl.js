@@ -15,49 +15,54 @@ tubeApp.config(function ($routeProvider){
         });
 });
 
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, dataFetch){
-    dataFetch.query.line = $routeParams.line;
-    dataFetch.list('stations', function (data) {
-        if (!data) return;
-        $scope.totalStations = data.line.stops;
-        $scope.lineName = data.line.name;
-        $scope.stations = data.line.stations;
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
+    stations.list(function (data) {
+        var i, stationsOnLine, totalStations;
+        totalStations = data.length;
+        stationsOnLine = [];
+        $scope.lineName = $routeParams.line;
+        if ($routeParams.line === 'all') {
+            $scope.stations = data;
+            return;
+        }
+        for (i=0; i<totalStations; i++) {
+            if (data[i].lines[$routeParams.line]) {
+                stationsOnLine.push(data[i]);
+            }
+        }
+        $scope.stations = stationsOnLine;
     });
 });
 
-tubeApp.factory('dataFetch', function ($http) {
+tubeApp.factory('stations', function ($http) {
     return {
-        query: {
-            url: '',
-            base: {
-                arrivals: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?app_id=3a9a79b8&app_key=028f9bbc54baa89d77c46b9b2b5ba833&stopPointId=940GZZLU',
-                stations: 'sql.php?q='
-            },
-            station: '',
-            line: ''
-        },
-        list: function (url, callback) {
-            switch (url) {
-                case 'arrivals':
-                    this.query.url = this.query.base.arrivals+this.query.station+'&ids='+this.query.line;
-                    break;
-                case 'stations':
-                    this.query.url = this.query.base.stations+this.query.line;
-                    break;
-            }
+        list : function (callback) {
             $http({
                 method: 'GET',
-                url: this.query.url
-                //cache: true
+                url: 'json/stations2.json',
+                cache: true
             }).success(callback)
         }
     }
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, dataFetch){
-    dataFetch.query.station = $routeParams.station;
-    dataFetch.query.line = $routeParams.line;
-    dataFetch.list('arrivals', function (data){
+tubeApp.factory('arrivals', function ($http) {
+    return {
+        station : '',
+        line : '',
+        list : function (callback) {
+            $http({
+                method: 'GET',
+                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?app_id=3a9a79b8&app_key=028f9bbc54baa89d77c46b9b2b5ba833&stopPointId=940GZZLU'+this.station+'&ids='+this.line
+            }).success(callback)
+        }
+    }
+});
+
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals){
+    arrivals.station = $routeParams.station;
+    arrivals.line = $routeParams.line;
+    arrivals.list(function (data){
         $scope.arrivals = data;
     });
 });
@@ -69,3 +74,8 @@ tubeApp.filter('convertTime', function() {
     }
 });
 
+tubeApp.filter('trimString', function() {
+    return function(str) {
+        return str.substring(0, 1);
+    }
+});

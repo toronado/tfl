@@ -1,14 +1,15 @@
-<h1>{{lineName}} ({{totalStations}})</h1>
-<!--<div style="margin-top:49px; padding:10px; text-transform:uppercase; text-align:center;">{{lineName}}</div>-->
-<ul id="stations" class="list-unstyled">
-	<li class="station col-md-2 col-sm-12" data-ng-repeat="station in stations">
-		<a href="#/arrivals/?station={{station.id}}&line={{lineName}}">
-			<span class="station-id {{lineName}}">
-				{{station.id}}
-			</span>
-			<span class="station-name">
-				{{station.name}}
-			</span>
-		</a>
-	</li>
-</ul>
+<div class="col-md-12">
+	<h1>{{lineName}}</h1>
+	<ul id="stations" class="list-unstyled">
+		<li class="station col-md-2 col-sm-12" data-ng-repeat="station in stations">
+			<a href="#/arrivals/?line={{lineName}}&station={{station.id}}">
+				<span class="station-id {{lineName}}">
+					{{station.id}}
+				</span>
+				<span class="station-name">
+					{{station.name}}
+				</span>
+			</a>
+		</li>
+	</ul>
+</div>

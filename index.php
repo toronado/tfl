@@ -11,52 +11,26 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="list-unstyled" id="tube-lines">
-    				<li class="col-md-1 line">
-				    	<a style="border-color:#222;" class="bg" href="#/?line=all">All</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-bakerloo" href="#/?line=bakerloo">Ba</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-central" href="#/?line=central">Ce</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-circle" href="#/?line=circle">Ci</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-district" href="#/?line=district">Di</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-hammersmith" href="#/?line=hammersmith">Ha</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-jubilee" href="#/?line=jubilee">Ju</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-metropolitan" href="#/?line=metropolitan">Me</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-northern" href="#/?line=northern">No</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-piccadilly" href="#/?line=piccadilly">Pi</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-victoria" href="#/?line=victoria">Vi</a>
-				  	</li>
-				  	<li class="col-md-1 line">
-				    	<a class="bd-waterloo" href="#/?line=waterloo">Wa</a>
-				  	</li>
-				</ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
+  		<div class="row">
+      		<div class="col-md-12" id="line-list">
+			  	<div class="col-md-1"><a style="border-color:#222;" class="bg" href="#/?line=all">Al</a></div>
+			  	<div class="col-md-1"><a class="bg-bakerloo" href="#/?line=bakerloo">Ba</a></div>
+			  	<div class="col-md-1"><a class="bg-central" href="#/?line=central">Ce</a></div>
+			  	<div class="col-md-1"><a class="bg-circle" href="#/?line=circle">Ci</a></div>
+			  	<div class="col-md-1"><a class="bg-district" href="#/?line=district">Di</a></div>
+			  	<div class="col-md-1"><a class="bg-hammersmith-city" href="#/?line=hammersmith-city">Ha</a></div>
+			  	<div class="col-md-1"><a class="bg-jubilee" href="#/?line=jubilee">Ju</a></div>
+			  	<div class="col-md-1"><a class="bg-metropolitan" href="#/?line=metropolitan">Me</a></div>
+			  	<div class="col-md-1"><a class="bg-northern" href="#/?line=northern">No</a></div>
+			  	<div class="col-md-1"><a class="bg-piccadilly" href="#/?line=piccadilly">Pi</a></div>
+			  	<div class="col-md-1"><a class="bg-victoria" href="#/?line=victoria">Vi</a></div>
+			  	<div class="col-md-1"><a class="bg-waterloo-city" href="#/?line=waterloo-city">Wa</a></div>
+			</div>
+		</div>
+	</nav>
+    <div class="container" id="tfl-data">
     	<div class="row">
-       		<div class="col-md-12" id="data" style="margin-top:50px;" data-ng-view></div>
+       		<div data-ng-view></div>
        	</div>
     </div>
     <script src="js/angular.min.js"></script>
