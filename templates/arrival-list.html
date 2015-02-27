@@ -1,5 +1,7 @@
-<div class="col-md-6">
+<div class="col-md-12">
 	<h1>{{station}}</h1>
+</div>
+<div class="col-md-6">
 	<ul id="arrivals" class="list-group">
 		<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals">
 			<span class="badge">{{arrival.timeToStation | convertTime}}</span>
