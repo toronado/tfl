@@ -11,9 +11,14 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
+    	<!--<div class="navbar-header">
+      		<a class="navbar-brand" href="#">
+        		TFLive
+      		</a>
+    	</div>-->
   		<div class="row">
       		<div class="col-md-12" id="line-list">
-			  	<div class="col-md-1"><a style="border-color:#222;" class="bg" href="#/?line=all">Al</a></div>
+			  	<div class="col-md-1"><a style="background-color:#fff; color:#222" href="#/?line=all">+</a></div>
 			  	<div class="col-md-1"><a class="bg-bakerloo" href="#/?line=bakerloo">Ba</a></div>
 			  	<div class="col-md-1"><a class="bg-central" href="#/?line=central">Ce</a></div>
 			  	<div class="col-md-1"><a class="bg-circle" href="#/?line=circle">Ci</a></div>
@@ -27,11 +32,10 @@
 			  	<div class="col-md-1"><a class="bg-waterloo-city" href="#/?line=waterloo-city">Wa</a></div>
 			</div>
 		</div>
+		<input id="station-search" type="text" class="form-control" placeholder="..." aria-describedby="basic-addon1">
 	</nav>
     <div class="container" id="tfl-data">
-    	<div class="row">
-       		<div data-ng-view></div>
-       	</div>
+       	<div data-ng-view></div>
     </div>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>

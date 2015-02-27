@@ -1,15 +1,17 @@
-<div class="col-md-12">
-	<h1>{{lineName}}</h1>
-	<ul id="stations" class="list-unstyled">
-		<li class="station col-md-2 col-sm-12" data-ng-repeat="station in stations">
-			<a href="#/arrivals/?line={{lineName}}&station={{station.id}}">
-				<span class="station-id {{lineName}}">
-					{{station.id}}
-				</span>
-				<span class="station-name">
-					{{station.name}}
-				</span>
-			</a>
-		</li>
-	</ul>
+<div class="row">
+	<div class="col-md-12">
+		<h1>{{lineName}}</h1>
+		<ul id="stations" class="list-unstyled">
+			<li class="station col-md-2 col-sm-12" data-ng-repeat="station in stations">
+				<a href="#/arrivals/?line={{lineName}}&station={{station.id}}">
+					<span class="station-id {{lineName}}">
+						{{station.id}}
+					</span>
+					<span class="station-name">
+						{{station.name}}
+					</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>

@@ -105,11 +105,12 @@ body {
   color: #fff; }
 
 h1 {
+  text-transform: capitalize;
   margin: 0;
-  text-transform: capitalize; }
+  margin-bottom: 20px; }
 
 .navbar-default {
-  background-color: #000;
+  background-color: #fff;
   border-radius: 0;
   border: none;
   min-height: 0;
@@ -118,16 +119,26 @@ h1 {
 .navbar-default .col-md-1 {
   padding: 0; }
 
+input#station-search {
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+  background-color: #2f353f;
+  text-align: center;
+  font-size: 14px;
+  height: auto; }
+
 #line-list a {
   color: #fff;
   display: block;
   text-align: center;
   overflow: hidden;
   padding: 10px 0;
-  font-size: 14px; }
+  font-size: 14px;
+  font-weight: bold; }
 
 #tfl-data {
-  margin-top: 80px; }
+  margin-top: 130px; }
 
 #stations li span {
   display: block;

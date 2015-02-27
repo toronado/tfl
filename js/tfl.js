@@ -1,3 +1,4 @@
+var tubeLines = ['bakerloo', 'central', 'circle', 'district', 'ammersmith-city', 'jubilee', 'metropolitan', 'northern', 'piccadilly', 'victoria', 'waterloo-city'];
 var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
 tubeApp.config(function ($routeProvider){
@@ -15,6 +16,8 @@ tubeApp.config(function ($routeProvider){
         });
 });
 
+
+//Get the list of stations
 tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
     stations.list(function (data) {
         var i, stationsOnLine, totalStations;
@@ -46,6 +49,8 @@ tubeApp.factory('stations', function ($http) {
     }
 });
 
+
+//Get arrival times
 tubeApp.factory('arrivals', function ($http) {
     return {
         station : '',
@@ -53,24 +58,41 @@ tubeApp.factory('arrivals', function ($http) {
         list : function (callback) {
             $http({
                 method: 'GET',
-                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?app_id=3a9a79b8&app_key=028f9bbc54baa89d77c46b9b2b5ba833&stopPointId=940GZZLU'+this.station+'&ids='+this.line
+                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+this.station+'&ids='+tubeLines.join()
             }).success(callback)
         }
     }
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals){
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) {
+    var inbound, outbound, prop;
     arrivals.station = $routeParams.station;
     arrivals.line = $routeParams.line;
+    arrivalsObj = {
+        inbound : [],
+        outbound : []
+    }
     arrivals.list(function (data){
-        $scope.station = $routeParams.station + ' - ' + data[0].stationName.split('Underground')[0];;
-        $scope.arrivals = data;
+        for (var i=0; i<data.length; i++) {
+            if (data[i].direction === 'inbound') {
+                arrivalsObj.inbound.push(data[i]);
+            } else {
+                arrivalsObj.outbound.push(data[i]);
+            }
+        }
+        $scope.station = data[0].stationName.split('Underground')[0];;
+        $scope.inbound = arrivalsObj.inbound;
+        $scope.outbound = arrivalsObj.outbound;
     });
 });
 
-
+//Change seconds to minutes
 tubeApp.filter('convertTime', function() {
     return function(input) {
-        return Math.round(input/60);
+        var mins = Math.floor(input/60);
+        if (mins === 0) {
+            return 'Now'
+        }
+        return mins + ' min';
     }
 });

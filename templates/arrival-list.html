@@ -1,11 +1,23 @@
-<div class="col-md-12">
-	<h1>{{station}}</h1>
+<div class="row">
+	<div class="col-md-12">
+		<h1>{{station}}</h1>
+	</div>
 </div>
-<div class="col-md-6">
-	<ul id="arrivals" class="list-group">
-		<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals">
-			<span class="badge">{{arrival.timeToStation | convertTime}}</span>
-			{{arrival.towards}}
-		</li>
-	</ul>
+<div class="row">
+	<div class="col-md-6">
+		<ul id="arrivals" class="list-group">
+			<li class="arrival list-group-item" data-ng-repeat="tube in outbound | orderBy:'-timeToStation':true">
+				<span class="badge {{tube.lineId}}">{{tube.timeToStation | convertTime}}</span>
+				{{tube.towards}}
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<ul id="arrivals" class="list-group">
+			<li class="arrival list-group-item" data-ng-repeat="tube in inbound | orderBy:'-timeToStation':true">
+				<span class="badge {{tube.lineId}}">{{tube.timeToStation | convertTime}}</span>
+				{{tube.towards}}
+			</li>
+		</ul>
+	</div>
 </div>
