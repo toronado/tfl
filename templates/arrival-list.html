@@ -7,7 +7,7 @@
 	<div class="col-md-6">
 		<ul id="arrivals" class="list-group">
 			<li class="arrival list-group-item" data-ng-repeat="tube in outbound | orderBy:'-timeToStation':true">
-				<span class="badge {{tube.lineId}}">{{tube.timeToStation | convertTime}}</span>
+				<span class="badge"><span class="{{tube.lineId}}">{{tube.lineName}}</span> {{tube.timeToStation | convertTime}}</span>
 				{{tube.towards}}
 			</li>
 		</ul>
@@ -15,7 +15,7 @@
 	<div class="col-md-6">
 		<ul id="arrivals" class="list-group">
 			<li class="arrival list-group-item" data-ng-repeat="tube in inbound | orderBy:'-timeToStation':true">
-				<span class="badge {{tube.lineId}}">{{tube.timeToStation | convertTime}}</span>
+				<span class="badge"><span class="{{tube.lineId}}">{{tube.lineName}}</span> {{tube.timeToStation | convertTime}}</span>
 				{{tube.towards}}
 			</li>
 		</ul>
