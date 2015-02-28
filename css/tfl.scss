@@ -1,73 +1,77 @@
 //Station Background Colours
-$bakerlooBkd: #AE6118;
-$centralBkd: #E41F1F;
-$circleBkd: #F8D42D;
-$districtBkd: #007229;
-$hammersmithCityBkd: #E899A8;
-$jubileeBkd: #686E72;
-$metropolitanBkd: #893267;
-$northernBkd: #000;
-$piccadillyBkd: #0450A1;
-$victoriaBkd: #009FE0;
-$waterlooCityBkd: #70C3CE;
+$bakerloo: #AE6118;
+$central: #E41F1F;
+$circle: #F8D42D;
+$district: #007229;
+$hammersmithCity: #E899A8;
+$jubilee: #686E72;
+$metropolitan: #893267;
+$northern: #000;
+$piccadilly: #0450A1;
+$victoria: #009FE0;
+$waterlooCity: #70C3CE;
 
 //Station Text Colours
 $defaultStnTextColor: #fff;
 $alternateStnTextColor: #113892;
 
 //Station Colour Class Names
-.bakerloo { color:$bakerlooBkd !important; }
-.central { color:$centralBkd !important; }
-.circle { color:$circleBkd !important; }
-.district { color:$districtBkd !important; }
-.hammersmith-city { color:$hammersmithCityBkd !important; }
-.jubilee { color:$jubileeBkd !important; }
-.metropolitan { color:$metropolitanBkd !important; }
-.northern { color:$northernBkd !important; }
-.piccadilly { color:$piccadillyBkd !important; }
-.victoria { color:$victoriaBkd !important; }
-.waterloo-city { color:$waterlooCityBkd !important; }
+.bakerloo { color:$bakerloo !important; }
+.central { color:$central !important; }
+.circle { color:$circle !important; }
+.district { color:$district !important; }
+.hammersmith-city { color:$hammersmithCity !important; }
+.jubilee { color:$jubilee !important; }
+.metropolitan { color:$metropolitan !important; }
+.northern { color:$northern !important; }
+.piccadilly { color:$piccadilly !important; }
+.victoria { color:$victoria !important; }
+.waterloo-city { color:$waterlooCity !important; }
 
 //Station Background Colour Class Names
-.bg-bakerloo { background-color:$bakerlooBkd !important; }
-.bg-central { background-color:$centralBkd !important; }
-.bg-circle { background-color:$circleBkd !important; }
-.bg-district { background-color:$districtBkd !important; }
-.bg-hammersmith-city { background-color:$hammersmithCityBkd !important; }
-.bg-jubilee { background-color:$jubileeBkd !important; }
-.bg-metropolitan { background-color:$metropolitanBkd !important; }
-.bg-northern { background-color:$northernBkd !important; }
-.bg-piccadilly { background-color:$piccadillyBkd !important; }
-.bg-victoria { background-color:$victoriaBkd !important; }
-.bg-waterloo-city { background-color:$waterlooCityBkd !important; }
+.bg-bakerloo { background-color:$bakerloo !important; }
+.bg-central { background-color:$central !important; }
+.bg-circle { background-color:$circle !important; }
+.bg-district { background-color:$district !important; }
+.bg-hammersmith-city { background-color:$hammersmithCity !important; }
+.bg-jubilee { background-color:$jubilee !important; }
+.bg-metropolitan { background-color:$metropolitan !important; }
+.bg-northern { background-color:$northern !important; }
+.bg-piccadilly { background-color:$piccadilly !important; }
+.bg-victoria { background-color:$victoria !important; }
+.bg-waterloo-city { background-color:$waterlooCity !important; }
 
 //Station Border Colour Class Names
-.bd-bakerloo { border-color:$bakerlooBkd !important; }
-.bd-central { border-color:$centralBkd !important; }
-.bd-circle { border-color:$circleBkd !important; }
-.bd-district { border-color:$districtBkd !important; }
-.bd-hammersmith-city { border-color:$hammersmithCityBkd !important; }
-.bd-jubilee { border-color:$jubileeBkd !important; }
-.bd-metropolitan { border-color:$metropolitanBkd !important; }
-.bd-northern { border-color:$northernBkd !important; }
-.bd-piccadilly { border-color:$piccadillyBkd !important; }
-.bd-victoria { border-color:$victoriaBkd !important; }
-.bd-waterloo-city { border-color:$waterlooCityBkd !important; }
+.bd-bakerloo { border-color:$bakerloo !important; }
+.bd-central { border-color:$central !important; }
+.bd-circle { border-color:$circle !important; }
+.bd-district { border-color:$district !important; }
+.bd-hammersmith-city { border-color:$hammersmithCity !important; }
+.bd-jubilee { border-color:$jubilee !important; }
+.bd-metropolitan { border-color:$metropolitan !important; }
+.bd-northern { border-color:$northern !important; }
+.bd-piccadilly { border-color:$piccadilly !important; }
+.bd-victoria { border-color:$victoria !important; }
+.bd-waterloo-city { border-color:$waterlooCity !important; }
 
 
-body { font-family: helvetica,arial,sans-serif; font-size:16px; background-color:#363D47; -webkit-font-smoothing:antialiased; color:#fff; }
+body { font-family: helvetica,arial,sans-serif; font-size:20px; background-color:#363D47; -webkit-font-smoothing:antialiased; }
 
 //bootstrap overrides//
-h1 { text-transform: capitalize; margin:0; margin-bottom: 20px; }
-.navbar-default { background-color:#fff; border-radius:0; border:none; min-height: 0; padding:0; }
+h1 { text-transform: capitalize; font-size:40px; color:#fff; }
+h1 small { color:#7e8084; }
+h2 { color:#2f353f; }
+.navbar-default { background-color:transparent; border-radius:0; border:none; min-height: 0; padding:0; }
 .navbar-default .col-md-1 { padding:0; }
-input#station-search { border: none; border-radius: 0; padding: 15px; background-color: #2f353f; text-align: center; font-size: 14px; height: auto; }
-#line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:10px 0; font-size:14px; font-weight: bold; }
-#tfl-data { margin-top:130px; }
-#stations li span { display:block; overflow: hidden; white-space: nowrap; color: #fff; }
-.station { padding:20px 10px 20px 0; border-bottom:#666 solid 1px; }
-span.station-name { font-size:12px; }
-.stn-code { display:block; }
-.stn-name { font-size:10px; line-height: 10px; }
-.arrival {  background: none; border: none; padding:10px 0; border-bottom:#2f353f solid 1px; border-radius:0 !important; }
+.thumbnail { background:none; border-radius:0; border-color:#2f353f; padding:10px; }
+
+input#station-search { border: none; border-radius: 0; padding:10px; background-color: #2f353f; text-align: center; font-size: 14px; height: auto; }
+#line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
+#tfl-data { margin-top:90px; }
+#stations li span { display:block; overflow: hidden; white-space: nowrap; }
+.station { padding:20px; border-bottom:#2f353f solid 1px; }
+span.station-id { color:#fff; text-transform: capitalize; font-size:14px; }
+span.station-name { font-size:12px; color:$waterlooCity; }
+.arrival {  background: none; border: none; padding:10px 0; border-bottom:#2f353f solid 1px; border-radius:0 !important; color: #fff; font-size:14px; }
 .badge { background:none; }
+.badge.line-indicator { height:10px; width:10px; padding:0; margin-left:5px; }

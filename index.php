@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html data-ng-app="tubeApp">
 <head>
@@ -16,23 +15,21 @@
         		TFLive
       		</a>
     	</div>-->
-  		<div class="row">
-      		<div class="col-md-12" id="line-list">
-			  	<div class="col-md-1"><a style="background-color:#fff; color:#222" href="#/?line=all">+</a></div>
-			  	<div class="col-md-1"><a class="bg-bakerloo" href="#/?line=bakerloo">Ba</a></div>
-			  	<div class="col-md-1"><a class="bg-central" href="#/?line=central">Ce</a></div>
-			  	<div class="col-md-1"><a class="bg-circle" href="#/?line=circle">Ci</a></div>
-			  	<div class="col-md-1"><a class="bg-district" href="#/?line=district">Di</a></div>
-			  	<div class="col-md-1"><a class="bg-hammersmith-city" href="#/?line=hammersmith-city">Ha</a></div>
-			  	<div class="col-md-1"><a class="bg-jubilee" href="#/?line=jubilee">Ju</a></div>
-			  	<div class="col-md-1"><a class="bg-metropolitan" href="#/?line=metropolitan">Me</a></div>
-			  	<div class="col-md-1"><a class="bg-northern" href="#/?line=northern">No</a></div>
-			  	<div class="col-md-1"><a class="bg-piccadilly" href="#/?line=piccadilly">Pi</a></div>
-			  	<div class="col-md-1"><a class="bg-victoria" href="#/?line=victoria">Vi</a></div>
-			  	<div class="col-md-1"><a class="bg-waterloo-city" href="#/?line=waterloo-city">Wa</a></div>
-			</div>
-		</div>
-		<input id="station-search" type="text" class="form-control" placeholder="..." aria-describedby="basic-addon1">
+        <ul class="nav nav-tabs nav-justified" id="line-list">
+            <li><a style="background-color:#2f353f; color:#70C3CE" href="#/">+</a></li>
+            <li><a class="bg-bakerloo" href="#/?line=bakerloo">Ba</a></li>
+            <li><a class="bg-central" href="#/?line=central">Ce</a></li>
+            <li><a class="bg-circle" href="#/?line=circle">Ci</a></li>
+            <li><a class="bg-district" href="#/?line=district">Di</a></li>
+            <li><a class="bg-hammersmith-city" href="#/?line=hammersmith-city">Ha</a></li>
+            <li><a class="bg-jubilee" href="#/?line=jubilee">Ju</a></li>
+            <li><a class="bg-metropolitan" href="#/?line=metropolitan">Me</a></li>
+            <li><a class="bg-northern" href="#/?line=northern">No</a></li>
+            <li><a class="bg-piccadilly" href="#/?line=piccadilly">Pi</a></li>
+            <li><a class="bg-victoria" href="#/?line=victoria">Vi</a></li>
+            <li><a class="bg-waterloo-city" href="#/?line=waterloo-city">Wa</a></li>
+        </ul>
+		<!--<input id="station-search" type="text" class="form-control" placeholder="Station Search" aria-describedby="basic-addon1">-->
 	</nav>
     <div class="container" id="tfl-data">
        	<div data-ng-view></div>
