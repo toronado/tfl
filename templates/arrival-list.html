@@ -1,22 +1,24 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1>{{station}} <small>{{stationId}}</small></h1>
+		<h1>{{arrivals.stationName}}</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-6">
-		<h2>{{outName}}</h2>
+		<h2>{{arrivals.inbound.platform}}</h2>
 		<ul id="arrivals" class="list-group">
-			<li class="arrival list-group-item" data-ng-repeat="tube in outbound | orderBy:'-timeToStation':true">
+			<li class="arrival list-group-item" ng-show="!arrivals.inbound.trains.length">-</li>
+			<li class="arrival list-group-item" data-ng-repeat="tube in arrivals.inbound.trains | orderBy:'-timeToStation':true">
 				<span class="badge">{{tube.timeToStation | convertTime}} <span class="badge line-indicator bg-{{tube.lineId}}">&nbsp;</span></span>
 				{{tube.towards}}
 			</li>
 		</ul>
 	</div>
 	<div class="col-md-6">
-		<h2>{{inName}}</h2>
+		<h2>{{arrivals.outbound.platform}}</h2>
 		<ul id="arrivals" class="list-group">
-			<li class="arrival list-group-item" data-ng-repeat="tube in inbound | orderBy:'-timeToStation':true">
+			<li class="arrival list-group-item" ng-show="!arrivals.outbound.trains.length">-</li>
+			<li class="arrival list-group-item" data-ng-repeat="tube in arrivals.outbound.trains | orderBy:'-timeToStation':true">
 				<span class="badge">{{tube.timeToStation | convertTime}} <span class="badge line-indicator bg-{{tube.lineId}}">&nbsp;</span></span>
 				{{tube.towards}}
 			</li>

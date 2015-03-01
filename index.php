@@ -17,17 +17,17 @@
     	</div>-->
         <ul class="nav nav-tabs nav-justified" id="line-list">
             <li><a style="background-color:#2f353f; color:#70C3CE" href="#/">+</a></li>
-            <li><a class="bg-bakerloo" href="#/?line=bakerloo">Ba</a></li>
-            <li><a class="bg-central" href="#/?line=central">Ce</a></li>
-            <li><a class="bg-circle" href="#/?line=circle">Ci</a></li>
-            <li><a class="bg-district" href="#/?line=district">Di</a></li>
-            <li><a class="bg-hammersmith-city" href="#/?line=hammersmith-city">Ha</a></li>
-            <li><a class="bg-jubilee" href="#/?line=jubilee">Ju</a></li>
-            <li><a class="bg-metropolitan" href="#/?line=metropolitan">Me</a></li>
-            <li><a class="bg-northern" href="#/?line=northern">No</a></li>
-            <li><a class="bg-piccadilly" href="#/?line=piccadilly">Pi</a></li>
-            <li><a class="bg-victoria" href="#/?line=victoria">Vi</a></li>
-            <li><a class="bg-waterloo-city" href="#/?line=waterloo-city">Wa</a></li>
+            <li><a class="bg-bakerloo hidden-xs" href="#/?line=bakerloo">Ba</a></li>
+            <li><a class="bg-central hidden-xs" href="#/?line=central">Ce</a></li>
+            <li><a class="bg-circle hidden-xs" href="#/?line=circle">Ci</a></li>
+            <li><a class="bg-district hidden-xs" href="#/?line=district">Di</a></li>
+            <li><a class="bg-hammersmith-city hidden-xs" href="#/?line=hammersmith-city">Ha</a></li>
+            <li><a class="bg-jubilee hidden-xs" href="#/?line=jubilee">Ju</a></li>
+            <li><a class="bg-metropolitan hidden-xs" href="#/?line=metropolitan">Me</a></li>
+            <li><a class="bg-northern hidden-xs" href="#/?line=northern">No</a></li>
+            <li><a class="bg-piccadilly hidden-xs" href="#/?line=piccadilly">Pi</a></li>
+            <li><a class="bg-victoria hidden-xs" href="#/?line=victoria">Vi</a></li>
+            <li><a class="bg-waterloo-city hidden-xs" href="#/?line=waterloo-city">Wa</a></li>
         </ul>
 		<!--<input id="station-search" type="text" class="form-control" placeholder="Station Search" aria-describedby="basic-addon1">-->
 	</nav>

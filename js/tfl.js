@@ -66,52 +66,55 @@ tubeApp.factory('stations', function ($http) {
 //Get arrival times
 tubeApp.factory('arrivals', function ($http) {
     return {
-        station : null,
+        stationId : null,
         line : null,
         list : function (callback) {
             $http({
                 method: 'GET',
-                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+this.station+'&ids='+this.line
+                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+this.stationId+'&ids='+this.line
             }).success(callback)
         }
     }
 });
 
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) {
-    arrivals.station = $routeParams.station;
-    arrivals.line = tubeLines.join();
+
+    //Set arrivals factory query parameters
+    arrivals.stationId = $routeParams.station;
     if ($routeParams.line) {
         arrivals.line = $routeParams.line;
+    } else {
+        arrivals.line = tubeLines.join();
     }
-    arrivalsObj = {
-        inbound : {
-            direction : null,
-            trains : []
-        },
-        outbound : {
-            direction : null,
-            trains : []
-        }
-    }
+
+    //Fetch the data
     arrivals.list(function (data){
-        var inbound, outbound, i;
-        totalTubes = data.length;
-        for (i=0; i<totalTubes; i++) {
-            if (data[i].direction === 'inbound') {
-                arrivalsObj.inbound.direction = data[i].platformName;
-                arrivalsObj.inbound.trains.push(data[i]);
-            } else {
-                arrivalsObj.outbound.direction = data[i].platformName;
-                arrivalsObj.outbound.trains.push(data[i]);
+        if (data.length === 0) return null;
+        var trains, total, i;
+        trains = {
+            lineName : data[0].lineName,
+            lineId : $routeParams.station,
+            stationName : data[0].stationName.split('Underground')[0],
+            inbound : {
+                platform : 'Inbound',
+                trains : []
+            },
+            outbound : {
+                platform : 'Outbound',
+                trains : []
             }
         }
-        $scope.station = data[0].stationName.split('Underground')[0];
-        $scope.stationId = $routeParams.station;
-        //$scope.inName = arrivalsObj.inbound.direction.split(' ')[0];
-        //$scope.outName = arrivalsObj.outbound.direction.split(' ')[0];
-        $scope.inbound = arrivalsObj.inbound.trains;
-        $scope.outbound = arrivalsObj.outbound.trains;
+        total = data.length;
+        for (i=0; i<total; i++) {
+            if (data[i].direction === 'inbound') {
+                trains.inbound.trains.push(data[i]);
+            } else {
+                trains.outbound.trains.push(data[i]);
+            }
+        }
+        $scope.arrivals = trains;
     });
+
 });
 
 //Change seconds to minutes
@@ -119,7 +122,7 @@ tubeApp.filter('convertTime', function() {
     return function (input) {
         var mins = Math.floor(input/60);
         if (mins === 0) {
-            return 'Now'
+            return 'Now';
         }
         return mins + ' min';
     }
