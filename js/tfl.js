@@ -15,25 +15,31 @@ tubeApp.config(function ($routeProvider) {
         });
 });
 
-
-//Get the list of stations
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations) {
-    stations.list(function (data) {
-        $scope.line = $routeParams.line;
-        $scope.stations = data;
-    });
-});
-
-tubeApp.factory('stations', function ($http) {
+tubeApp.factory('ajax', function ($http) {
     return {
-        list : function (callback) {
+        urls : {
+            stations : 'json/stations.json',
+            arrivals : function (station, line) {
+                'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+station+'&ids='+line
+            }
+        },
+        fetch : function (url, cache, callback) {
             $http({
                 method: 'GET',
-                url: 'json/stations.json',
-                cache: true
+                url: this.urls[url],
+                cache: cache
             }).success(callback)
         }
     }
+});
+
+
+//Get the list of stations
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, ajax) {
+    ajax.fetch('stations', true, function (data) {
+        $scope.line = $routeParams.line;
+        $scope.stations = data;
+    });
 });
 
 
@@ -52,15 +58,14 @@ tubeApp.factory('arrivals', function ($http) {
 
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) {
 
-    //Fetch the data
     arrivals.list($routeParams.line, $routeParams.station, function (data) {
+        if (data.length === 0) return null;
         $scope.arrivals = {
             lineId : $routeParams.station,
             stationName : data[0].stationName.split('Underground')[0],
             data : data
         }
     });
-
 });
 
 //Change seconds to minutes
