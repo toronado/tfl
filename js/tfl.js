@@ -2,6 +2,7 @@ var tubeLines = [
     'bakerloo',
     'central',
     'circle',
+    'district',
     'hammersmith-city',
     'jubilee',
     'metropolitan',
@@ -13,7 +14,7 @@ var tubeLines = [
 
 var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
-tubeApp.config(function ($routeProvider){
+tubeApp.config(function ($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'templates/station-list.html',
@@ -30,23 +31,25 @@ tubeApp.config(function ($routeProvider){
 
 
 //Get the list of stations
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations){
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations) {
     stations.list(function (data) {
+        var lineObj = {
+            name : '',
+            stations : []
+        };
         if ($routeParams.line) {
-            var i, stations, totalStations;
-            totalStations = data.length;
-            stations = [];
-            for (i=0; i<totalStations; i++) {
+            var i, arrLen;
+            arrLen = data.length;
+            lineObj.name = $routeParams.line;
+            for (i=0; i<arrLen; i++) {
                 if (data[i].lines[$routeParams.line]) {
-                    stations.push(data[i]);
+                    lineObj.stations.push(data[i]);
                 }
             }
-            $scope.lineName = $routeParams.line;
-            $scope.stations = stations;
         } else {
-            $scope.lineName = '';
-            $scope.stations = data;
+            lineObj.stations = data;
         }
+        $scope.line = lineObj;
     });
 });
 
@@ -89,9 +92,11 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) 
 
     //Fetch the data
     arrivals.list(function (data){
-        if (data.length === 0) return null;
-        var trains, total, i;
-        trains = {
+        var arrLen = data.length;
+        if (arrLen === 0) return null;
+
+        var arrivalObj, i;
+        arrivalObj = {
             lineName : data[0].lineName,
             lineId : $routeParams.station,
             stationName : data[0].stationName.split('Underground')[0],
@@ -104,15 +109,15 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) 
                 trains : []
             }
         }
-        total = data.length;
-        for (i=0; i<total; i++) {
+
+        for (i=0; i<arrLen; i++) {
             if (data[i].direction === 'inbound') {
-                trains.inbound.trains.push(data[i]);
+                arrivalObj.inbound.trains.push(data[i]);
             } else {
-                trains.outbound.trains.push(data[i]);
+                arrivalObj.outbound.trains.push(data[i]);
             }
         }
-        $scope.arrivals = trains;
+        $scope.arrivals = arrivalObj;
     });
 
 });
@@ -125,11 +130,5 @@ tubeApp.filter('convertTime', function() {
             return 'Now';
         }
         return mins + ' min';
-    }
-});
-
-tubeApp.filter('trimStr', function() {
-    return function (input) {
-        return input.charAt(0);
     }
 });

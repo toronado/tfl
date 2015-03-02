@@ -162,13 +162,13 @@ input#station-search {
   border-bottom: #2f353f solid 1px; }
 
 span.station-id {
-  color: #fff;
+  color: #70C3CE;
   text-transform: capitalize;
-  font-size: 14px; }
+  font-size: 12px; }
 
 span.station-name {
-  font-size: 12px;
-  color: #70C3CE; }
+  font-size: 14px;
+  color: #fff; }
 
 .arrival {
   background: none;
