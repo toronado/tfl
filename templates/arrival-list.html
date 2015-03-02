@@ -1,14 +1,13 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1>{{arrivals.stationName}} <small>{{arrivals.lineId}}</small></h1>
+		<h1>{{arrivals.stationName}} <small>{{arrivals.lineId}} ({{arrivals.total}})</small></h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-6">
 		<h2>Inbound</h2>
 		<ul id="arrivals" class="list-group">
-			<!--<li class="arrival list-group-item" ng-show="!arrivals.inbound.trains.length">.</li>-->
-			<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | filter:'inbound' | orderBy:'-timeToStation':true">
+			<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | filter:{'direction':'inbound'}:true | orderBy:'-timeToStation':true">
 				<span class="badge">{{arrival.timeToStation | convertTime}} <span class="badge line-indicator bg-{{arrival.lineId}}">&nbsp;</span></span>
 				{{arrival.towards}}
 			</li>
@@ -17,8 +16,7 @@
 	<div class="col-md-6">
 		<h2>Outbound</h2>
 		<ul id="arrivals" class="list-group">
-			<!--<li class="arrival list-group-item" ng-show="!arrivals.outbound.trains.length">.</li>-->
-			<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | filter:'outbound' | orderBy:'-timeToStation':true">
+			<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | filter:{'direction':'outbound'}:true | orderBy:'-timeToStation':true">
 				<span class="badge">{{arrival.timeToStation | convertTime}} <span class="badge line-indicator bg-{{arrival.lineId}}">&nbsp;</span></span>
 				{{arrival.towards}}
 			</li>

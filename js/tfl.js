@@ -1,3 +1,4 @@
+var tubeLines = ['bakerloo','central','circle','district','hammersmith-city','jubilee','metropolitan','northern','piccadilly','victoria','waterloo-city'];
 var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
 tubeApp.config(function ($routeProvider) {
@@ -15,66 +16,59 @@ tubeApp.config(function ($routeProvider) {
         });
 });
 
-tubeApp.factory('ajax', function ($http) {
+tubeApp.factory('appData', function ($http) {
     return {
         urls : {
             stations : 'json/stations.json',
-            arrivals : function (station, line) {
-                'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+station+'&ids='+line
-            }
+            arrivals : 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals'
         },
-        fetch : function (url, cache, callback) {
+        fetch : function (url, params, cache, callback) {
             $http({
                 method: 'GET',
                 url: this.urls[url],
-                cache: cache
-            }).success(callback)
+                cache: cache,
+                params: params
+            }).success(callback);
         }
-    }
+    };
 });
 
 
 //Get the list of stations
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, ajax) {
-    ajax.fetch('stations', true, function (data) {
+tubeApp.controller('stationListCtrl', function ($scope, $routeParams, appData) {
+    appData.fetch('stations', '', true, function (data) {
         $scope.line = $routeParams.line;
         $scope.stations = data;
     });
 });
 
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
 
-//Get arrival times
-tubeApp.factory('arrivals', function ($http) {
-    return {
-        list : function (line, station, callback) {
-            if (!line) line = 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city';
-            $http({
-                method: 'GET',
-                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+station+'&ids='+line
-            }).success(callback)
+    var params = {
+        stopPointId : '940GZZLU' + $routeParams.station,
+        ids : $routeParams.line || tubeLines.join()
+    };
+    appData.fetch('arrivals', params, false, function (data) {
+        if (data.length === 0) {
+            return null;
         }
-    }
-});
-
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) {
-
-    arrivals.list($routeParams.line, $routeParams.station, function (data) {
-        if (data.length === 0) return null;
         $scope.arrivals = {
+            total : data.length,
             lineId : $routeParams.station,
             stationName : data[0].stationName.split('Underground')[0],
             data : data
-        }
+        };
+        console.log($scope.arrivals);
     });
 });
 
 //Change seconds to minutes
-tubeApp.filter('convertTime', function() {
+tubeApp.filter('convertTime', function () {
     return function (input) {
-        var mins = Math.floor(input/60);
+        var mins = Math.floor(input / 60);
         if (mins === 0) {
             return 'Now';
         }
         return mins + ' min';
-    }
+    };
 });
