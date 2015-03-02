@@ -1,17 +1,3 @@
-var tubeLines = [
-    'bakerloo',
-    'central',
-    'circle',
-    'district',
-    'hammersmith-city',
-    'jubilee',
-    'metropolitan',
-    'northern',
-    'piccadilly',
-    'victoria',
-    'waterloo-city'
-];
-
 var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
 tubeApp.config(function ($routeProvider) {
@@ -33,23 +19,8 @@ tubeApp.config(function ($routeProvider) {
 //Get the list of stations
 tubeApp.controller('stationListCtrl', function ($scope, $routeParams, stations) {
     stations.list(function (data) {
-        var lineObj = {
-            name : '',
-            stations : []
-        };
-        if ($routeParams.line) {
-            var i, arrLen;
-            arrLen = data.length;
-            lineObj.name = $routeParams.line;
-            for (i=0; i<arrLen; i++) {
-                if (data[i].lines[$routeParams.line]) {
-                    lineObj.stations.push(data[i]);
-                }
-            }
-        } else {
-            lineObj.stations = data;
-        }
-        $scope.line = lineObj;
+        $scope.line = $routeParams.line;
+        $scope.stations = data;
     });
 });
 
@@ -58,7 +29,7 @@ tubeApp.factory('stations', function ($http) {
         list : function (callback) {
             $http({
                 method: 'GET',
-                url: 'json/stations2.json',
+                url: 'json/stations.json',
                 cache: true
             }).success(callback)
         }
@@ -69,12 +40,11 @@ tubeApp.factory('stations', function ($http) {
 //Get arrival times
 tubeApp.factory('arrivals', function ($http) {
     return {
-        stationId : null,
-        line : null,
-        list : function (callback) {
+        list : function (line, station, callback) {
+            if (!line) line = 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city';
             $http({
                 method: 'GET',
-                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+this.stationId+'&ids='+this.line
+                url: 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals/?stopPointId=940GZZLU'+station+'&ids='+line
             }).success(callback)
         }
     }
@@ -82,42 +52,13 @@ tubeApp.factory('arrivals', function ($http) {
 
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, arrivals) {
 
-    //Set arrivals factory query parameters
-    arrivals.stationId = $routeParams.station;
-    if ($routeParams.line) {
-        arrivals.line = $routeParams.line;
-    } else {
-        arrivals.line = tubeLines.join();
-    }
-
     //Fetch the data
-    arrivals.list(function (data){
-        var arrLen = data.length;
-        if (arrLen === 0) return null;
-
-        var arrivalObj, i;
-        arrivalObj = {
-            lineName : data[0].lineName,
+    arrivals.list($routeParams.line, $routeParams.station, function (data) {
+        $scope.arrivals = {
             lineId : $routeParams.station,
             stationName : data[0].stationName.split('Underground')[0],
-            inbound : {
-                platform : 'Inbound',
-                trains : []
-            },
-            outbound : {
-                platform : 'Outbound',
-                trains : []
-            }
+            data : data
         }
-
-        for (i=0; i<arrLen; i++) {
-            if (data[i].direction === 'inbound') {
-                arrivalObj.inbound.trains.push(data[i]);
-            } else {
-                arrivalObj.outbound.trains.push(data[i]);
-            }
-        }
-        $scope.arrivals = arrivalObj;
     });
 
 });
