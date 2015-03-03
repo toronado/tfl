@@ -14,8 +14,8 @@
       		<a class="navbar-brand" href="#">
         		TFLive
       		</a>
-    	</div>
-        <ul class="nav nav-tabs nav-justified" id="line-list">
+    	</div>-->
+        <ul class="nav nav-tabs nav-justified" id="nav-line-list">
             <li><a style="background-color:#2f353f; color:#70C3CE" href="#/">+</a></li>
             <li><a class="bg-bakerloo hidden-xs" href="#/?line=bakerloo">Ba</a></li>
             <li><a class="bg-central hidden-xs" href="#/?line=central">Ce</a></li>
@@ -28,8 +28,8 @@
             <li><a class="bg-piccadilly hidden-xs" href="#/?line=piccadilly">Pi</a></li>
             <li><a class="bg-victoria hidden-xs" href="#/?line=victoria">Vi</a></li>
             <li><a class="bg-waterloo-city hidden-xs" href="#/?line=waterloo-city">Wa</a></li>
-        </ul>-->
-		<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">
+        </ul>
+		<!--<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">-->
 	</nav>
     <div class="container" id="tfl-data">
        	<div data-ng-view></div>

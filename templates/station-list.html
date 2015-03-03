@@ -1,18 +1,32 @@
 <div class="row">
 	<div class="col-md-12">
-		<ul id="stations" class="list-unstyled">
-			<li class="col-xs-12 col-md-3" data-ng-repeat="station in stations | filter:line | filter:searchText ">
-				<a href="#/arrivals/?line={{station.lines | arrToStr}}&station={{station.id}}" class="thumbnail">
+		<h1>Stations</h1>
+	</div>
+	<div class="col-md-4">
+		<ul id="line-list" class="list-group">
+			<li class="line list-group-item"><a href="#/">All</a></li>
+		  	<li class="line bd-{{line}} list-group-item" data-ng-repeat="line in lines">
+		  		<a href="#/?line={{line}}">
+		  			{{line | formatStr}}
+		  		</a>
+		  	</li>
+		</ul>
+		<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">
+	</div>
+	<div class="col-md-8">
+		<ul id="station-list" class="list-group">
+			<li class="station list-group-item col-xs-12 col-md-12" data-ng-repeat="station in stations | filter:line | filter:searchText ">
+				<a href="#/arrivals/?line={{station.lines | arrToStr}}&station={{station.id}}">
+					<span class="badge station-lines">
+						<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">
+							{{line}}
+						</span>
+					</span>
 					<span class="station-id">
 						{{station.id}}
 					</span>
 					<span class="station-name">
 						{{station.name}}
-					</span>
-					<span class="station-lines">
-						<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">
-							{{line}}
-						</span>
 					</span>
 				</a>
 			</li>

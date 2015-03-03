@@ -38,6 +38,7 @@ tubeApp.factory('appData', function ($http) {
 tubeApp.controller('stationListCtrl', function ($scope, $routeParams, appData) {
     appData.fetch('stations', '', true, function (data) {
         $scope.line = $routeParams.line;
+        $scope.lines = tubeLines;
         $scope.stations = data;
     });
 });
@@ -66,6 +67,12 @@ tubeApp.filter('arrToStr', function () {
     return function (input) {
         return input.join();
     };
+});
+
+tubeApp.filter ('formatStr', function () {
+    return function (input) {
+        return input.replace('-', ' & ');
+    }
 });
 
 //Change seconds to minutes
