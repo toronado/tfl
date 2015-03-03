@@ -58,8 +58,14 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
             stationName : data[0].stationName.split('Underground')[0],
             data : data
         };
-        console.log($scope.arrivals);
+        //console.log($scope.arrivals);
     });
+});
+
+tubeApp.filter('arrToStr', function () {
+    return function (input) {
+        return input.join();
+    };
 });
 
 //Change seconds to minutes

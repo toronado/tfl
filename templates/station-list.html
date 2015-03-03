@@ -1,15 +1,19 @@
 <div class="row">
 	<div class="col-md-12">
 		<ul id="stations" class="list-unstyled">
-			<li class="col-xs-6 col-md-3" data-ng-repeat="station in stations | filter:line ">
-				<a href="#/arrivals/?line={{line}}&station={{station.id}}" class="thumbnail">
-					<span class="station-id {{line}}">
+			<li class="col-xs-12 col-md-3" data-ng-repeat="station in stations | filter:line | filter:searchText ">
+				<a href="#/arrivals/?line={{station.lines | arrToStr}}&station={{station.id}}" class="thumbnail">
+					<span class="station-id">
 						{{station.id}}
 					</span>
 					<span class="station-name">
 						{{station.name}}
 					</span>
-
+					<span class="station-lines">
+						<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">
+							{{line}}
+						</span>
+					</span>
 				</a>
 			</li>
 		</ul>
