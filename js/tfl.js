@@ -56,10 +56,11 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
         $scope.arrivals = {
             total : data.length,
             lineId : $routeParams.station,
+            lines : $routeParams.line.split(','),
             stationName : data[0].stationName.split('Underground')[0],
+            filters : {},
             data : data
         };
-        //console.log($scope.arrivals);
     });
 });
 

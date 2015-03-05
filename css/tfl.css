@@ -125,37 +125,9 @@ h2 {
 .navbar-default .col-md-1 {
   padding: 0; }
 
-.thumbnail {
-  background: none;
-  border-radius: 0;
-  border-color: #2f353f;
-  padding: 10px; }
-
-.list-group-item {
-  background-color: transparent;
-  border: none;
-  border-radius: 0 !important;
-  border-bottom: solid 1px #2f353f;
-  padding: 0;
-  font-size: 14px;
-  text-transform: capitalize;
-  padding: 10px 0; }
-
-.list-group-item a {
-  display: block;
-  color: #fff; }
-
-.list-group-item .badge {
-  float: right; }
-
-input#station-search {
-  border: none;
-  border-radius: 0;
-  padding: 15px;
-  background-color: #2f353f;
-  text-align: center;
-  font-size: 14px;
-  height: auto; }
+#nav-line-list li {
+  height: 20px;
+  overflow: hidden; }
 
 #nav-line-list a {
   color: #fff;
@@ -167,24 +139,41 @@ input#station-search {
   border: none;
   border-radius: 0; }
 
+.list-group-item {
+  background-color: transparent;
+  border: none;
+  border-radius: 0 !important;
+  border-bottom: solid 1px #2f353f;
+  padding: 10px 0;
+  font-size: 14px;
+  text-transform: capitalize; }
+
+.list-group-item a {
+  color: #fff; }
+
+.list-group-item .badge {
+  float: right; }
+
+#line-list .list-group-item a {
+  opacity: 0.3; }
+
+input#station-search {
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+  background-color: #2f353f;
+  text-align: center;
+  font-size: 14px;
+  height: auto; }
+
 #tfl-data {
   margin-top: 90px; }
 
-/*#stations li span { overflow: hidden; white-space: nowrap; }
-.station { padding:20px; border-bottom:#2f353f solid 1px; }*/
 span.station-id {
-  color: #70C3CE;
-  text-transform: capitalize;
-  font-size: 12px;
-  float: right;
-  display: none; }
+  opacity: 0.1;
+  min-width: 40px;
+  display: inline-block; }
 
-span.station-name {
-  font-size: 14px;
-  color: #fff;
-  display: block; }
-
-/*.arrival {  background: none; border: none; padding:10px 0; border-bottom:#2f353f solid 1px; border-radius:0 !important; color: #fff; font-size:14px; }*/
 .badge {
   background: none; }
 
@@ -196,7 +185,6 @@ span.station-name {
   display: inline-block;
   border-radius: 50%; }
 
-/*.station-lines { float: right; line-height: 1; }*/
 .station-line {
   width: 10px;
   display: inline-block;
