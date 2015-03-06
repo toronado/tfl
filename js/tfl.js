@@ -37,8 +37,8 @@ tubeApp.factory('appData', function ($http) {
 //Get the list of stations
 tubeApp.controller('stationListCtrl', function ($scope, $routeParams, appData) {
     appData.fetch('stations', '', true, function (data) {
-        $scope.line = $routeParams.line;
-        $scope.lines = tubeLines;
+        //$scope.line = $routeParams.line;
+        //$scope.lines = tubeLines;
         $scope.stations = data;
     });
 });
@@ -55,7 +55,6 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
         }
         $scope.arrivals = {
             total : data.length,
-            lineId : $routeParams.station,
             lines : $routeParams.line.split(','),
             stationName : data[0].stationName.split('Underground')[0],
             filters : {},

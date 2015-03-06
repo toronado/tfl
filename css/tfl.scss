@@ -80,8 +80,8 @@ h2 { color:#2f353f; }
 #line-list .list-group-item a { opacity: 0.3; }
 
 input#station-search { border: none; border-radius: 0; padding:15px; background-color: #2f353f; text-align: center; font-size: 14px; height: auto; }
-#tfl-data { margin-top:90px; }
-span.station-id { opacity: 0.1; min-width: 40px; display: inline-block; }
+#tfl-data { margin-top:60px; }
+span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 .badge { background:none; }
 .line-indicator { height:10px; width:10px; padding:0; margin-left:5px; display:inline-block; border-radius:50%; }
 .station-line { width:10px; display:inline-block; height:10px; border-radius:50%; overflow: hidden; margin-left: 5px; }

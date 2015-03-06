@@ -9,12 +9,12 @@
     <link href="css/tfl.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-    	<!--<div class="navbar-header">
+    <!--<nav class="navbar navbar-default navbar-fixed-top">
+    	<div class="navbar-header">
       		<a class="navbar-brand" href="#">
         		TFLive
       		</a>
-    	</div>-->
+    	</div>
         <ul class="nav nav-tabs nav-justified" id="nav-line-list">
             <li><a style="background-color:#2f353f; color:#70C3CE" href="#/">+</a></li>
             <li><a class="bg-bakerloo hidden-xs" href="#/?line=bakerloo">Ba</a></li>
@@ -29,9 +29,9 @@
             <li><a class="bg-victoria hidden-xs" href="#/?line=victoria">Vi</a></li>
             <li><a class="bg-waterloo-city hidden-xs" href="#/?line=waterloo-city">Wa</a></li>
         </ul>
-		<!--<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">-->
-	</nav>
-    <div class="container" id="tfl-data">
+		<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">
+	</nav>-->
+    <div id="tfl-data">
        	<div data-ng-view></div>
     </div>
     <script src="js/angular.min.js"></script>
