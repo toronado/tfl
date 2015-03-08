@@ -1,34 +1,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <input id="station-search" type="text" data-ng-model="searchText" class="form-control" placeholder="Station Search">
+    <input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Station Search">
 </nav>
-<div class="container">
+<div class="container" id="stations">
 	<div class="row">
-		<!--<div class="col-md-3">
-			<ul id="line-list" class="list-group">
-				<li class="line list-group-item"><a href="#/">All</a></li>
-			  	<li class="line list-group-item" data-ng-repeat="line in lines">
-			  		<a href="#/?line={{line}}">
-			  			{{line | formatStr}}
-			  		</a>
-			  	</li>
-			</ul>
-		</div>
-		<div class="col-md-12">
-			<input id="station-search" type="text" ng-model="searchText" class="form-control" placeholder="Station Search">
-		</div>-->
 		<div class="col-md-12">
 			<ul id="station-list" class="list-group">
-				<li class="station list-group-item col-xs-12 col-md-12" data-ng-repeat="station in stations | filter:{name:searchText || ''}">
-					<a href="#/arrivals/?line={{station.lines | arrToStr}}&station={{station.id}}">
-						<span class="station-name">
-							{{station.name}}
-						</span>
-						<span class="badge station-lines">
-							<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">
+				<li class="station list-group-item" data-ng-repeat="station in stations | filter:{name:search || ''}">
+					<span class="station-name">
+						<a href="#/{{station.id}}/">{{station.name}}</a>
+						<span class="station-lines badge">
+							<!--<a data-ng-repeat="line in station.lines" href="#/{{station.id}}/{{line}}/" class="station-line {{line}} bg-{{line}}">
 								{{line}}
-							</span>
+							</a>-->
+							<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">{{line}}</span>
 						</span>
-					</a>
+					</span>
 				</li>
 			</ul>
 		</div>

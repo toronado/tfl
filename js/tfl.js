@@ -1,4 +1,3 @@
-var tubeLines = ['bakerloo','central','circle','district','hammersmith-city','jubilee','metropolitan','northern','piccadilly','victoria','waterloo-city'];
 var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
 tubeApp.config(function ($routeProvider) {
@@ -7,7 +6,7 @@ tubeApp.config(function ($routeProvider) {
             templateUrl: 'templates/station-list.html',
             controller: 'stationListCtrl'
         }).
-        when('/arrivals/', {
+        when('/:sid/:line?/', {
             templateUrl: 'templates/arrival-list.html',
             controller: 'arrivalListCtrl'
         }).
@@ -33,55 +32,41 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-
 //Get the list of stations
 tubeApp.controller('stationListCtrl', function ($scope, $routeParams, appData) {
     appData.fetch('stations', '', true, function (data) {
-        //$scope.line = $routeParams.line;
-        //$scope.lines = tubeLines;
         $scope.stations = data;
     });
 });
 
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
-
+    appData.fetch('stations', '', true, function (data){
+        var i;
+        for (i = 0; i < 270; i++) {
+            if (data[i].id === $routeParams.sid) {
+                return $scope.station = data[i];
+            }
+        }
+    });
     var params = {
-        stopPointId : '940GZZLU' + $routeParams.station,
-        ids : $routeParams.line || tubeLines.join()
+        stopPointId : '940GZZLU' + $routeParams.sid,
+        ids : $routeParams.line || 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
     appData.fetch('arrivals', params, false, function (data) {
-        if (data.length === 0) {
-            return null;
-        }
         $scope.arrivals = {
-            total : data.length,
-            lines : $routeParams.line.split(','),
-            stationName : data[0].stationName.split('Underground')[0],
             filters : {},
             data : data
         };
     });
 });
 
-tubeApp.filter('arrToStr', function () {
-    return function (input) {
-        return input.join();
-    };
-});
-
-tubeApp.filter ('formatStr', function () {
-    return function (input) {
-        return input.replace('-', ' & ');
-    }
-});
-
 //Change seconds to minutes
 tubeApp.filter('convertTime', function () {
     return function (input) {
         var mins = Math.floor(input / 60);
-        if (mins === 0) {
-            return 'Now';
+        if (mins) {
+            return mins + ' min';
         }
-        return mins + ' min';
+        return 'Now';
     };
 });

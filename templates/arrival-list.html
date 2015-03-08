@@ -1,38 +1,38 @@
-<div class="container">
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  	<div class="container">
+  		<div class="row">
+    		<div class="col-md-12">
+      			<h1>{{station.name}}
+      				<small style="text-transform:lowercase;">
+      					<span data-ng-repeat="line in station.lines">
+							<span style="margin:0" class="line-indicator bg-{{line}}">&nbsp;</span>
+						</span>
+						{{arrivals.data[0].timestamp | date:'h:mma'}}
+      				</small>
+      			</h1>
+    		</div>
+    	</div>
+  	</div>
+</nav>
+<div class="container" id="arrivals">
 	<div class="row">
-		<div class="col-md-12">
-			<h1>{{arrivals.stationName}}</h1>
-			<h2>Having isolated key pain points, we knew it was important to get back to the real reason we started this project. Nothing can really stop us from getting ill from time to time.</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-5">
-			<h3>Lines</h3>
-			<ul class="list-group" data-ng-if="arrivals.lines.length > 1">
-				<li class="list-group-item"><a href="" data-ng-click="arrivals.filters.lineId=''">All</a></li>
-				<li data-ng-repeat="line in arrivals.lines" class="list-group-item">
-					<span class="badge line-indicator bg-{{line}}">&nbsp;</span>
-					<a href="" data-ng-click="arrivals.filters.lineId=line">{{line}}</a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-7">
-			<h3>Arrivals <small>{{arrivals.total}}</small></h3>
+		<!--<div class="col-md-3">
+			<h3>{{station.id}}</h3>
+				<a href="" data-ng-click="arrivals.filters.platformName=''">arrivals</a>
+				<a href="" data-ng-click="arrivals.filters.platformName='northbound'">n</a>
+				<a href="" data-ng-click="arrivals.filters.platformName='eastbound'">e</a>
+				<a href="" data-ng-click="arrivals.filters.platformName='southbound'">s</a>
+				<a href="" data-ng-click="arrivals.filters.platformName='westbound'">w</a>
+		</div>-->
+		<div class="col-md-6">
+			<h3>{{arrivals.data.length}} Arrivals <small>{{station.id}}</small></h3>
 			<ul id="arrival-list" class="list-group">
 				<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
-					<span class="badge">{{arrival.timeToStation | convertTime}} <span class="badge line-indicator bg-{{arrival.lineId}}">&nbsp;</span></span>
+					<span class="badge">{{arrival.timeToStation | convertTime}}</span>
+					<span class=" line-indicator bg-{{arrival.lineId}}">&nbsp;</span>
 					{{arrival.towards}}
 				</li>
 			</ul>
 		</div>
-		<!--<div class="col-md-6">
-			<h2>Outbound</h2>
-			<ul id="arrivals" class="list-group">
-				<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | filter:{'direction':'outbound'}:true | orderBy:'-timeToStation':true">
-					<span class="badge">{{arrival.timeToStation | convertTime}} <span class="badge line-indicator bg-{{arrival.lineId}}">&nbsp;</span></span>
-					{{arrival.towards}}
-				</li>
-			</ul>
-		</div>-->
 	</div>
 </div>
