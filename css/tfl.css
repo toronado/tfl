@@ -116,11 +116,9 @@ nav h1 {
   font-size: 20px;
   margin: 14px 0; }
 
-h2 {
-  color: #2f353f; }
-
 .navbar-inverse {
-  border: none; }
+  border: none;
+  opacity: 0.5; }
 
 .navbar-default {
   background-color: transparent;
@@ -146,7 +144,7 @@ h2 {
   border: none;
   border-radius: 0; }
 
-#arrivals, #stations {
+#tfl-data {
   margin-top: 70px; }
 
 .list-group-item {

@@ -65,13 +65,13 @@ body { font-family: helvetica,arial,sans-serif; font-size:20px; background-color
 h1 { text-transform: capitalize; font-size:40px; color:#fff; }
 h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
-h2 { color:#2f353f; }
-.navbar-inverse { border:none; }
+h2 { }
+.navbar-inverse { border:none; opacity: 0.5; }
 .navbar-default { background-color:transparent; border-radius:0; border:none; min-height: 0; padding:0; }
 .navbar-default .col-md-1 { padding:0; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
-#arrivals, #stations { margin-top: 70px; }
+#tfl-data { margin-top: 70px; }
 
 //lists
 .list-group-item { background-color:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px $col2; padding:10px 0; font-size:14px; }

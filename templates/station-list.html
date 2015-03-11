@@ -9,10 +9,9 @@
 					<span class="station-name">
 						<a href="#/{{station.id}}/">{{station.name}}</a>
 						<span class="station-lines badge">
-							<!--<a data-ng-repeat="line in station.lines" href="#/{{station.id}}/{{line}}/" class="station-line {{line}} bg-{{line}}">
+							<a data-ng-repeat="line in station.lines" href="#/{{station.id}}/{{line}}/" class="station-line {{line}} bg-{{line}}">
 								{{line}}
-							</a>-->
-							<span data-ng-repeat="line in station.lines" class="station-line {{line}} bg-{{line}}">{{line}}</span>
+							</a>
 						</span>
 					</span>
 				</li>

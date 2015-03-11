@@ -1,21 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-inverse">
-  	<div class="container">
-  		<div class="row">
-    		<div class="col-md-12">
-      			<h1>{{station.name}}
-      				<small style="text-transform:lowercase;">
-      					<span data-ng-repeat="line in station.lines">
-							<span style="margin:0" class="line-indicator bg-{{line}}">&nbsp;</span>
-						</span>
-						{{arrivals.data[0].timestamp | date:'h:mma'}}
-      				</small>
-      			</h1>
-    		</div>
-    	</div>
-  	</div>
-</nav>
-<div class="container" id="arrivals">
-	<div class="row">
+
 		<!--<div class="col-md-3">
 			<h3>{{station.id}}</h3>
 				<a href="" data-ng-click="arrivals.filters.platformName=''">arrivals</a>
@@ -24,8 +7,7 @@
 				<a href="" data-ng-click="arrivals.filters.platformName='southbound'">s</a>
 				<a href="" data-ng-click="arrivals.filters.platformName='westbound'">w</a>
 		</div>-->
-		<div class="col-md-6">
-			<h3>{{arrivals.data.length}} Arrivals <small>{{station.id}}</small></h3>
+			<h2>{{arrivals.data.length}} Arrivals <small>{{station.id}}</small></h2>
 			<ul id="arrival-list" class="list-group">
 				<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
 					<span class="badge">{{arrival.timeToStation | convertTime}}</span>
@@ -33,6 +15,3 @@
 					{{arrival.towards}}
 				</li>
 			</ul>
-		</div>
-	</div>
-</div>

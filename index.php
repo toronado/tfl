@@ -29,8 +29,35 @@
             <li><a class="bg-waterloo-city hidden-xs" href="#/?line=waterloo-city">Wa</a></li>
         </ul>
 	</nav>-->
-    <div id="tfl-data">
-       	<div data-ng-view></div>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><!--{{station.name}}
+                        <small style="text-transform:lowercase;">
+                            <span data-ng-repeat="line in station.lines">
+                                <span style="margin:0" class="line-indicator bg-{{line}}">&nbsp;</span>
+                            </span>
+                            {{arrivals.data[0].timestamp | date:'h:mma'}}
+                        </small>-->
+                        TFL
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="tfl-data">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Stations</h2>
+                <div style="height:80vh; overflow:scroll;">
+                    <?php include 'stations.php'; ?>
+                </div>
+            </div>
+            <div class="col-md-6">
+               	<div data-ng-view></div>
+            </div>
+        </div>
     </div>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
