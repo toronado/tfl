@@ -30,33 +30,21 @@
         </ul>
 	</nav>-->
     <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1><!--{{station.name}}
-                        <small style="text-transform:lowercase;">
-                            <span data-ng-repeat="line in station.lines">
-                                <span style="margin:0" class="line-indicator bg-{{line}}">&nbsp;</span>
-                            </span>
-                            {{arrivals.data[0].timestamp | date:'h:mma'}}
-                        </small>-->
-                        TFL
-                    </h1>
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="navbar-brand" href="#">
+    				TFLive
+  				</a>
             </div>
         </div>
     </nav>
-    <div class="container" id="tfl-data">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Stations</h2>
-                <div style="height:80vh; overflow:scroll;">
-                    <?php include 'stations.php'; ?>
-                </div>
-            </div>
-            <div class="col-md-6">
-               	<div data-ng-view></div>
-            </div>
+    <div class="container-fluid" id="tfl-data">
+        <div class="col-md-3" id="stations">
+            <input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
+            <?php include 'templates/stations.html'; ?>
+        </div>
+        <div class="col-md-5" id="arrivals">
+           	<div data-ng-view></div>
         </div>
     </div>
     <script src="js/angular.min.js"></script>

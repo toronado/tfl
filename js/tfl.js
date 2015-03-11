@@ -2,10 +2,6 @@ var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 
 tubeApp.config(function ($routeProvider) {
     $routeProvider.
-        when('/', {
-            templateUrl: 'templates/station-list.html',
-            controller: 'stationListCtrl'
-        }).
         when('/:sid/:line?/', {
             templateUrl: 'templates/arrival-list.html',
             controller: 'arrivalListCtrl'
@@ -18,7 +14,6 @@ tubeApp.config(function ($routeProvider) {
 tubeApp.factory('appData', function ($http) {
     return {
         urls : {
-            stations : 'json/stations.json',
             arrivals : 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals'
         },
         fetch : function (url, params, cache, callback) {
@@ -32,22 +27,7 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-//Get the list of stations
-tubeApp.controller('stationListCtrl', function ($scope, $routeParams, appData) {
-    appData.fetch('stations', '', true, function (data) {
-        $scope.stations = data;
-    });
-});
-
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
-    appData.fetch('stations', '', true, function (data){
-        var i;
-        for (i = 0; i < 270; i++) {
-            if (data[i].id === $routeParams.sid) {
-                return $scope.station = data[i];
-            }
-        }
-    });
     var params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : $routeParams.line || 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
@@ -58,6 +38,31 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
             data : data
         };
     });
+});
+
+tubeApp.directive('filterList', function ($timeout) {
+    return {
+        link: function (scope, element, attrs) {
+            
+            var li = Array.prototype.slice.call(element[0].children);
+            
+            function filterBy (value) {
+                li.forEach(function (el) {
+                    if (el.children[0].textContent.toLowerCase().indexOf(value.toLowerCase()) !== -1) {
+                        el.className = '';
+                    } else {
+                        el.className = 'ng-hide';
+                    }
+                });
+            }
+            
+            scope.$watch(attrs.filterList, function(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    filterBy(newVal);
+                }
+            });
+        }
+    };
 });
 
 //Change seconds to minutes

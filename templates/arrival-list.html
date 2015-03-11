@@ -1,17 +1,18 @@
 
-		<!--<div class="col-md-3">
-			<h3>{{station.id}}</h3>
-				<a href="" data-ng-click="arrivals.filters.platformName=''">arrivals</a>
-				<a href="" data-ng-click="arrivals.filters.platformName='northbound'">n</a>
-				<a href="" data-ng-click="arrivals.filters.platformName='eastbound'">e</a>
-				<a href="" data-ng-click="arrivals.filters.platformName='southbound'">s</a>
-				<a href="" data-ng-click="arrivals.filters.platformName='westbound'">w</a>
-		</div>-->
-			<h2>{{arrivals.data.length}} Arrivals <small>{{station.id}}</small></h2>
-			<ul id="arrival-list" class="list-group">
-				<li class="arrival list-group-item" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
+			<!--<h3>{{station.id}}</h3>
+			<a href="" data-ng-click="arrivals.filters.platformName=''">arrivals</a>
+			<a href="" data-ng-click="arrivals.filters.platformName='northbound'">n</a>
+			<a href="" data-ng-click="arrivals.filters.platformName='eastbound'">e</a>
+			<a href="" data-ng-click="arrivals.filters.platformName='southbound'">s</a>
+			<a href="" data-ng-click="arrivals.filters.platformName='westbound'">w</a>-->
+
+			<h2>{{arrivals.data.length}} Arrivals</h2>
+			<ul id="arrival-list">
+				<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
+					<span class="line-badge-wrapper">
+						<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
+					</span>
 					<span class="badge">{{arrival.timeToStation | convertTime}}</span>
-					<span class=" line-indicator bg-{{arrival.lineId}}">&nbsp;</span>
 					{{arrival.towards}}
 				</li>
 			</ul>
