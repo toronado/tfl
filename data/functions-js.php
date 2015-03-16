@@ -4,21 +4,24 @@
 		<title>Functions</title>
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
-			#json { height: 200px; padding: 15px; background-color: #eee; }
+			#json { padding: 15px; background-color: #eee; }
 			#json textarea { width: 100%; height: 100%; background-color: transparent; border:none; }
 		</style>
 	</head>
 	<body>
-		<div id="json">
-			<textarea id="json-string" rows="10"></textarea>
-		</div>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<h4>Stations</h4>
 					<div id="data"></div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
+					<h4>Json</h4>
+					<div id="json">
+						<textarea id="json-string" rows="10"></textarea>
+					</div>
+				</div>
+				<div class="col-md-4">
 					<h4>Updates</h4>
 					<div id="count"></div>
 				</div>
@@ -85,17 +88,17 @@
 						if (!stnObj[naptanId]) {
 							stnObj[naptanId] = {'name': stnName, 'lines': {}};
 							stnObj[naptanId].lines[lineName] = [platformName];
-							count.stn.push(stnName+', '+lineName+' line added');
+							count.stn.push(naptanId+': '+stnName+' station added with  '+lineName);
 
 						} else {
 							if (stnObj[naptanId].lines[lineName]) {
 								if (stnObj[naptanId].lines[lineName].indexOf(platformName) === -1) {
 									stnObj[naptanId].lines[lineName].push(platformName);
-									count.platform.push(platformName+' added to '+lineName+' line, '+stnName);
+									count.platform.push(naptanId+': '+platformName+' added to '+lineName+' line, '+stnName);
 								}
 							} else {
 								stnObj[naptanId].lines[lineName] = [platformName];
-								count.line.push(platformName+' added to '+stnName+', '+lineName+' line');
+								count.line.push(naptanId+': '+lineName+' added to '+stnName+', with '+platformName);
 							}
 						}
 					}
