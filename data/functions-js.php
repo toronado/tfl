@@ -26,14 +26,45 @@
 		</div>
 		<script type="text/javascript" src="/js/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript">
-			$.get( 'json/stationsObj.json', function(data) {
-				stnObj = data;
-				getData();
-				window.setInterval(getData, 30000);
-			});
+
+			var type = window.location.hash.substr(1);
+			switch (type) {
+				case 'get-data':
+					$.get('json/stationsObj.json', function(data) {
+						stnObj = data;
+					})
+					.done(function(){
+						window.setInterval(getData, 30000);
+						getData();
+					});
+					break;
+				case 'match-json':
+					matchJson();
+					break;
+			}
+
+			function matchJson() {
+				$.get( 'json/stations.json', function(data) {
+					json1 = data;
+				})
+				.done(function(json1) {
+					$.get( 'json/stationsObj.json', function(data) {
+						json2 = data;
+					})
+					.done(function() {
+						var missing = [];
+						for (var i=0; i<json1.length; i++) {
+							if (!json2[json1[i].id]) {
+								missing.push(json1[i].name);
+							}
+						}
+						console.log(missing);
+					});
+				});
+			}
 			
 			function getData() {
-				var stns = 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
+				var stns = 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city';
 				var url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids='+stns;
 				var count = {
 					'stn' : [],
@@ -101,7 +132,7 @@
 						    }
 						})
 						.done(function( data ) {
-    						stnObj = data;
+    						stnObj = JSON.parse(data);
 							$('#json-string').html(data);
   						});
 	  				}
