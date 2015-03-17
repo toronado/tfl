@@ -52,11 +52,11 @@
 			
 
 			function unique() {
-				$.get( 'json/stationsObjLite.json', function(data) {
+				$.get( 'json/stationsObj.json', function(data) {
 					for (key in data) {
 						for (lines in data[key]['lines']) {
 							data[key]['lines'][lines] = data[key]['lines'][lines].reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
-							//if (data[key]['lines'][lines].length > 2) {
+							//if (data[key]['lines'][lines].length === 1) {
 								//console.log(data[key]);
 							//}
 						}
