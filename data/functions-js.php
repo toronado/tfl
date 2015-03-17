@@ -44,6 +44,25 @@
 				case 'match-json':
 					matchJson();
 					break;
+				case 'unique':
+					unique();
+					break;
+			}
+
+			
+
+			function unique() {
+				$.get( 'json/stationsObjLite.json', function(data) {
+					for (key in data) {
+						for (lines in data[key]['lines']) {
+							data[key]['lines'][lines] = data[key]['lines'][lines].reduce(function(a,b){if(a.indexOf(b)<0)a.push(b);return a;},[]);
+							//if (data[key]['lines'][lines].length > 2) {
+								//console.log(data[key]);
+							//}
+						}
+					};
+					console.log(JSON.stringify(data));
+				});
 			}
 
 			function matchJson() {
@@ -65,6 +84,28 @@
 					});
 				});
 			}
+
+			function rtnDirection(str) {
+				if (str.indexOf('Eastbound') > -1) {
+					return 'Eastbound';
+				}
+				if (str.indexOf('Westbound') > -1) {
+					return 'Westbound';
+				}
+				if (str.indexOf('Northbound') > -1) {
+					return 'Northbound';
+				}
+				if (str.indexOf('Southbound') > -1) {
+					return 'Southbound';
+				}
+				if (str.indexOf('Inner') > -1) {
+					return 'Inner Rail';
+				}
+				if (str.indexOf('Outer') > -1) {
+					return 'Outer Rail';
+				}
+				return 'xxx';
+			}
 			
 			function getData() {
 				var stns = 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city';
@@ -84,7 +125,7 @@
 						var naptanId = data[i]['naptanId'].substr(8);
 						var stnName = data[i]['stationName'].split(' Underground Station')[0];
 						var lineName = data[i]['lineName'];
-						var platformName = data[i]['platformName'];
+						var platformName = rtnDirection(data[i]['platformName']);
 						if (!stnObj[naptanId]) {
 							stnObj[naptanId] = {'name': stnName, 'lines': {}};
 							stnObj[naptanId].lines[lineName] = [platformName];
@@ -92,10 +133,13 @@
 
 						} else {
 							if (stnObj[naptanId].lines[lineName]) {
-								if (stnObj[naptanId].lines[lineName].indexOf(platformName) === -1) {
-									stnObj[naptanId].lines[lineName].push(platformName);
-									count.platform.push(naptanId+': '+platformName+' added to '+lineName+' line, '+stnName);
+								if (platformName !== 'xxx') {
+									if (stnObj[naptanId].lines[lineName].indexOf(platformName) === -1) {
+										stnObj[naptanId].lines[lineName].push(platformName);
+										count.platform.push(naptanId+': '+platformName+' added to '+lineName+' line, '+stnName);
+									}
 								}
+								
 							} else {
 								stnObj[naptanId].lines[lineName] = [platformName];
 								count.line.push(naptanId+': '+lineName+' added to '+stnName+', with '+platformName);
@@ -126,6 +170,7 @@
 	  					}
 	  					$('#count').append('<h5>'+count.totalCount()+' updated ('+data[0]['timestamp']+')</h5><ul>'+countHtml+'</ul>');
 	  					$('#data').html('<ol>'+html+'</ol>');
+	  					//$('#json-string').html(JSON.stringify(stnObj));
 	  					$.ajax({
 						    type: "POST",
 						    url: "functions.php",
