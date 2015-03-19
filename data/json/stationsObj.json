@@ -2456,7 +2456,7 @@
       }
    },
    "PAH":{
-      "name":"Paddington (H&C Line)-Underground",
+      "name":"Paddington (H&C Line)",
       "lines":{
          "Hammersmith & City":[
             "Eastbound"
@@ -2701,6 +2701,172 @@
       "lines":{
          "District":[
             "Eastbound"
+         ]
+      }
+   },
+   "SBM":{
+      "name":"Shepherd's Bush Market",
+      "lines":{
+         "Circle":[
+            "Northbound",
+            "Southbound"
+         ],
+         "Hammersmith & City":[
+            "Northbound",
+            "Southbound"
+         ]
+      }
+   },
+   "BWR":{
+      "name":"Bow Road",
+      "lines":{
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "UPK":{
+      "name":"Upton Park",
+      "lines":{
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "DGY":{
+      "name":"Dagenham Heathway",
+      "lines":{
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "BWT":{
+      "name":"Bayswater",
+      "lines":{
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Circle":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "LRD":{
+      "name":"Latimer Road",
+      "lines":{
+         "Circle":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "BEC":{
+      "name":"Becontree",
+      "lines":{
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "GHK":{
+      "name":"Goldhawk Road",
+      "lines":{
+         "Circle":[
+            "Northbound",
+            "Southbound"
+         ],
+         "Hammersmith & City":[
+            "Northbound",
+            "Southbound"
+         ]
+      }
+   },
+   "LAD":{
+      "name":"Ladbroke Grove",
+      "lines":{
+         "Circle":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "PRD":{
+      "name":"Preston Road",
+      "lines":{
+         "Metropolitan":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "RYO":{
+      "name":"Royal Oak",
+      "lines":{
+         "Circle":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "WSP":{
+      "name":"Westbourne Park",
+      "lines":{
+         "Circle":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Westbound"
+         ]
+      }
+   },
+   "WLA":{
+      "name":"Wood Lane",
+      "lines":{
+         "Circle":[
+            "Eastbound",
+            "Southbound"
+         ],
+         "Hammersmith & City":[
+            "Eastbound",
+            "Southbound"
+         ]
+      }
+   },
+   "LGN":{
+      "name":"Loughton",
+      "lines":{
+         "Central":[
+            "Eastbound",
+            "Westbound"
          ]
       }
    }
