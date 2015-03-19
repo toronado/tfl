@@ -14,7 +14,8 @@ tubeApp.config(function ($routeProvider) {
 tubeApp.factory('appData', function ($http) {
     return {
         urls : {
-            arrivals : 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals'
+            arrivals : 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals',
+            stations : 'data/json/stationsObj.json'
         },
         fetch : function (url, params, cache, callback) {
             $http({
@@ -28,14 +29,17 @@ tubeApp.factory('appData', function ($http) {
 });
 
 tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
+    appData.fetch('stations', null, true, function (data) {
+        $scope.station = data[$routeParams.sid];
+    });
     var params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : $routeParams.line || 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
     appData.fetch('arrivals', params, false, function (data) {
         $scope.arrivals = {
-            filters : {},
-            data : data
+            'data':data,
+            'filters' : {}
         };
     });
 });

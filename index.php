@@ -28,7 +28,7 @@
             <li><a class="bg-victoria hidden-xs" href="#/?line=victoria">Vi</a></li>
             <li><a class="bg-waterloo-city hidden-xs" href="#/?line=waterloo-city">Wa</a></li>
         </ul>
-	</nav>-->
+	</nav>
     <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="row">
             <div class="col-md-12">
@@ -37,13 +37,13 @@
   				</a>
             </div>
         </div>
-    </nav>
+    </nav>-->
     <div class="container-fluid" id="tfl-data">
         <div class="col-md-4" id="stations">
             <input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
             <?php include 'templates/stations.html'; ?>
         </div>
-        <div class="col-md-5" id="arrivals">
+        <div class="col-md-8" id="arrivals">
            	<div data-ng-view></div>
         </div>
     </div>
