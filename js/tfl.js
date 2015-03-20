@@ -28,7 +28,7 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $interval, appData) {
     appData.fetch('stations', null, true, function (data) {
         $scope.station = data[$routeParams.sid];
     });
@@ -36,12 +36,15 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, appData) {
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : $routeParams.line || 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
-    appData.fetch('arrivals', params, false, function (data) {
-        $scope.arrivals = {
-            'data':data,
-            'filters' : {}
-        };
-    });
+    //this.interval = $interval(function () {
+        appData.fetch('arrivals', params, false, function (data) {
+            $scope.arrivals = {
+                'data':data,
+                'filters' : {}
+            };
+        });
+    //},30000);
+    //this.endLongPolling = function(){ $interval.cancel(this.interval);};
 });
 
 tubeApp.directive('filterList', function ($timeout) {
