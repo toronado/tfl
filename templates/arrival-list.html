@@ -1,6 +1,6 @@
 <h2><span data-ng-click="arrivals.filters.lineName=''">{{station.name}}</span> 
 	<small> 
-		<span data-ng-repeat="(key,value) in station.lines" class="line-badge bg-{{key | lowercase}}" data-ng-click="arrivals.filters.lineName=key">&nbsp;</span>
+		<span data-ng-repeat="(key,value) in station.lines" class="line-badge bg-{{key | stnName}}" data-ng-click="arrivals.filters.lineName=key">&nbsp;</span>
 		arrivals ({{arrivals.data.length}})
 	</small>
 </h2>

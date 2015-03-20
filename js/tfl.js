@@ -69,6 +69,18 @@ tubeApp.directive('filterList', function ($timeout) {
     };
 });
 
+
+tubeApp.filter('stnName', function () {
+    return function (name) {
+        name = name.toLowerCase();
+        var stnName = {
+            'hammersmith & city':'hammersmith-city',
+            'waterloo & city':'waterloo-city'
+        }
+        return stnName[name] ? stnName[name] : name;
+    }
+});
+
 //Change seconds to minutes
 tubeApp.filter('convertTime', function () {
     return function (input) {
