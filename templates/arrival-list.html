@@ -1,15 +1,20 @@
 <h2><span data-ng-click="arrivals.filters.lineName=''">{{station.name}}</span> 
-	<small> 
+	<!--<small> 
 		<span data-ng-repeat="(key,value) in station.lines" class="line-badge bg-{{key | stnName}}" data-ng-click="arrivals.filters.lineName=key">&nbsp;</span>
 		arrivals ({{arrivals.data.length}})
-	</small>
+	</small>-->
 </h2>
+<ul class="nav nav-tabs nav-justified">
+	<li data-ng-repeat="(key,value) in station.lines" style="border-bottom:#333 solid 3px; top:-28px; color:#222;" class="bd-{{key | stnName}}">
+		<!--<span data-ng-click="arrivals.filters.lineName=key">{{key}}</span>-->.&nbsp;
+	</li>
+</ul>
 <ul id="arrival-list">
 	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
 		<span class="line-badge-wrapper">
 			<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 		</span>
 		<span class="badge">{{arrival.timeToStation | convertTime}}</span>
-		{{arrival.towards}}
+		<!--<span style="opacity:0.2">{{arrival.vehicleId}} / </span>--> {{arrival.towards}} <span style="opacity:0.2">...{{arrival.currentLocation}}</span>
 	</li>
 </ul>

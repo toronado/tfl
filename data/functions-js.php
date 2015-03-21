@@ -47,9 +47,58 @@
 				case 'unique':
 					unique();
 					break;
+				case 'mergeJson':
+					mergeJson();
+					break;
 			}
 
-			
+			function mergeJson() {
+				var jsonArr = [];
+				var stn1 = $.get( 'json/stations.json').done(function (data) {
+					jsonArr[0] = data;
+				});
+				var stn2 = $.get( 'json/stationsObj.json').done(function (data) {
+					jsonArr[1] = data;
+				});
+				
+				$( document ).ajaxComplete(function( event,request, settings ) {
+					if (jsonArr.length === 2) {
+						var i, j, json1, json2;
+						json1 = jsonArr[0];
+						json2 = jsonArr[1];
+						for (i=0; i<270; i++) {
+							var lineArr = json1[i].lines;
+							var lineLen = lineArr.length;
+							var objLen = Object.keys(json2[json1[i]['id']]['lines']).length;
+							//for (j=0; j<lineArr.length; j++ ) {
+								//var lineName = rtnName(lineArr[j]);
+								//var objLen = Object.keys(json2[json1[i]['id']]['lines']).length;
+								//if (!json2[json1[i]['id']]['lines'][lineName]) {
+									//console.log(json1[i].id);
+									//console.log(json2[json1[i]['id']]['lines'][lineName]);
+								//}
+								//if (!json2[json1[i].id].lines[json1[i].lines[j]]) {
+									//console.log(json1[i].id);
+								//}
+								if (lineLen !== objLen) {
+									console.log(json1[i].id);
+								}
+							//}
+						}
+					}
+				});
+			}
+
+			function rtnName (name) {
+				var names = {
+					'hammersmith-city' : 'Hammersmith & City',
+					'waterloo-city' :  'Waterloo & City'
+				}
+				if (names[name]) {
+					return names[name];
+				}
+				return name.charAt(0).toUpperCase() + name.slice(1);
+			}
 
 			function unique() {
 				$.get( 'json/stationsObj.json', function(data) {
@@ -171,7 +220,7 @@
 	  					$('#count').append('<h5>'+count.totalCount()+' updated ('+data[0]['timestamp']+')</h5><ul>'+countHtml+'</ul>');
 	  					$('#data').html('<ol>'+html+'</ol>');
 	  					//$('#json-string').html(JSON.stringify(stnObj));
-	  					$.ajax({
+	  					/*$.ajax({
 						    type: "POST",
 						    url: "functions.php",
 						    data: { 
@@ -182,7 +231,7 @@
 						.done(function( data ) {
     						stnObj = JSON.parse(data);
 							$('#json-string').html(data);
-  						});
+  						});*/
 	  				}
 				});
 			}

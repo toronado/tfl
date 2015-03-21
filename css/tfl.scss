@@ -74,7 +74,7 @@ nav h1 { font-size:20px; margin: 14px 0; }
 
 #stations, #arrivals{ padding: 0; height:100vh; overflow:scroll; border-right:$col2 solid 1px; }
 #arrivals { border:none; }
-#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:#222; }
+#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:$col2; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
@@ -92,7 +92,7 @@ table#compass td { text-align: center; width:50px; }
 
 #line-list .list-group-item a { opacity: 0.3; }
 
-input#station-search { border: none; border-radius: 0; padding:11px 20px; background-color: #222; font-size: 20px; height: auto; }
+input#station-search { border: none; border-radius: 0; padding:11px 20px; background-color: #363D47; font-size: 20px; height: auto; }
 
 span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 .badge { background:none; float: right; }

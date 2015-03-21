@@ -46,7 +46,8 @@
             "Westbound"
          ],
          "Circle":[
-            "Eastbound"
+            "Eastbound",
+            "Westbound"
          ],
          "District":[
             "Eastbound",
@@ -134,10 +135,6 @@
          "Circle":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
@@ -183,7 +180,8 @@
             "Westbound"
          ],
          "Circle":[
-            "Eastbound"
+            "Eastbound",
+            "Westbound"
          ]
       }
    },
@@ -274,9 +272,11 @@
             "Westbound"
          ],
          "Hammersmith & City":[
-            "Westbound"
+            "Westbound",
+            "Eastbound"
          ],
          "Circle":[
+            "Westbound",
             "Eastbound"
          ]
       }
@@ -375,9 +375,6 @@
          "Jubilee":[
             "Northbound",
             "Southbound"
-         ],
-         "Metropolitan":[
-            "Southbound"
          ]
       }
    },
@@ -387,6 +384,14 @@
          "Bakerloo":[
             "Northbound",
             "Southbound"
+         ],
+         "District":[
+            "Eastbound",
+            "Westbound"
+         ],
+         "Circle":[
+            "Eastbound",
+            "Westbound"
          ]
       }
    },
@@ -513,6 +518,7 @@
       "name":"Liverpool Street",
       "lines":{
          "Hammersmith & City":[
+            "Eastbound",
             "Westbound"
          ],
          "Metropolitan":[
@@ -524,7 +530,8 @@
             "Westbound"
          ],
          "Circle":[
-            "Eastbound"
+            "Eastbound",
+            "Westbound"
          ]
       }
    },
@@ -565,10 +572,6 @@
          "Circle":[
             "Westbound",
             "Eastbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
@@ -605,6 +608,14 @@
          "Central":[
             "Westbound",
             "Eastbound"
+         ],
+         "Circle":[
+            "Southbound",
+            "Eastbound"
+         ],
+         "District":[
+            "Southbound",
+            "Eastbound"
          ]
       }
    },
@@ -628,7 +639,8 @@
             "Westbound"
          ],
          "Circle":[
-            "Eastbound"
+            "Eastbound",
+            "Westbound"
          ],
          "Piccadilly":[
             "Westbound",
@@ -731,10 +743,6 @@
    "BKF":{
       "name":"Blackfriars",
       "lines":{
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
-         ],
          "District":[
             "Eastbound",
             "Westbound"
@@ -748,9 +756,6 @@
    "GTR":{
       "name":"Gloucester Road",
       "lines":{
-         "Hammersmith & City":[
-            "Eastbound"
-         ],
          "Piccadilly":[
             "Eastbound",
             "Westbound"
@@ -902,10 +907,6 @@
          "Circle":[
             "Westbound",
             "Eastbound"
-         ],
-         "Hammersmith & City":[
-            "Northbound",
-            "Westbound"
          ]
       }
    },
@@ -955,10 +956,6 @@
          "Circle":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
@@ -1203,10 +1200,6 @@
             "Southbound",
             "Northbound"
          ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
-         ],
          "Bakerloo":[
             "Southbound",
             "Northbound"
@@ -1252,6 +1245,9 @@
       "name":"Hammersmith (H&C Line)",
       "lines":{
          "Hammersmith & City":[
+            "Eastbound"
+         ],
+         "Circle":[
             "Eastbound"
          ]
       }
@@ -1303,10 +1299,6 @@
    "HSK":{
       "name":"High Street Kensington",
       "lines":{
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
-         ],
          "Circle":[
             "Eastbound",
             "Westbound"
@@ -1411,10 +1403,6 @@
          "District":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
@@ -1431,6 +1419,14 @@
       "name":"Mile End",
       "lines":{
          "Central":[
+            "Westbound",
+            "Eastbound"
+         ],
+         "District":[
+            "Westbound",
+            "Eastbound"
+         ],
+         "Hammersmith & City":[
             "Westbound",
             "Eastbound"
          ]
@@ -1463,9 +1459,6 @@
          ],
          "Metropolitan":[
             "Southbound",
-            "Northbound"
-         ],
-         "Hammersmith & City":[
             "Northbound"
          ]
       }
@@ -1520,9 +1513,6 @@
          "Jubilee":[
             "Southbound",
             "Northbound"
-         ],
-         "Metropolitan":[
-            "Southbound"
          ]
       }
    },
@@ -1599,9 +1589,6 @@
          "District":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound"
          ]
       }
    },
@@ -1651,10 +1638,6 @@
          "Circle":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
@@ -1678,9 +1661,6 @@
          ],
          "Metropolitan":[
             "Eastbound",
-            "Westbound"
-         ],
-         "Hammersmith & City":[
             "Westbound"
          ]
       }
@@ -1736,10 +1716,6 @@
             "Southbound"
          ],
          "Circle":[
-            "Eastbound",
-            "Westbound"
-         ],
-         "Hammersmith & City":[
             "Eastbound",
             "Westbound"
          ]
@@ -2115,10 +2091,6 @@
    "SJP":{
       "name":"St. James's Park",
       "lines":{
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
-         ],
          "District":[
             "Eastbound",
             "Westbound"
@@ -2449,9 +2421,6 @@
          "District":[
             "Eastbound",
             "Westbound"
-         ],
-         "Piccadilly":[
-            "Eastbound"
          ]
       }
    },
@@ -2459,7 +2428,12 @@
       "name":"Paddington (H&C Line)",
       "lines":{
          "Hammersmith & City":[
-            "Eastbound"
+            "Eastbound",
+            "Westbound"
+         ],
+         "Circle":[
+            "Eastbound",
+            "Westbound"
          ]
       }
    },
@@ -2545,10 +2519,6 @@
          "Circle":[
             "Eastbound",
             "Westbound"
-         ],
-         "Hammersmith & City":[
-            "Westbound",
-            "Eastbound"
          ]
       }
    },
