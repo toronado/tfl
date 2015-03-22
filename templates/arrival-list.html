@@ -5,12 +5,15 @@
 	</small>-->
 </h2>
 <ul class="nav nav-tabs nav-justified">
-	<li data-ng-repeat="(key,value) in station.lines" style="border-bottom:#333 solid 3px; top:-28px; color:#222;" class="bd-{{key | stnName}}">
-		<!--<span data-ng-click="arrivals.filters.lineName=key">{{key}}</span>-->.&nbsp;
+	<li data-ng-repeat="(key,value) in station.lines" class="bg-{{key | stnName}}">
+		<span data-ng-click="arrivals.filters.lineName=key">{{key}}</span>
+		<span data-ng-repeat="platform in value"  data-ng-click="arrivals.filters.platformName=platform">
+			{{platform}}
+		</span>
 	</li>
 </ul>
 <ul id="arrival-list">
-	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
+	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters.getFilter()">
 		<span class="line-badge-wrapper">
 			<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 		</span>

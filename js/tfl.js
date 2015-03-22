@@ -40,7 +40,15 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $interval,
         appData.fetch('arrivals', params, false, function (data) {
             $scope.arrivals = {
                 'data':data,
-                'filters' : {}
+                //'filters' : {}
+                'filters' : {
+                    'lineName' : null,
+                    'platformName' : null,
+                    getFilter : function () {
+                        console.log(this.lineName + this.platformName);
+                        return this.lineName;
+                    }
+                }
             };
         });
     //},30000);

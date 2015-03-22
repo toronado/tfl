@@ -52,6 +52,22 @@
 					break;
 			}
 
+			function objTest() {
+				var filters = {
+					'line' : null,
+					'direction' : null,
+					setFilter : function (key, value) {
+						this[key] = value;
+					},
+					getFilter : function (filter) {
+						return filter ? this[filter] : '';
+					}
+				}
+				filters.setFilter('line','central');
+				return filters.getFilter('line');
+			}
+			console.log(objTest());
+
 			function mergeJson() {
 				var jsonArr = [];
 				var stn1 = $.get( 'json/stations.json').done(function (data) {
