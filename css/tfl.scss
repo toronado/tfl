@@ -71,13 +71,16 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .navbar-default .col-md-1 { padding:0; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
+.btn { border-radius:0 !important; }
+a.btn { color:#fff; text-align: left; padding:6px 20px; border:none; }
 
 #stations, #arrivals{ padding: 0; height:100vh; overflow:scroll; border-right:$col2 solid 1px; }
 #arrivals { border:none; }
-#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:$col2; }
+#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:#222; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
+#arrival-list { margin-top: 10px; }
 #station-list li, #arrival-list li { background-color:#363D47; border:none; border-radius:0 !important; border-bottom:solid 1px $col2; font-size:14px; }
 #arrival-list li { background-color:transparent; }
 #arrival-list li, #station-list a { padding:10px 20px; display:block; }

@@ -45,8 +45,7 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $interval,
                     'lineName' : null,
                     'platformName' : null,
                     getFilter : function () {
-                        console.log(this.lineName + this.platformName);
-                        return this.lineName;
+                        return this.platformName;
                     }
                 }
             };
