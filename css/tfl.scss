@@ -59,7 +59,7 @@ $col2: #2f353f;
 .bd-waterloo-city { border-color:$waterlooCity !important; }
 
 
-body { font-family: helvetica,arial,sans-serif; font-size:20px; background-color:#2f353f; color:#fff; -webkit-font-smoothing:antialiased; }
+body { font-family: helvetica,arial,sans-serif; font-size:20px;  color:#fff; -webkit-font-smoothing:antialiased; }
 
 //bootstrap overrides//
 h1 { text-transform: capitalize; font-size:40px; color:#fff; }
@@ -71,21 +71,21 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .navbar-default .col-md-1 { padding:0; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
-.btn { border-radius:0 !important; }
-a.btn { color:#fff; text-align: left; padding:6px 20px; border:none; }
+.btn { border-radius:0 !important; border:none; margin-right: 1px; text-transform: lowercase; }
+a.btn { color:#fff; border:none; }
 
-#stations, #arrivals{ padding: 0; height:100vh; overflow:scroll; border-right:$col2 solid 1px; }
-#arrivals { border:none; }
-#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:#222; }
+#stations, #arrivals{ padding: 0; height:100vh; overflow:scroll; background-color: #eee; }
+#arrivals { background-color:$col1; }
+#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:$col2; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
-#arrival-list { margin-top: 10px; }
-#station-list li, #arrival-list li { background-color:#363D47; border:none; border-radius:0 !important; border-bottom:solid 1px $col2; font-size:14px; }
-#arrival-list li { background-color:transparent; }
+#station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px #ddd; font-size:14px; }
+#arrival-list li { border-color:$col2; }
 #arrival-list li, #station-list a { padding:10px 20px; display:block; }
 #station-list a, #arrival-list a { color:#fff; text-decoration: none; }
-#station-list a:hover { background-color: $col2; }
+#station-list a { color:#777; }
+#station-list a:hover { background-color: #ddd; }
 
 table#compass td { text-align: center; width:50px; }
 
@@ -95,7 +95,7 @@ table#compass td { text-align: center; width:50px; }
 
 #line-list .list-group-item a { opacity: 0.3; }
 
-input#station-search { border: none; border-radius: 0; padding:11px 20px; background-color: #363D47; font-size: 20px; height: auto; }
+input#station-search { border: none; border-radius: 0; padding:11px 20px; background-color: #ddd; font-size: 20px; height: auto; }
 
 span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 .badge { background:none; float: right; }

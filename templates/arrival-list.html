@@ -1,26 +1,16 @@
-<h2><span data-ng-click="arrivals.filters.lineName=''">{{station.name}} {{arrivals.data.length}}</span> 
-	<!--<small> 
-		<span data-ng-repeat="(key,value) in station.lines" class="line-badge bg-{{key | stnName}}" data-ng-click="arrivals.filters.lineName=key">&nbsp;</span>
-		arrivals ({{arrivals.data.length}})
-	</small>-->
+<h2>
+	<span style="margin-right:10px;" data-ng-click="arrivals.setFilters('','')">{{station.name}} {{arrivals.data.length}}</span>
+	<span data-ng-repeat="(key,value) in station.lines">
+		<button class="bg-{{key | stnName}} btn btn-primary" type="button" href="" data-ng-repeat="platform in value"  data-ng-click="arrivals.setFilters(key,platform)">{{platform.charAt(0)}}
+		</button>
+	</span>
 </h2>
-<div class="btn-group btn-group-justified" role="group">
-	<a data-ng-repeat="(key,value) in station.lines" class="btn bg-{{key | stnName}}" data-ng-click="arrivals.filters.platformName=key">{{key}}</a>
-</div>
-<!--<ul class="nav nav-tabs nav-justified">
-	<li data-ng-repeat="(key,value) in station.lines" class="bg-{{key | stnName}}">
-		<span data-ng-click="arrivals.filters.lineName=key">{{key}}</span>
-		<span data-ng-repeat="platform in value"  data-ng-click="arrivals.filters.platformName=platform">
-			{{platform}}
-		</span>
-	</li>
-</ul>-->
 <ul id="arrival-list">
-	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters.getFilter()">
+	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:arrivals.filters">
 		<span class="line-badge-wrapper">
 			<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 		</span>
 		<span class="badge">{{arrival.timeToStation | convertTime}}</span>
-		<!--<span style="opacity:0.2">{{arrival.vehicleId}} / </span>--> {{arrival.towards}} <span style="opacity:0.2">...{{arrival.currentLocation}}</span>
+		{{arrival.towards}} <small style="opacity:0.2">{{arrival.currentLocation}}</small>
 	</li>
 </ul>

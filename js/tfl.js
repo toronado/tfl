@@ -39,14 +39,14 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $interval,
     //this.interval = $interval(function () {
         appData.fetch('arrivals', params, false, function (data) {
             $scope.arrivals = {
-                'data':data,
-                //'filters' : {}
-                'filters' : {
-                    'lineName' : null,
-                    'platformName' : null,
-                    getFilter : function () {
-                        return this.platformName;
-                    }
+                data : data,
+                filters : {
+                    'lineName' : '',
+                    'platformName' : ''
+                },
+                setFilters : function (lineName, platformName) {
+                    this.filters.lineName = lineName;
+                    this.filters.platformName = platformName;
                 }
             };
         });
@@ -78,7 +78,6 @@ tubeApp.directive('filterList', function ($timeout) {
         }
     };
 });
-
 
 tubeApp.filter('stnName', function () {
     return function (name) {
