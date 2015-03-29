@@ -43,12 +43,12 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         }
     }
 
-    var params = {
+    var params, liveUpdate;
+    params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
     
-    var liveUpdate;
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
             $scope.arrivals = data;
