@@ -28,33 +28,47 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $interval, appData) {
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, appData) {
+
     appData.fetch('stations', null, true, function (data) {
         $scope.station = data[$routeParams.sid];
     });
+
+    $scope.filters = {
+        lineName : '',
+        platformName : '',
+        setFilters : function (lineName, platformName) {
+            this.lineName = lineName;
+            this.platformName = platformName;
+        }
+    }
+
     var params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
-        ids : $routeParams.line || 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
+        ids : 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
-    //this.interval = $interval(function () {
+    
+    var liveUpdate;
+    function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
-            $scope.arrivals = {
-                data : data,
-                filters : {
-                    'lineName' : '',
-                    'platformName' : ''
-                },
-                setFilters : function (lineName, platformName) {
-                    this.filters.lineName = lineName;
-                    this.filters.platformName = platformName;
-                }
-            };
+            $scope.arrivals = data;
+            $scope.date = new Date();
+            liveUpdate = $timeout(getArrivals, 30000);
         });
-    //},30000);
-    //this.endLongPolling = function(){ $interval.cancel(this.interval);};
+    }
+    getArrivals();
+
+    $scope.stopLiveUpdate = function () {
+        $timeout.cancel(liveUpdate);
+    }
+    $scope.$on("$destroy",function (event) { 
+        $scope.stopLiveUpdate();
+    });
+
 });
 
-tubeApp.directive('filterList', function ($timeout) {
+
+tubeApp.directive('filterList', function () {
     return {
         link: function (scope, element, attrs) {
             
@@ -95,7 +109,7 @@ tubeApp.filter('convertTime', function () {
     return function (input) {
         var mins = Math.floor(input / 60);
         if (mins) {
-            return mins + ' min';
+            return mins + ' min' + ' ('+input+'s)';
         }
         return 'Now';
     };
