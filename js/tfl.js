@@ -51,8 +51,10 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
     
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
-            $scope.arrivals = data;
-            $scope.date = new Date();
+            $scope.arrivals = {
+                data : data,
+                timestamp : new Date()
+            };
             liveUpdate = $timeout(getArrivals, 30000);
         });
     }

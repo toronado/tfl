@@ -1,14 +1,14 @@
 <h2>
-	<span style="margin-right:10px;" data-ng-click="filters.setFilters('','')">{{station.name}} {{arrivals.length}}</span>
+	<span style="margin-right:10px;" data-ng-click="filters.setFilters('','')">{{station.name}}</span>
 	<span data-ng-repeat="(key,value) in station.lines">
 		<button class="bg-{{key | stnName}} btn btn-primary" type="button" href="" data-ng-repeat="platform in value"  data-ng-click="filters.setFilters(key,platform)">{{platform.charAt(0)}}
 		</button>
 	</span>
-	<button type="button" class="btn" data-ng-click="stopLiveUpdate()">STOP</button>
-	{{date | date:'HH:mm'}}
+	<button type="button" class="btn" data-ng-click="stopLiveUpdate()">x</button>
+	<small>{{arrivals.data.length}} arrivals | updated @ {{arrivals.timestamp | date:'HH:mm'}}</small>
 </h2>
 <ul id="arrival-list">
-	<li class="arrival" data-ng-repeat="arrival in arrivals | orderBy:'-timeToStation':true | filter:filters">
+	<li class="arrival" data-ng-repeat="arrival in arrivals.data | orderBy:'-timeToStation':true | filter:filters">
 		<span class="line-badge-wrapper">
 			<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 		</span>
