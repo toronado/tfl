@@ -43,28 +43,47 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         }
     }
 
-    var params, liveUpdate;
+    var params, counter;
     params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
-    
+    $scope.getCount = 0;
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
-            $scope.arrivals = {
-                data : data,
-                timestamp : new Date()
-            };
-            liveUpdate = $timeout(getArrivals, 30000);
+            $scope.arrivals = data;
+            $scope.timestamp = new Date();
+            $scope.getCount++;
+            liveArrivals.start();
         });
     }
     getArrivals();
 
-    $scope.stopLiveUpdate = function () {
-        $timeout.cancel(liveUpdate);
+    var liveArrivals = {
+        start : function () {
+            $scope.count = 60;
+            $scope.liveStatus = 1;         
+            this.countdown();
+        },
+        countdown : function () {
+            $scope.count--;
+            if (!$scope.count) {
+                getArrivals();
+                return;
+            }
+            counter = $timeout(liveArrivals.countdown, 1000);
+        },
+        stop : function () {
+            $timeout.cancel(counter);
+            $scope.liveStatus = 0;
+        }
+    }
+
+    $scope.switchLive = function (n) {
+        n ? getArrivals() : liveArrivals.stop();
     }
     $scope.$on("$destroy",function (event) { 
-        $scope.stopLiveUpdate();
+        liveArrivals.stop();
     });
 
 });
@@ -111,7 +130,7 @@ tubeApp.filter('convertTime', function () {
     return function (input) {
         var mins = Math.floor(input / 60);
         if (mins) {
-            return mins + ' min' + ' ('+input+'s)';
+            return mins + ' min';// + ' ('+input+'s)';
         }
         return 'Now';
     };

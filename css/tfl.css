@@ -203,9 +203,6 @@ table#compass td {
   text-align: center;
   width: 50px; }
 
-#arrival-list li {
-  -webkit-animation: fadein 1s; }
-
 @-webkit-keyframes fadein {
   from {
     opacity: 0; }
@@ -243,5 +240,16 @@ span.station-id {
   display: inline-block;
   background-color: #000;
   overflow: hidden; }
+
+a.live {
+  letter-spacing: 1px;
+  font-size: 90%;
+  text-decoration: none; }
+
+a.live.status-1 {
+  color: deepskyblue; }
+
+a.live.status-0 {
+  color: #777; }
 
 /*# sourceMappingURL=tfl.css.map */
