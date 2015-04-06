@@ -18,6 +18,7 @@ $alternateStnTextColor: #113892;
 //site colors
 $col1: #363D47;
 $col2: #2f353f;
+$col3: #222;
 
 //Station Colour Class Names
 .bakerloo { color:$bakerloo !important; }
@@ -76,30 +77,32 @@ a.btn { color:#fff; border:none; }
 
 #stations, #arrivals{ padding: 0; height:100vh; overflow:scroll; background-color: #eee; }
 #arrivals { background-color:$col1; }
-#arrivals h2 { margin: 0; font-size: 19px; padding: 15px 20px; background-color:$col2; }
+#arrivals h2 { margin: 0; font-size: 20px; padding: 15px 20px; background-color: $col2; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
-#station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px #ddd; font-size:14px; }
+#station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px #f5f5f5; font-size:14px; }
+#arrival-list small { color:#7e8084; display:block; margin-left: 20px; }
+#station-list li { font-size:12px; }
 #arrival-list li { border-color:$col2; }
-#arrival-list li, #station-list a { padding:10px 20px; display:block; }
+#arrival-list a, #station-list a { padding:10px 20px; display:block; }
 #station-list a, #arrival-list a { color:#fff; text-decoration: none; }
 #station-list a { color:#777; }
-#station-list a:hover { background-color: #ddd; }
+#station-list a:hover { background-color: #f5f5f5; }
+#arrival-list a:hover { background-color: #f33;}
+#arrival-list a:hover small { color:#fff; }
 
 table#compass td { text-align: center; width:50px; }
 
 //#arrival-list li { -webkit-animation: fadein 1s; }
 @-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 
-#line-list .list-group-item a { opacity: 0.3; }
-
-input#station-search { border: none; border-radius: 0; padding:11px 20px; background-color: #ddd; font-size: 20px; height: auto; }
+input#station-search { border: none; border-radius: 0; padding:11px 20px; font-size: 20px; height: auto; background:transparent; }
 
 span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 .badge { background:none; float: right; }
 
-.line-badge-wrapper {display:block; float: right; }
+#station-list .line-badge-wrapper {display:block;}
 .line-badge { height:10px; width:10px; margin-right:5px; border-radius:50%; display:inline-block; background-color:#000; overflow: hidden; }
 
 a.live { letter-spacing:1px; font-size:90%; text-decoration: none; }

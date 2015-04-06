@@ -39,11 +39,11 @@
         </div>
     </nav>-->
     <div class="container-fluid" id="tfl-data">
-        <div class="col-md-4" id="stations">
+        <div class="col-md-3" id="stations">
             <input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
             <?php include 'templates/stations.html'; ?>
         </div>
-        <div class="col-md-8" id="arrivals">
+        <div class="col-md-9" id="arrivals">
            	<div data-ng-view></div>
         </div>
     </div>

@@ -5,18 +5,28 @@
 			<a class="{{station | stnName}}" href="" data-ng-repeat="platform in platforms" data-ng-click="filters.setFilters(station,platform)"> / {{platform.charAt(0)}}
 			</a>
 		</span>
-		 / {{getCount}} / {{arrivals.length}} arrivals @ {{timestamp | date:'HH:mm'}} /
-		 <a href="" class="live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
-			LIVE:<span data-ng-bind="count"></span>
+	</small>
+	<br />
+	<small>
+		{{arrivals.length}} arrivals @ {{timestamp | date:'HH:mm'}}
+		<a href="" class="badge live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
+			LIVE: {{getCount}}/<span data-ng-bind="count"></span>
 		</a>
 	</small>
 </h2>
 <ul id="arrival-list">
 	<li class="arrival" data-ng-repeat="arrival in arrivals | orderBy:'-timeToStation':true | filter:filters">
-		<span class="line-badge-wrapper">
-			<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
-		</span>
-		<span class="badge">{{arrival.timeToStation | convertTime}}</span>
-		{{arrival.towards}} <small style="opacity:0.2">{{arrival.currentLocation}}</small>
+		<a href="">
+			<span class="line-badge-wrapper">
+				<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
+			</span>
+			<span class="badge">
+				{{arrival.timeToStation | convertTime}}
+			</span>
+			{{arrival.towards}}
+			<small>
+				{{arrival.platformName.split('-')[0]}} / {{arrival.currentLocation}}
+			</small>
+		</a>
 	</li>
 </ul>

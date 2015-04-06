@@ -166,7 +166,7 @@ a.btn {
 
 #arrivals h2 {
   margin: 0;
-  font-size: 19px;
+  font-size: 20px;
   padding: 15px 20px;
   background-color: #2f353f; }
 
@@ -179,13 +179,21 @@ a.btn {
   background: transparent;
   border: none;
   border-radius: 0 !important;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px #f5f5f5;
   font-size: 14px; }
+
+#arrival-list small {
+  color: #7e8084;
+  display: block;
+  margin-left: 20px; }
+
+#station-list li {
+  font-size: 12px; }
 
 #arrival-list li {
   border-color: #2f353f; }
 
-#arrival-list li, #station-list a {
+#arrival-list a, #station-list a {
   padding: 10px 20px;
   display: block; }
 
@@ -197,7 +205,13 @@ a.btn {
   color: #777; }
 
 #station-list a:hover {
-  background-color: #ddd; }
+  background-color: #f5f5f5; }
+
+#arrival-list a:hover {
+  background-color: #f33; }
+
+#arrival-list a:hover small {
+  color: #fff; }
 
 table#compass td {
   text-align: center;
@@ -208,16 +222,13 @@ table#compass td {
     opacity: 0; }
   to {
     opacity: 1; } }
-#line-list .list-group-item a {
-  opacity: 0.3; }
-
 input#station-search {
   border: none;
   border-radius: 0;
   padding: 11px 20px;
-  background-color: #ddd;
   font-size: 20px;
-  height: auto; }
+  height: auto;
+  background: transparent; }
 
 span.station-id {
   color: #2f353f;
@@ -228,9 +239,8 @@ span.station-id {
   background: none;
   float: right; }
 
-.line-badge-wrapper {
-  display: block;
-  float: right; }
+#station-list .line-badge-wrapper {
+  display: block; }
 
 .line-badge {
   height: 10px;
