@@ -3,7 +3,7 @@ var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
 tubeApp.config(function ($routeProvider) {
     $routeProvider.
         when('/:sid/:line?/', {
-            templateUrl: 'templates/arrival-list.html',
+            templateUrl: 'templates/arrival-list.php',
             controller: 'arrivalListCtrl'
         }).
         otherwise({
@@ -32,6 +32,7 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
 
     appData.fetch('stations', null, true, function (data) {
         $scope.station = data[$routeParams.sid];
+        $scope.stationId = $routeParams.sid;
     });
 
     $scope.filters = {

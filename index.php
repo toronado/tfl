@@ -38,15 +38,16 @@
             </div>
         </div>
     </nav>-->
-    <div class="container-fluid" id="tfl-data">
-        <div class="col-md-3" id="stations">
+    <!--<div class="container-fluid" id="tfl-data">
+        <div class="col-md-4" id="stations">
             <input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
-            <?php include 'templates/stations.html'; ?>
+            <php include 'templates/stations.html'; ?>
         </div>
-        <div class="col-md-9" id="arrivals">
+        <div class="col-md-12" id="arrivals">
            	<div data-ng-view></div>
         </div>
-    </div>
+    </div>-->
+    <div data-ng-view></div>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
     <script src="js/angular-sanitize.min.js"></script>
