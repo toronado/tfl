@@ -7,6 +7,7 @@
     <title>TFL BETA</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/tfl.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
 </head>
 <body>
     <!--<nav class="navbar navbar-default navbar-fixed-top">

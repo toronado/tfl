@@ -110,7 +110,8 @@
 
 body {
   font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+  background-color: #eee; }
 
 h1 {
   text-transform: capitalize;
@@ -142,7 +143,8 @@ nav h1 {
   padding: 0; }
 
 .navbar-brand {
-  padding: 0 15px; }
+  background: url(../images/logo.gif) no-repeat;
+  padding-left: 60px; }
 
 #nav-line-list li {
   height: 20px;
@@ -172,8 +174,16 @@ a.btn {
 
 #station, #stations, #arrivals {
   padding: 0;
-  height: 100vh;
+  height: calc(100vh - 50px);
   overflow: scroll; }
+
+#stations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #eee;
+  width: 100%; }
 
 #arrivals {
   background-color: #363D47;
@@ -229,9 +239,6 @@ a.btn {
 #arrival-list a:hover small {
   color: #fff; }
 
-#station {
-  background-color: #eee; }
-
 #station .badge {
   color: #444; }
 
@@ -281,9 +288,6 @@ span.station-id {
 .badge {
   background: none;
   float: right; }
-
-#station-list .line-badge-wrapper {
-  display: none; }
 
 .line-badge {
   height: 10px;

@@ -87,6 +87,11 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         liveArrivals.stop();
     });
 
+    $scope.custom = true;
+    $scope.toggleCustom = function() {
+        $scope.custom = $scope.custom === false ? true: false;
+    };
+
 });
 
 

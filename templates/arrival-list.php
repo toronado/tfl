@@ -1,8 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
   	<div class="container-fluid">
     	<div class="navbar-header">
-      		<a class="navbar-brand" href="#">
-      			<img src="images/logo.png">
+      		<a class="navbar-brand" href="" data-ng-click="toggleCustom()">
         		TFLive
       		</a>
     	</div>
@@ -14,15 +13,20 @@
 <div class="container-fluid" id="tfl-data">
 	<div class="col-md-3">
 		<div class="row">
+			<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
+				<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
+				<?php include 'stations.html' ?>
+			</div>
 			<div id="station">
-				<h2 data-ng-click="filters.setFilters('','')">{{stationId}}<small> / {{station.name}}</small></h2>
+				<h2 data-ng-click="filters.setFilters('','')">{{stationId}}<small> / {{station.name}}</small> </h2>
 				<ul class="list-group">
 					<li data-ng-repeat="(line,platforms) in station.lines" class="list-group-item">
-						<a href="" data-ng-click="filters.setFilters(line,'')">{{line}}</a>
-						<a href="" data-ng-repeat="platform in platforms" data-ng-click="filters.setFilters(line,platform)">{{platform.charAt(0)}}</a>
+						<a href="" class="line" data-ng-click="filters.setFilters(line,'')">{{line}}</a>
+						<span class="platforms">
+							<a href="" class="platform" data-ng-repeat="platform in platforms" data-ng-click="filters.setFilters(line,platform)">{{platform}}</a>
+						</span>
 					</li>
 				</ul>
-				<!--?php include 'stations.html'; ?-->
 			</div>
 		</div>
 	</div>
@@ -39,7 +43,7 @@
 					</span>
 					{{arrival.towards}}
 					<small>
-						{{arrival.currentLocation}}
+						{{arrival.platformName.split('-')[0].trim()}}, {{arrival.currentLocation}} / {{arrival.timeToStation}}s
 					</small>
 				</a>
 			</li>
