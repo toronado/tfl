@@ -22,12 +22,12 @@
 				<ul>
 					<li data-ng-repeat="(line,platforms) in station.lines">
 						<a href="" class="line" data-ng-click="filters.setFilters(line,'')">
-							{{line}} ({{(arrivals|filter:{lineName: line}).length}})
+							{{line}} ({{(arrivals|filter:{lineName:line}).length}})
 						</a>
 						<ul class="platforms">
 							<li data-ng-repeat="platform in platforms">
 								<a href="" class="platform" data-ng-click="filters.setFilters(line,platform)">
-									{{platform}} ({{(arrivals|filter:{lineName: line,platformName: platform}).length}})
+									{{platform}} ({{(arrivals|filter:{lineName:line, platformName:platform}).length}})
 								</a>
 							</li>
 						</ul>
