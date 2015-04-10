@@ -143,8 +143,10 @@ nav h1 {
   padding: 0; }
 
 .navbar-brand {
-  background: url(../images/logo.gif) no-repeat;
-  padding-left: 60px; }
+  /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500; }
 
 #nav-line-list li {
   height: 20px;
@@ -186,8 +188,9 @@ a.btn {
   width: 100%; }
 
 #arrivals {
+  color: #fff;
   background-color: #363D47;
-  color: #fff; }
+  /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 
 #arrivals h2 {
   margin: 0;

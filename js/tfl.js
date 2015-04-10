@@ -49,12 +49,10 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
-    $scope.getCount = 0;
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
             $scope.arrivals = data;
             $scope.timestamp = new Date();
-            $scope.getCount++;
             liveArrivals.start();
         });
     }
@@ -89,7 +87,7 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
 
     $scope.custom = true;
     $scope.toggleCustom = function() {
-        $scope.custom = $scope.custom === false ? true: false;
+        $scope.custom = $scope.custom ? false : true;
     };
 
 });
