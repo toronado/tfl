@@ -111,7 +111,7 @@
 body {
   font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #eee; }
+  background-color: #2f353f; }
 
 h1 {
   text-transform: capitalize;
@@ -130,7 +130,8 @@ nav h1 {
 
 .navbar-inverse {
   border: none;
-  margin: 0; }
+  margin: 0;
+  background-color: #1c2026; }
 
 .navbar-default {
   background-color: transparent;
@@ -197,9 +198,6 @@ a.btn {
   font-weight: 300;
   padding: 15px 20px; }
 
-#arrivals h2 small {
-  text-transform: lowercase; }
-
 #station-list, #arrival-list {
   margin: 0;
   padding: 0;
@@ -224,11 +222,12 @@ a.btn {
 
 #arrival-list a, #station-list a {
   padding: 10px 20px;
-  display: block; }
-
-#station-list a, #arrival-list a {
+  display: block;
   color: #fff;
   text-decoration: none; }
+
+#arrival-list a {
+  padding: 15px 20px; }
 
 #station-list a {
   color: #777; }
@@ -248,8 +247,11 @@ a.btn {
 #station h2 {
   margin: 0;
   font-weight: 300;
-  color: #444;
+  color: #fff;
   padding: 15px 20px; }
+
+#station h2 small {
+  text-transform: lowercase; }
 
 #station .list-group {
   padding: 20px; }

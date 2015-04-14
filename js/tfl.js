@@ -39,8 +39,12 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         lineName : '',
         platformName : '',
         setFilters : function (lineName, platformName) {
-            this.lineName = lineName;
-            this.platformName = platformName;
+            if (lineName !== false) {
+                this.lineName = lineName;
+            }
+            if (platformName !== false) {
+                this.platformName = platformName;
+            }
         }
     }
 
