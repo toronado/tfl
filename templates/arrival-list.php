@@ -12,36 +12,35 @@
 </nav>
 <div class="container-fluid" id="tfl-data">
 	<div class="col-md-3">
-		<div class="row">
-			<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
-				<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
-				<?php include 'stations.html' ?>
-			</div>
-			<div id="station">
-				<h2 data-ng-click="filters.setFilters('','')">{{station.name}} <small>{{timestamp | date:'h:mma'}}</small></h2>
-				<ul class="list-group">
-					<li class="list-group-item" data-ng-repeat="(line,platforms) in station.lines">
-						<a href="" class="{{line | stnName}}" data-ng-click="filters.setFilters(line,'')">
-							{{line}} 
-							<span class="badge bg-{{line | stnName}}">{{(arrivals|filter:{lineName:line}).length}}</span>
-						</a>
-						<ul class="platforms">
-							<li data-ng-repeat="platform in platforms">
-								<a href="" class="platform" data-ng-click="filters.setFilters(line,platform)">
-									{{platform}} 
-									<span class="badge bg-{{line | stnName}}">{{(arrivals|filter:{lineName:line, platformName:platform}).length}}</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
+			<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
+			<?php include 'stations.html' ?>
+		</div>
+		<div id="station">
+			<h2 data-ng-click="filters.setFilters('','')">{{filtered.length}} <small>arrivals @ {{timestamp | date:'h:mma'}}</small></h2>
+			<ul class="line list-group list-unstyled">
+				<li class="list-group-item" data-ng-repeat="(line,platforms) in station.lines">
+					<a href="" class="{{line | stnName}}" data-ng-click="filters.setFilters(line,'')">
+						{{line}} 
+						<span class="badge">{{(arrivals|filter:{lineName:line}).length}}</span>
+					</a>
+					<ul class="platforms list-unstyled">
+						<li data-ng-repeat="platform in platforms">
+							<a href="" class="platform" data-ng-click="filters.setFilters(line,platform)">
+								{{platform}} 
+								<span class="badge">{{(arrivals|filter:{lineName:line, platformName:platform}).length}}</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="col-md-9" id="arrivals">
-		<h2>{{filtered.length}}
+		<h2>
+			{{station.name}}
 			<small>
-				arrivals
+				{{stationId}}
 				<span data-ng-show="filters.lineName">
 					/ <span class="filter">{{filters.lineName}}</span>
 					<sup>
@@ -62,12 +61,12 @@
 					<span class="line-badge-wrapper">
 						<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 					</span>
-					<span class="badge">
-						{{arrival.timeToStation | convertTime}}
+					<span class="badge" style="text-align:right;">
+						{{arrival.timeToStation | convertTime}} <small style="margin:0; margin-top; line-height:1.5; ">{{arrival.timeToStation}}s</small>
 					</span>
 					{{arrival.towards}}
 					<small>
-						{{arrival.platformName.split('-')[0].trim()}}, {{arrival.currentLocation}} / {{arrival.timeToStation}}s
+						{{arrival.platformName.split('-')[0].trim()}}, {{arrival.currentLocation}}
 					</small>
 				</a>
 			</li>

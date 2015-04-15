@@ -136,10 +136,12 @@ tubeApp.filter('stnName', function () {
 //Change seconds to minutes
 tubeApp.filter('convertTime', function () {
     return function (input) {
-        var mins = Math.floor(input / 60);
-        if (mins) {
-            return mins + ' min';// + ' ('+input+'s)';
+        if (input < 10) {
+            return 'Now';
         }
-        return 'Now';
+        if (input < 60) {
+            return 'Due';
+        }
+        return Math.floor(input / 60) + ' min';
     };
 });

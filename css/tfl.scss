@@ -60,7 +60,7 @@ $col3: #222;
 .bd-waterloo-city { border-color:$waterlooCity !important; }
 
 
-body { font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;  -webkit-font-smoothing:antialiased; background-color:$col2; }
+body { font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;  -webkit-font-smoothing:antialiased; background:url(../images/bg-body.gif) repeat $col2; background-color:$col2; }
 
 //bootstrap overrides//
 h1 { text-transform: capitalize; font-size:40px; }
@@ -80,7 +80,7 @@ a.btn { color:#fff; border:none; }
 #station, #stations, #arrivals { padding: 0; height:calc(100vh - 50px); overflow:scroll;}
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
 #arrivals { color:#fff; background-color:$col1; /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
-#arrivals h2 { margin: 0; font-weight: 300; padding: 15px 20px; }
+h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
@@ -96,11 +96,15 @@ a.btn { color:#fff; border:none; }
 #arrival-list a:hover small { color:#fff; }
 
 //station
-#station .badge { color:#444; }
-#station h2 {margin:0; font-weight:300; color:#fff; padding:15px 20px; }
-#station h2 small { text-transform: lowercase; }
-#station .list-group { padding:20px; }
-#station .list-group-item { font-size:14px; background-color:#fff; margin-bottom: 1px; border:none; }
+.line .badge { color:#fff; }
+.platforms .badge, .platforms a { color:#7e8084; }
+.platforms a { font-weight:500; font-size:95%; }
+.platforms li { border-bottom:$col1 solid 1px; padding:5px 0; }
+#station { padding:0 20px; }
+#station h2 {padding:15px 0; }
+h2 small { text-transform: lowercase; }
+#station .list-group { padding:20px 0; }
+#station .list-group-item { font-size:14px; background-color:transparent; margin-bottom: 1px; border:none; padding:0; margin-bottom:25px; }
 #station .pagination { margin:0; }
 #station .pagination a { background-color:transparent; }
 
