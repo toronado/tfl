@@ -28,7 +28,7 @@ $col3: #222;
 .hammersmith-city { color:$hammersmithCity !important; }
 .jubilee { color:$jubilee !important; }
 .metropolitan { color:$metropolitan !important; }
-.northern { color:$northern !important; }
+.northern { color:#fff !important; }
 .piccadilly { color:$piccadilly !important; }
 .victoria { color:$victoria !important; }
 .waterloo-city { color:$waterlooCity !important; }
@@ -121,5 +121,5 @@ span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 #station-list .line-badge-wrapper {}
 .line-badge { height:10px; width:10px; margin-right:10px; border-radius:50%; display:inline-block; background-color:#000; overflow: hidden; }
 
-a.live { letter-spacing:1px; font-size:90%; text-decoration: none; margin: 0; padding: 25px;line-height: 0px; border-radius: 0; margin-right: -15px !important; color: #777; font-weight:bold; }
+a.live { letter-spacing:1px; font-size:22px; text-decoration: none; margin: 0; padding: 25px;line-height: 0px; border-radius: 0; margin-right: -15px !important; color: #777; font-weight:400; min-width: 60px; }
 a.live.status-1 { background-color: #f33; color: #fff; }

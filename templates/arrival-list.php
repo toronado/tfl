@@ -6,7 +6,7 @@
       		</a>
     	</div>
 		<a href="" class="navbar-right live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
-			LIVE: <span data-ng-bind="count"></span>
+			<span data-ng-bind="count"></span>
 		</a>
   	</div>
 </nav>
@@ -17,12 +17,17 @@
 			<?php include 'stations.html' ?>
 		</div>
 		<div id="station">
-			<h2 data-ng-click="filters.setFilters('','')">{{filtered.length}} <small>arrivals @ {{timestamp | date:'h:mma'}}</small></h2>
+			<h2 data-ng-click="filters.setFilters('','')">
+				{{station.name}}
+				<small>
+					{{timestamp | date:'h:mma'}}
+				</small>
+			</h2>
 			<ul class="line list-group list-unstyled">
 				<li class="list-group-item" data-ng-repeat="(line,platforms) in station.lines">
-					<a href="" class="{{line | stnName}}" data-ng-click="filters.setFilters(line,'')">
-						{{line}} 
-						<span class="badge">{{(arrivals|filter:{lineName:line}).length}}</span>
+					<a href="" data-ng-click="filters.setFilters(line,'')">
+						<span  class="{{line | stnName}}" style="padding:1px 3px; background-color:#1c2026; text-transform: uppercase; font-weight: 500; font-size: 85%; letter-spacing: 1px;">{{line}}</span>
+						<!--<span class="badge">{{(arrivals|filter:{lineName:line}).length}}</span>-->
 					</a>
 					<ul class="platforms list-unstyled">
 						<li data-ng-repeat="platform in platforms">
@@ -38,9 +43,9 @@
 	</div>
 	<div class="col-md-9" id="arrivals">
 		<h2>
-			{{station.name}}
+			{{filtered.length}}
 			<small>
-				{{stationId}}
+				arrivals
 				<span data-ng-show="filters.lineName">
 					/ <span class="filter">{{filters.lineName}}</span>
 					<sup>
@@ -48,7 +53,7 @@
 					</sup>
 				</span>
 				<span data-ng-show="filters.platformName">
-					/ <span class="filter">&#8220;{{filters.platformName}}&#8221;</span>
+					/ <span class="filter">{{filters.platformName}}</span>
 					<sup>
 						<a class="clear-filter" href="" data-ng-click="filters.setFilters(false, '')">x</a>
 					</sup>
@@ -62,7 +67,7 @@
 						<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 					</span>
 					<span class="badge" style="text-align:right;">
-						{{arrival.timeToStation | convertTime}} <small style="margin:0; margin-top; line-height:1.5; ">{{arrival.timeToStation}}s</small>
+						{{arrival.timeToStation | convertTime}}
 					</span>
 					{{arrival.towards}}
 					<small>

@@ -140,7 +140,7 @@ tubeApp.filter('convertTime', function () {
             return 'Now';
         }
         if (input < 60) {
-            return 'Due';
+            return input + 's';
         }
         return Math.floor(input / 60) + ' min';
     };

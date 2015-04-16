@@ -20,7 +20,7 @@
   color: #893267 !important; }
 
 .northern {
-  color: #000 !important; }
+  color: #fff !important; }
 
 .piccadilly {
   color: #0450A1 !important; }
@@ -320,7 +320,7 @@ span.station-id {
 
 a.live {
   letter-spacing: 1px;
-  font-size: 90%;
+  font-size: 22px;
   text-decoration: none;
   margin: 0;
   padding: 25px;
@@ -328,7 +328,8 @@ a.live {
   border-radius: 0;
   margin-right: -15px !important;
   color: #777;
-  font-weight: bold; }
+  font-weight: 400;
+  min-width: 60px; }
 
 a.live.status-1 {
   background-color: #f33;
