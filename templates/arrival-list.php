@@ -10,16 +10,18 @@
 		</a>
   	</div>
 </nav>
+<iframe ng-src="{{mapUrl}}" width="100%" height="450" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
 <div class="container-fluid" id="tfl-data">
-	<div class="col-md-3">
+	<div class="col-md-4" style="padding:0;">
 		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
 			<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
 			<?php include 'stations.html' ?>
 		</div>
 		<div id="station">
 			<h2 data-ng-click="filters.setFilters('','')">
-				{{station.name}}
+				{{arrivals.length}}
 				<small>
+					arrivals @
 					{{timestamp | date:'h:mma'}}
 				</small>
 			</h2>
@@ -41,11 +43,11 @@
 			</ul>
 		</div>
 	</div>
-	<div class="col-md-9" id="arrivals">
+	<div class="col-md-8" id="arrivals">
 		<h2>
-			{{filtered.length}}
+			<span>{{station.name}}</span>
 			<small>
-				arrivals
+				{{filtered.length}} arrivals
 				<span data-ng-show="filters.lineName">
 					/ <span class="filter">{{filters.lineName}}</span>
 					<sup>
@@ -61,11 +63,11 @@
 			</small>
 		</h2>
 		<ul id="arrival-list">
-			<li class="arrival" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
-				<a href="">
-					<span class="line-badge-wrapper">
+			<li class="arrival fadeIn animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
+				<a href="" class="bd-{{arrival.lineId}}" style="border-left:5px solid #222;">
+					<!--<span class="line-badge-wrapper">
 						<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
-					</span>
+					</span>-->
 					<span class="badge" style="text-align:right;">
 						{{arrival.timeToStation | convertTime}}
 					</span>

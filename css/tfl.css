@@ -126,8 +126,7 @@ nav h1 {
   margin: 14px 0; }
 
 #tfl-data {
-  padding: 0;
-  margin-top: 50px; }
+  padding: 0; }
 
 .navbar-inverse {
   border: none;
@@ -178,8 +177,7 @@ a.btn {
 
 #station, #stations, #arrivals {
   padding: 0;
-  height: calc(100vh - 50px);
-  overflow: scroll; }
+  /*height:calc(100vh - 50px); overflow:scroll;*/ }
 
 #stations {
   position: absolute;
@@ -191,8 +189,7 @@ a.btn {
 
 #arrivals {
   color: #fff;
-  background-color: #363D47;
-  /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+  /*background-color:$col1; margin-top:-143px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 
 h2 {
   margin: 0;
@@ -216,7 +213,6 @@ h2 {
 #arrival-list small {
   color: #7e8084;
   display: block;
-  margin-left: 24px;
   font-size: 13px; }
 
 #arrival-list li {
@@ -261,7 +257,8 @@ h2 {
   padding: 0 20px; }
 
 #station h2 {
-  padding: 15px 0; }
+  padding: 15px 0;
+  text-transform: lowercase; }
 
 h2 small {
   text-transform: lowercase; }

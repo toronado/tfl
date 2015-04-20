@@ -15,6 +15,7 @@ tubeApp.factory('appData', function ($http) {
     return {
         urls : {
             arrivals : 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals',
+            stopPoint : 'http://api.tfl.gov.uk/StopPoint/%7Bids%7D',
             stations : 'data/json/stationsObj.json'
         },
         fetch : function (url, params, cache, callback) {
@@ -28,7 +29,7 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, appData) {
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, $sce, appData) {
 
     appData.fetch('stations', null, true, function (data) {
         $scope.station = data[$routeParams.sid];
@@ -53,6 +54,15 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         stopPointId : '940GZZLU' + $routeParams.sid,
         ids : 'bakerloo,central,circle,district,hammersmith-city,jubilee,metropolitan,northern,piccadilly,victoria,waterloo-city'
     };
+
+    appData.fetch('stopPoint', {ids:params.stopPointId}, true, function (data) {
+        var lat = data.lat;
+        var lon = data.lon;
+        var src = 'https://www.google.com/maps/embed/v1/streetview?location='+lat+'%2C'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI&heading=0';
+        //var src = 'https://www.google.com/maps/embed/v1/view?center='+lat+'%2C'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI&maptype=satellite&zoom=18';
+        $scope.mapUrl = $sce.trustAsResourceUrl(src);
+    });
+
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {
             $scope.arrivals = data;
