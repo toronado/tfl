@@ -10,9 +10,10 @@
 		</a>
   	</div>
 </nav>
-<iframe ng-src="{{mapUrl}}" width="100%" height="450" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
+<iframe ng-src="{{mapUrl}}" width="100%" height="270" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
 <div class="container-fluid" id="tfl-data">
-	<div class="col-md-4" style="padding:0;">
+	<div class="col-md-3" style="padding:0;">
+		
 		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
 			<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
 			<?php include 'stations.html' ?>
@@ -28,7 +29,7 @@
 			<ul class="line list-group list-unstyled">
 				<li class="list-group-item" data-ng-repeat="(line,platforms) in station.lines">
 					<a href="" data-ng-click="filters.setFilters(line,'')">
-						<span  class="{{line | stnName}}" style="padding:1px 3px; background-color:#1c2026; text-transform: uppercase; font-weight: 500; font-size: 85%; letter-spacing: 1px;">{{line}}</span>
+						<span  class="{{line | stnName}}" style="background-color:#1c2026; text-transform: uppercase; font-weight: 500; font-size: 85%; letter-spacing: 1px;">{{line}}</span>
 						<!--<span class="badge">{{(arrivals|filter:{lineName:line}).length}}</span>-->
 					</a>
 					<ul class="platforms list-unstyled">
@@ -43,7 +44,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="col-md-8" id="arrivals">
+	<div class="col-md-9" id="arrivals">
 		<h2>
 			<span>{{station.name}}</span>
 			<small>

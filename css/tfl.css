@@ -177,7 +177,9 @@ a.btn {
 
 #station, #stations, #arrivals {
   padding: 0;
-  /*height:calc(100vh - 50px); overflow:scroll;*/ }
+  height: 100vh;
+  /*height:calc(100vh - 50px);*/
+  overflow: scroll; }
 
 #stations {
   position: absolute;
@@ -189,13 +191,18 @@ a.btn {
 
 #arrivals {
   color: #fff;
-  /*background-color:$col1; margin-top:-143px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+  margin-top: -69px;
+  /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 
 h2 {
   margin: 0;
   font-weight: 300;
   padding: 15px 20px;
   color: #fff; }
+
+#arrivals h2 {
+  background-color: white;
+  color: #222; }
 
 #station-list, #arrival-list {
   margin: 0;
@@ -254,7 +261,9 @@ h2 {
   padding: 5px 0; }
 
 #station {
-  padding: 0 20px; }
+  padding: 0 20px;
+  background-color: #1c2026;
+  margin-top: -6px; }
 
 #station h2 {
   padding: 15px 0;

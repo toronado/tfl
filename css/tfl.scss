@@ -77,10 +77,11 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
-#station, #stations, #arrivals { padding: 0; /*height:calc(100vh - 50px); overflow:scroll;*/}
+#station, #stations, #arrivals { padding: 0; height:100vh; /*height:calc(100vh - 50px);*/ overflow:scroll;}
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
-#arrivals { color:#fff; /*background-color:$col1; margin-top:-143px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+#arrivals { color:#fff; margin-top:-69px; /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
+#arrivals h2 { background-color:white; color:#222;}
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
@@ -100,7 +101,7 @@ h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 .platforms .badge, .platforms a { color:#7e8084; }
 .platforms a { font-weight:500; font-size:95%; }
 .platforms li { border-bottom:$col1 solid 1px; padding:5px 0; }
-#station { padding:0 20px; }
+#station { padding:0 20px; background-color:#1c2026; margin-top:-6px; }
 #station h2 {padding:15px 0; text-transform: lowercase; }
 h2 small { text-transform: lowercase; }
 #station .list-group { padding:20px 0; }
