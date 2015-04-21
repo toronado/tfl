@@ -66,7 +66,7 @@ body { font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neu
 h1 { text-transform: capitalize; font-size:40px; }
 h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
-#tfl-data { padding:0; }
+#tfl-data { padding:0; margin-top: 50px; }
 .navbar-inverse { border:none; margin:0; background-color:#1c2026; }
 .navbar-default { background-color:transparent; border-radius:0; border:none; min-height: 0; padding:0; }
 .navbar-default .col-md-1 { padding:0; }
@@ -79,7 +79,7 @@ a.btn { color:#fff; border:none; }
 
 #station, #stations, #arrivals { padding: 0; height:100vh; /*height:calc(100vh - 50px);*/ overflow:scroll;}
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
-#arrivals { color:#fff; margin-top:-69px; /*background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+#arrivals { color:#fff; /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 #arrivals h2 { background-color:white; color:#222;}
 
@@ -88,7 +88,7 @@ h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 #station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px #f5f5f5; font-size:14px; font-weight:500; }
 #arrival-list small { color:#7e8084; display:block; font-size:13px; }
 #station-list li { }
-#arrival-list li { border-color:$col2; }
+#arrival-list li { border-color:$col1; }
 #arrival-list a, #station-list a { padding:10px 20px; display:block; color:#fff; text-decoration: none; }
 #arrival-list a { padding:15px 20px; }
 #station-list a { color:#777; }

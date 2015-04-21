@@ -58,9 +58,11 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
     appData.fetch('stopPoint', {ids:params.stopPointId}, true, function (data) {
         var lat = data.lat;
         var lon = data.lon;
-        var src = 'https://www.google.com/maps/embed/v1/streetview?location='+lat+'%2C'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI&heading=0';
-        //var src = 'https://www.google.com/maps/embed/v1/view?center='+lat+'%2C'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI&maptype=satellite&zoom=18';
-        $scope.mapUrl = $sce.trustAsResourceUrl(src);
+        //var src = 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
+        var src = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&center='+lat+','+lon+'&zoom=17&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&markers=size:tiny&size=640x640&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
+        $scope.mapUrl = $sce.trustAsHtml('<img class="fadeIn animated" src="'+src+'" width="100%">');
+
+
     });
 
     function getArrivals() {
