@@ -1,8 +1,8 @@
-<nav class="navbar navbar-fixed-top navbar-inverse fadeInDown animated">
+<nav class="navbar navbar-inverse fadeInDown animated">
   	<div class="container-fluid">
     	<div class="navbar-header">
       		<a class="navbar-brand" href="" data-ng-click="toggleCustom()">
-        		{{station.name}}
+        		TFLive
       		</a>
     	</div>
 		<a href="" class="navbar-right live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
@@ -10,39 +10,18 @@
 		</a>
   	</div>
 </nav>
-
 <div class="container-fluid" id="tfl-data">
-	<div class="col-md-3 fadeInLeft animated" style="padding:0;">
-		<!--<img class="fadeIn animated" data-ng-src="{{mapUrl}}" width="100%">-->
-		<div data-ng-bind-html="mapUrl" style="height:250px;"></div>
+	<div class="col-md-4 fadeInLeft animated" style="padding:0;">
+		<div style="height:250px; overflow:hidden;">
+			<img data-ng-src="{{mapUrl}}" width="100%">
+		</div>
 		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
 			<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
 			<?php include 'stations.html' ?>
 		</div>
 		<div id="station">
-			<h2>
-				<small>
-					{{filtered.length}} arrivals
-					<span data-ng-show="filters.lineName">
-						/ <span class="filter">{{filters.lineName}}</span>
-						<sup>
-							<a class="clear-filter" href="" data-ng-click="filters.setFilters('', false)">x</a>
-						</sup>
-					</span>
-					<span data-ng-show="filters.platformName">
-						/ <span class="filter">{{filters.platformName}}</span>
-						<sup>
-							<a class="clear-filter" href="" data-ng-click="filters.setFilters(false, '')">x</a>
-						</sup>
-					</span>
-				</small>
-			</h2>
 			<h2 data-ng-click="filters.setFilters('','')">
-				{{arrivals.length}}
-				<small>
-					arrivals @
-					{{timestamp | date:'h:mma'}}
-				</small>
+				{{station.name}}
 			</h2>
 			<ul class="line list-group list-unstyled">
 				<li class="list-group-item" data-ng-repeat="(line,platforms) in station.lines">
@@ -62,10 +41,28 @@
 			</ul>
 		</div>
 	</div>
-	<div class="col-md-9" id="arrivals">
+	<div class="col-md-8" id="arrivals">
+		<!--<h2>
+			<small>{{timestamp | date:'h:mma'}}
+			
+				 {{filtered.length}} of {{arrivals.length}}
+				<span data-ng-show="filters.lineName"> / 
+					<span class="filter">{{filters.lineName}}</span>
+					<sup>
+						<a class="clear-filter" href="" data-ng-click="filters.setFilters('', false)">x</a>
+					</sup>
+				</span>
+				<span data-ng-show="filters.platformName">
+					/ <span class="filter">{{filters.platformName}}</span>
+					<sup>
+						<a class="clear-filter" href="" data-ng-click="filters.setFilters(false, '')">x</a>
+					</sup>
+				</span>
+			</small>
+		</h2>-->
 		<ul id="arrival-list">
 			<li class="arrival fadeInDown animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
-				<a href="" class="bd-{{arrival.lineId}}" style="border-left:5px solid #222; border-right:5px solid #222;">
+				<a href="" class="bd-{{arrival.lineId}}" style="border-left:5px solid #222;">
 					<!--<span class="line-badge-wrapper">
 						<span class="line-badge bg-{{arrival.lineId}}">&nbsp;</span>
 					</span>-->

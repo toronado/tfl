@@ -111,8 +111,7 @@
 body {
   font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: url(../images/bg-body.gif) repeat #2f353f;
-  background-color: #2f353f; }
+  background: url(../images/bg-body.gif) repeat #363D47; }
 
 h1 {
   text-transform: capitalize;
@@ -126,17 +125,16 @@ nav h1 {
   margin: 14px 0; }
 
 #tfl-data {
-  padding: 0;
-  margin-top: 50px; }
+  padding: 0; }
 
 .navbar-inverse {
   border: none;
   margin: 0;
-  background-color: #1c2026; }
+  background-color: #000;
+  border-radius: 0; }
 
 .navbar-default {
   background-color: transparent;
-  border-radius: 0;
   border: none;
   min-height: 0;
   padding: 0; }
@@ -200,10 +198,6 @@ h2 {
   padding: 15px 20px;
   color: #fff; }
 
-#arrivals h2 {
-  background-color: white;
-  color: #222; }
-
 #station-list, #arrival-list {
   margin: 0;
   padding: 0;
@@ -223,7 +217,7 @@ h2 {
   font-size: 13px; }
 
 #arrival-list li {
-  border-color: #363D47; }
+  border-color: #2f353f; }
 
 #arrival-list a, #station-list a {
   padding: 10px 20px;
@@ -262,12 +256,10 @@ h2 {
 
 #station {
   padding: 0 20px;
-  background-color: #1c2026;
-  margin-top: -6px; }
+  background-color: #1c2026; }
 
 #station h2 {
-  padding: 15px 0;
-  text-transform: lowercase; }
+  padding: 15px 0; }
 
 h2 small {
   text-transform: lowercase; }
