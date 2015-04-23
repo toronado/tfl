@@ -2,7 +2,7 @@
   	<div class="container-fluid">
     	<div class="navbar-header">
       		<a class="navbar-brand" href="" data-ng-click="toggleCustom()">
-        		Rajinho
+        		TFLive
       		</a>
     	</div>
 		<a href="" class="navbar-right live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
