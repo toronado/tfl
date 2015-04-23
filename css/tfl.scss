@@ -60,31 +60,30 @@ $col3: #222;
 .bd-waterloo-city { border-color:$waterlooCity !important; }
 
 
-body { font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;  -webkit-font-smoothing:antialiased; background:url(../images/bg-body.gif) repeat $col1; }
+body { font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;  -webkit-font-smoothing:antialiased; background:url(../images/bg-body2.gif) repeat $col1; }
 
 //bootstrap overrides//
 h1 { text-transform: capitalize; font-size:40px; }
 h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
 #tfl-data { padding:0; }
-.navbar-inverse { border:none; margin:0; background-color:#000; border-radius:0; }
-.navbar-default { background-color:transparent; border:none; min-height: 0; padding:0; }
-.navbar-default .col-md-1 { padding:0; }
-.navbar-brand { /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
+.navbar { border:none; margin:0; background-color:#000; border-radius:0; }
+.navbar-brand { /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/color:#fff; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
 .btn, .list-group-item, .pagination li a {  border-radius:0 !important; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
-#station, #stations, #arrivals { padding: 0; height:100vh; /*height:calc(100vh - 50px);*/ overflow:scroll;}
+#station, #stations, #arrivals { padding: 0; /*height:100vh;*/ height:calc(100vh - 50px); overflow:scroll;}
+#station { height:calc(100vh - 330px); }
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
 #arrivals { color:#fff; /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
-#station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:solid 1px #f5f5f5; font-size:14px; font-weight:500; }
+#station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; border-bottom:dotted 1px #f5f5f5; font-size:14px; font-weight:500; }
 #arrival-list small { color:#7e8084; display:block; font-size:13px; }
 #station-list li { }
 #arrival-list li { border-color:$col2; }

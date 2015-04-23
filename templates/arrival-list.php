@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse fadeInDown animated">
+<nav class="navbar fadeInDown animated">
   	<div class="container-fluid">
     	<div class="navbar-header">
       		<a class="navbar-brand" href="" data-ng-click="toggleCustom()">
@@ -12,7 +12,7 @@
 </nav>
 <div class="container-fluid" id="tfl-data">
 	<div class="col-md-4 fadeInLeft animated" style="padding:0;">
-		<div style="height:250px; overflow:hidden;">
+		<div style="height:400px; overflow:hidden;">
 			<img data-ng-src="{{mapUrl}}" width="100%">
 		</div>
 		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">

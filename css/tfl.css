@@ -111,7 +111,7 @@
 body {
   font: normal normal 400 1.4em / 22px "Helvetica W02 Roman","Helvetica Neue",Helvetica,sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: url(../images/bg-body.gif) repeat #363D47; }
+  background: url(../images/bg-body2.gif) repeat #363D47; }
 
 h1 {
   text-transform: capitalize;
@@ -127,23 +127,15 @@ nav h1 {
 #tfl-data {
   padding: 0; }
 
-.navbar-inverse {
+.navbar {
   border: none;
   margin: 0;
   background-color: #000;
   border-radius: 0; }
 
-.navbar-default {
-  background-color: transparent;
-  border: none;
-  min-height: 0;
-  padding: 0; }
-
-.navbar-default .col-md-1 {
-  padding: 0; }
-
 .navbar-brand {
   /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500; }
@@ -176,9 +168,12 @@ a.btn {
 
 #station, #stations, #arrivals {
   padding: 0;
-  height: 100vh;
-  /*height:calc(100vh - 50px);*/
+  /*height:100vh;*/
+  height: calc(100vh - 50px);
   overflow: scroll; }
+
+#station {
+  height: calc(100vh - 330px); }
 
 #stations {
   position: absolute;
@@ -207,7 +202,7 @@ h2 {
   background: transparent;
   border: none;
   border-radius: 0 !important;
-  border-bottom: solid 1px #f5f5f5;
+  border-bottom: dotted 1px #f5f5f5;
   font-size: 14px;
   font-weight: 500; }
 
