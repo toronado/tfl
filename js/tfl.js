@@ -56,14 +56,32 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
     };
 
     appData.fetch('stopPoint', {ids:params.stopPointId}, true, function (data) {
-        var lat = data.lat;
-        var lon = data.lon;
+        $scope.coord = [data.lat,data.lon];
         //var src = 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
-        var src = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&center='+lat+','+lon+'&zoom=17&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&markers=size:tiny&size=640x640&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
-        $scope.mapUrl = src;
-
+        //var src = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&center='+lat+','+lon+'&zoom=17&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&markers=size:tiny&size=640x640&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
+        //$scope.mapUrl = src;
+        $scope.getMap('road');
 
     });
+
+    $scope.getMap = function(type) {
+        var lat = $scope.coord[0];
+        var lon = $scope.coord[1];
+        var key = 'AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
+        var opts = {
+            'live' : 'https://www.google.com/maps/embed/v1/view?maptype=satellite&zoom=18&center='+lat+'%2C'+lon+'&key='+key,
+            'street' : 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key='+key,
+            'road' : 'https://maps.googleapis.com/maps/api/staticmap?scale=2&zoom=17&markers=size:tiny&size=640x640&center='+lat+','+lon+'&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&key='+key
+        }
+        $scope.iframe = false;
+        if (type === 'live') {
+            $scope.iframe = true;
+            $scope.mapUrl = $sce.trustAsResourceUrl(opts[type]);
+        } else {
+            $scope.mapData = opts[type];
+            $scope.iframe = false;
+        }
+    }
 
     function getArrivals() {
         appData.fetch('arrivals', params, false, function (data) {

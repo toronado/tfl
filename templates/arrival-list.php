@@ -2,20 +2,23 @@
   	<div class="container-fluid">
     	<div class="navbar-header">
       		<a class="navbar-brand" href="" data-ng-click="toggleCustom()">
-        		TFLive
+        		TFLive / {{station.name}}
       		</a>
     	</div>
-		<a href="" class="navbar-right live status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
-			<span data-ng-bind="count"></span>
-		</a>
   	</div>
 </nav>
 <div class="container-fluid" id="tfl-data">
 	<div class="col-md-4 fadeInLeft animated" style="padding:0;">
 		<div style="height:400px; overflow:hidden; position:relative;">
-			<div id="google-map-image" style="position:absolute; top:0; right:0; left:0; bottom:0;">.</div>
-			<img data-ng-class="fadeIn animated" data-ng-src="{{mapUrl}}" width="100%">
+			<!--<div id="google-map-image" style="position:absolute; top:0; right:0; left:0; bottom:0;">.</div>-->
+			<iframe data-ng-show="iframe" data-ng-src="{{mapUrl}}" width="100%" height="100%" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
+			<img data-ng-src="{{mapData}}" width="100%">
 		</div>
+		<ul class="nav nav-pills nav-justified">
+			<li class="active"><a href="" data-ng-click="getMap('road')">M</a></li>
+  			<li><a href="" data-ng-click="getMap('street')">S</a> </li>
+  			<li><a href="" data-ng-click="getMap('live')">I</a> </li>
+		</ul>
 		<div id="stations" class="slideInLeft animated" data-ng-hide="custom">
 			<input id="station-search" type="text" data-ng-model="search" class="form-control" placeholder="Search"/>
 			<?php include 'stations.html' ?>
@@ -40,10 +43,11 @@
 		</div>
 	</div>
 	<div class="col-md-8" id="arrivals">
-		<h2>
-			<span data-ng-click="filters.setFilters('','')">{{station.name}}</span>
-			<small>{{timestamp | date:'h:mma'}}
-				 {{filtered.length}} of {{arrivals.length}}
+		<h2 class="bd-{{filtered[0].lineId}}">
+			Arrivals: {{filtered.length}}
+			<small>
+				of <span data-ng-click="filters.setFilters('','')">{{arrivals.length}}</span>
+				{{timestamp | date:'h:mma'}}
 				<span data-ng-show="filters.lineName"> / 
 					<span class="filter">{{filters.lineName}}</span>
 					<sup>
@@ -57,6 +61,9 @@
 					</sup>
 				</span>
 			</small>
+			<a href="" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
+				<span data-ng-bind="count"></span>
+			</a>
 		</h2>
 		<ul id="arrival-list">
 			<li class="arrival fadeInUp animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">

@@ -71,16 +71,16 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .navbar-brand { /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/color:#fff; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
-.btn, .list-group-item, .pagination li a {  border-radius:0 !important; }
+.btn, .list-group-item, .pagination li a, .nav-justified li a {  border-radius:0 !important; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
 #station, #stations, #arrivals { padding: 0; /*height:100vh;*/ height:calc(100vh - 50px); overflow:scroll;}
-#station { height:calc(100vh - 330px); }
+#station { height:calc(100vh - 492px); }
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
 #arrivals { color:#fff; /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
-#arrivals h2 { background-color:#2f353f; border-left:yellow solid 5px;}
+#arrivals h2 { background-color:#2f353f; border-left:black solid 5px;}
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
@@ -92,8 +92,8 @@ h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; }
 #arrival-list a { padding:15px 20px; }
 #station-list a { color:#777; }
 #station-list a:hover { background-color: #f5f5f5; }
-#arrival-list a:hover { background-color: #f33;}
-#arrival-list a:hover small { color:#fff; }
+//#arrival-list a:hover { background-color: #f33;}
+//#arrival-list a:hover small { color:#fff; }
 
 //station
 .line .badge { color:#fff; }
@@ -131,3 +131,16 @@ span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 
 a.live { letter-spacing:1px; font-size:22px; text-decoration: none; margin: 0; padding: 25px;line-height: 0px; border-radius: 0; margin-right: -15px !important; color: #777; font-weight:400; min-width: 60px; }
 a.live.status-1 { color: #f33; }
+
+@media (max-width: 768px) {
+	#station, #stations, #arrivals {
+		height: auto;
+	}
+  	.nav-justified > li {
+    	display: table-cell;
+    	width: 1%;
+  	}
+  	.nav-justified > li > a  {
+    	margin-bottom: 0 !important;
+  	}
+}
