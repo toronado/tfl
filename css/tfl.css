@@ -168,12 +168,11 @@ a.btn {
 
 #station, #stations, #arrivals {
   padding: 0;
-  /*height:100vh;*/
-  height: calc(100vh - 50px);
+  /*height:100vh; height:calc(100vh - 50px);*/
   overflow: scroll; }
 
 #station {
-  height: calc(100vh - 492px); }
+  height: calc(100vh); }
 
 #stations {
   position: absolute;
@@ -185,17 +184,28 @@ a.btn {
 
 #arrivals {
   color: #fff;
-  /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+  /*background-color:$col2; margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
 
 h2 {
   margin: 0;
   font-weight: 300;
   padding: 15px 20px;
-  color: #fff; }
+  color: #fff;
+  line-height: 1; }
 
 #arrivals h2 {
-  background-color: #2f353f;
-  border-left: black solid 5px; }
+  background-color: #1c2026; }
+
+#arrivals h2 .badge {
+  font-size: .8em;
+  font-weight: 400; }
+
+#arrivals h2 .badge a {
+  color: #777;
+  text-decoration: none; }
+
+#arrivals h2 .badge a.status-1 {
+  color: #f33; }
 
 #station-list, #arrival-list {
   margin: 0;
@@ -206,8 +216,7 @@ h2 {
   background: transparent;
   border: none;
   border-radius: 0 !important;
-  border-bottom: dotted 1px #f5f5f5;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500; }
 
 #arrival-list small {
@@ -215,16 +224,20 @@ h2 {
   display: block;
   font-size: 13px; }
 
-#arrival-list li {
-  border-color: #2f353f; }
+#station-list li {
+  border-bottom: solid 1px #f5f5f5; }
 
-#arrival-list a, #station-list a {
+#arrival-list li {
+  background-color: #2f353f;
+  margin-bottom: 1px; }
+
+#arrival-list li, #station-list a {
   padding: 10px 20px;
   display: block;
   color: #fff;
   text-decoration: none; }
 
-#arrival-list a {
+#arrival-list li {
   padding: 15px 20px; }
 
 #station-list a {
@@ -274,22 +287,6 @@ h2 small {
 #station .pagination a {
   background-color: transparent; }
 
-#google-map-image {
-  background: -moz-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-  /* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 85%, color-stop(0%, rgba(30, 87, 153, 0)), color-stop(85%, rgba(0, 0, 0, 0.5)));
-  /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-  /* Opera 12+ */
-  background: -ms-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-  /* IE10+ */
-  background: radial-gradient(ellipse at center, rgba(30, 87, 153, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#54000000',GradientType=1 );
-  /* IE6-9 fallback on horizontal gradient */ }
-
 table#compass td {
   text-align: center;
   width: 50px; }
@@ -316,14 +313,27 @@ span.station-id {
   background: none;
   float: right; }
 
-.line-badge {
+.line-badge, .platform-badge {
   height: 10px;
   width: 10px;
   margin-right: 10px;
   border-radius: 50%;
   display: inline-block;
-  background-color: #000;
+  background-color: #fff;
   overflow: hidden; }
+
+.platform-badge {
+  width: 20px;
+  height: 20px;
+  border: #222 solid 2px;
+  margin: 0; }
+
+.nav > li > a {
+  padding: 20px 15px;
+  background-color: transparent; }
+
+.nav > li.active > a {
+  background-color: #1a90db; }
 
 a.live {
   letter-spacing: 1px;
@@ -340,6 +350,9 @@ a.live {
 
 a.live.status-1 {
   color: #f33; }
+
+.platform {
+  background: url(../images/arrow-s.png) no-repeat #eee center bottom; }
 
 @media (max-width: 768px) {
   #station, #stations, #arrivals {
