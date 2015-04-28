@@ -152,6 +152,24 @@ tubeApp.directive('filterList', function () {
     };
 });
 
+tubeApp.filter('arrowDirection', function() {
+    return function (bound) {
+        var glyph = 'fa-caret-';
+        switch (bound.toLowerCase()) {
+            case 'eastbound':
+            case 'inner rail':
+                return glyph+'right';
+            case 'westbound':
+            case 'outer rail':
+                return glyph+'left';
+            case 'northbound':
+                return glyph+'up';
+            case 'southbound':
+                return glyph+'down';
+        }
+    }
+});
+
 tubeApp.filter('stnName', function () {
     return function (name) {
         name = name.toLowerCase();

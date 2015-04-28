@@ -68,6 +68,7 @@ h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
 #tfl-data { padding:0; }
 .navbar { border:none; margin:0; background-color:#000; border-radius:0; }
+.navbar-text { margin: 5px 0; }
 .navbar-brand { /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/color:#fff; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
 #nav-line-list li { height:20px; overflow: hidden; }
 #nav-line-list a { color:#fff; display:block; text-align: center; overflow:hidden; padding:15px 0; font-size:0.65em; border:none; border-radius:0; }
@@ -75,11 +76,11 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
-#station-data, #stations, #arrivals { padding: 0; height:100vh; /*height:calc(100vh - 50px);*/ overflow:scroll;}
+#station-data, #stations, #arrivals { padding: 0; /*height:100vh;*/ height:calc(100vh - 50px); overflow:scroll;}
 #station { height:calc(100vh-480px); }
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
-#arrivals { color:#fff; /*background-color:$col2; margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
-h2 { margin: 0; font-weight: 300; padding: 15px 0; color:#fff; line-height:1; }
+#arrivals { color:#fff; background-color:$col2; /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+h2 { margin: 0; font-weight: 300; padding: 10px 0; color:#fff; line-height:1; font-size: 25px; }
 #arrivals h2 { background-color:#1c2026; }
 a#counter { color:#777; text-decoration: none; font-size:.8em; font-weight:400; }
 a#counter.status-1 { color: #f33; }
@@ -87,18 +88,18 @@ a#counter.status-1 { color: #f33; }
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
 #station-list li, #arrival-list li { background:transparent; border:none; border-radius:0 !important; font-size:15px; font-weight:500; }
-#arrival-list small { color:#7e8084; display:block; font-size:13px; }
 #station-list li { border-bottom:solid 1px #f5f5f5; }
-#arrival-list li { background-color:#2f353f; margin-bottom: 1px; }
 #arrival-list li, #station-list a { padding:10px 20px; display:block; color:#fff; text-decoration: none; }
-#arrival-list li { padding:15px 20px; }
+#arrival-list li { background-color:#2f353f; border-bottom:1px solid $col1 !important; padding:15px 20px; border-right:5px solid #222; }
 #station-list a { color:#777; }
 #station-list a:hover { background-color: #f5f5f5; }
+#arrival-list .fa { font-size:1.3em; vertical-align: text-top; min-width:25px; }
+#arrival-list small { color:#7e8084; display:block; font-size:13px; margin-left: 29px; }
 //#arrival-list a:hover { background-color: #f33;}
 //#arrival-list a:hover small { color:#fff; }
 
 //station
-.lines li.line { padding-top:5px;}
+.lines li.line { padding-top:5px; color:#ccc;}
 .lines { border-bottom:$col1 solid 1px; background-color:#2f353f; }
 .lines li { border-right:$col1 solid 1px; text-align: center; }
 .lines li:last-child {border:none;}
@@ -109,6 +110,8 @@ h2 small { text-transform: lowercase; }
 #station .list-group-item { font-size:14px; background-color:transparent; margin-bottom: 1px; border:none; padding:0; margin-bottom:25px; }
 #station .pagination { margin:0; }
 #station .pagination a { background-color:transparent; }
+.platform .fa { font-size:1.1em; }
+.platform a { color:#7e8084; }
 
 table#compass td { text-align: center; width:50px; }
 
@@ -122,7 +125,7 @@ span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 
 .line-badge, .platform-badge { height:10px; width:10px; margin-right:10px; border-radius:50%; display:inline-block; background-color:#fff; overflow: hidden; }
 .platform-badge { width:20px; height:20px; border:#222 solid 2px; margin:0; }
-.nav>li>a { padding:20px 15px; background-color:transparent; }
+.nav>li>a { padding:15px 5px; background-color:transparent; line-height: 1.2;  }
 .nav>li.active>a { background-color:#1a90db; }
 
 
