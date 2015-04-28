@@ -75,15 +75,14 @@ nav h1 { font-size:20px; margin: 14px 0; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
-#station, #stations, #arrivals { padding: 0; /*height:100vh; height:calc(100vh - 50px);*/ overflow:scroll;}
-#station { height:calc(100vh); }
+#station-data, #stations, #arrivals { padding: 0; height:100vh; /*height:calc(100vh - 50px);*/ overflow:scroll;}
+#station { height:calc(100vh-480px); }
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
 #arrivals { color:#fff; /*background-color:$col2; margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
-h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; line-height:1; }
+h2 { margin: 0; font-weight: 300; padding: 15px 0; color:#fff; line-height:1; }
 #arrivals h2 { background-color:#1c2026; }
-#arrivals h2 .badge { font-size:.8em; font-weight:400; }
-#arrivals h2 .badge a { color:#777; text-decoration: none; }
-#arrivals h2 .badge a.status-1 { color: #f33; }
+a#counter { color:#777; text-decoration: none; font-size:.8em; font-weight:400; }
+a#counter.status-1 { color: #f33; }
 
 //lists
 #station-list, #arrival-list { margin:0; padding:0; list-style: none; }
@@ -99,10 +98,10 @@ h2 { margin: 0; font-weight: 300; padding: 15px 20px; color:#fff; line-height:1;
 //#arrival-list a:hover small { color:#fff; }
 
 //station
-.line .badge { color:#fff; }
-.platforms .badge, .platforms a { color:#7e8084; }
-.platforms a { font-weight:500; font-size:95%; }
-.platforms li { border-bottom:$col1 solid 1px; padding:5px 0; }
+.lines li.line { padding-top:5px;}
+.lines { border-bottom:$col1 solid 1px; background-color:#2f353f; }
+.lines li { border-right:$col1 solid 1px; text-align: center; }
+.lines li:last-child {border:none;}
 #station { padding:0 20px; background-color:#1c2026; }
 #station h2 {padding:15px 0;}
 h2 small { text-transform: lowercase; }
@@ -126,13 +125,9 @@ span.station-id { color: $col2; min-width: 40px; display: inline-block; }
 .nav>li>a { padding:20px 15px; background-color:transparent; }
 .nav>li.active>a { background-color:#1a90db; }
 
-a.live { letter-spacing:1px; font-size:22px; text-decoration: none; margin: 0; padding: 25px;line-height: 0px; border-radius: 0; margin-right: -15px !important; color: #777; font-weight:400; min-width: 60px; }
-a.live.status-1 { color: #f33; }
-
-.platform { background:url(../images/arrow-s.png) no-repeat #eee center bottom; }
 
 @media (max-width: 768px) {
-	#station, #stations, #arrivals {
+	#station-data, #stations, #arrivals {
 		height: auto;
 	}
   	.nav-justified > li {

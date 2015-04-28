@@ -166,13 +166,14 @@ a.btn {
   color: #fff;
   border: none; }
 
-#station, #stations, #arrivals {
+#station-data, #stations, #arrivals {
   padding: 0;
-  /*height:100vh; height:calc(100vh - 50px);*/
+  height: 100vh;
+  /*height:calc(100vh - 50px);*/
   overflow: scroll; }
 
 #station {
-  height: calc(100vh); }
+  height: calc(100vh-480px); }
 
 #stations {
   position: absolute;
@@ -189,22 +190,20 @@ a.btn {
 h2 {
   margin: 0;
   font-weight: 300;
-  padding: 15px 20px;
+  padding: 15px 0;
   color: #fff;
   line-height: 1; }
 
 #arrivals h2 {
   background-color: #1c2026; }
 
-#arrivals h2 .badge {
+a#counter {
+  color: #777;
+  text-decoration: none;
   font-size: .8em;
   font-weight: 400; }
 
-#arrivals h2 .badge a {
-  color: #777;
-  text-decoration: none; }
-
-#arrivals h2 .badge a.status-1 {
+a#counter.status-1 {
   color: #f33; }
 
 #station-list, #arrival-list {
@@ -246,19 +245,19 @@ h2 {
 #station-list a:hover {
   background-color: #f5f5f5; }
 
-.line .badge {
-  color: #fff; }
+.lines li.line {
+  padding-top: 5px; }
 
-.platforms .badge, .platforms a {
-  color: #7e8084; }
-
-.platforms a {
-  font-weight: 500;
-  font-size: 95%; }
-
-.platforms li {
+.lines {
   border-bottom: #363D47 solid 1px;
-  padding: 5px 0; }
+  background-color: #2f353f; }
+
+.lines li {
+  border-right: #363D47 solid 1px;
+  text-align: center; }
+
+.lines li:last-child {
+  border: none; }
 
 #station {
   padding: 0 20px;
@@ -335,27 +334,8 @@ span.station-id {
 .nav > li.active > a {
   background-color: #1a90db; }
 
-a.live {
-  letter-spacing: 1px;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 0;
-  padding: 25px;
-  line-height: 0px;
-  border-radius: 0;
-  margin-right: -15px !important;
-  color: #777;
-  font-weight: 400;
-  min-width: 60px; }
-
-a.live.status-1 {
-  color: #f33; }
-
-.platform {
-  background: url(../images/arrow-s.png) no-repeat #eee center bottom; }
-
 @media (max-width: 768px) {
-  #station, #stations, #arrivals {
+  #station-data, #stations, #arrivals {
     height: auto; }
 
   .nav-justified > li {
