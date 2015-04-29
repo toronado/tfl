@@ -154,7 +154,7 @@ tubeApp.directive('filterList', function () {
 
 tubeApp.filter('arrowDirection', function() {
     return function (bound) {
-        var glyph = 'fa-caret-';
+        var glyph = 'fa-arrow-';
         switch (bound.toLowerCase()) {
             case 'eastbound':
             case 'inner rail':

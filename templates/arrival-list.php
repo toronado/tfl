@@ -1,57 +1,71 @@
-<nav class="navbar fadeInDown animated">
+<nav class="navbar navbar-inverse navbar-fixed-top fadeInDown animated">
   	<div class="container-fluid">
-      		<h2 class="navbar-text">
-				<span data-ng-click="toggleCustom()">{{station.name}}</span> <small>{{timestamp | date:'h:mma'}}</small>
-				<sup>
-					<a href="" id="counter" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
-						<span data-ng-bind="count"></span>
-					</a>
-				</sup>
-				<small>
-					<span data-ng-show="filters.lineName"> / 
-						<span class="filter">{{filters.lineName}}</span>
-						<sup>
-							<a class="clear-filter" href="" data-ng-click="filters.setFilters('', false)">x</a>
-						</sup>
-					</span>
-					<span data-ng-show="filters.platformName">
-						/ <span class="filter">{{filters.platformName}}</span>
-						<sup>
-							<a class="clear-filter" href="" data-ng-click="filters.setFilters(false, '')">x</a>
-						</sup>
-					</span>
-				</small>
-			</h2>
+    	<h2 class="navbar-text pull-left">
+    		<span data-ng-click="toggleCustom()">{{station.name}}</span>
+    		<small>
+				{{filtered.length}} arrivals
+				<span data-ng-show="filters.lineName">
+					/ <span class="filter">{{filters.lineName}}</span>
+					<sup>
+						<a class="clear-filter" href="" data-ng-click="filters.setFilters('', false)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+					</sup>
+				</span>
+				<span data-ng-show="filters.platformName">
+					/ <span class="filter">{{filters.platformName}}</span>
+					<sup>
+						<a class="clear-filter" href="" data-ng-click="filters.setFilters(false, '')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+					</sup>
+				</span>
+			</small>
+    	</h2>
+    	<h2 class="navbar-text pull-right" style="text-transform:lowercase">
+			<a href="" id="counter" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
+				{{timestamp | date:'h:mma'}}
+				<sup><span data-ng-bind="count"></span></sup>
+			</a>
+    	</h2>
   	</div>
 </nav>
 <div class="container-fluid" id="tfl-data">
 	<div class="col-md-4 fadeInRight animated" style="padding:0;" id="station-data">
-		<div style="height:400px; overflow:hidden">
+		<div>
 			<iframe data-ng-show="iframe" data-ng-src="{{mapUrl}}" width="100%" height="400" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
 			<img data-ng-src="{{mapData}}" width="100%">
 		</div>
 		<ul class="nav nav-pills nav-justified">
-			<li class="active"><a href="" data-ng-click="getMap('road')">M</a></li>
-  			<li><a href="" data-ng-click="getMap('street')">S</a> </li>
-  			<li><a href="" data-ng-click="getMap('live')">I</a> </li>
+			<li class="active">
+				<a href="" data-ng-click="getMap('road')">
+					<span class="glyphicon glyphicon-road" aria-hidden="true"></span>
+				</a>
+			</li>
+  			<li>
+  				<a href="" data-ng-click="getMap('street')">
+  					<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+  				</a>
+  			</li>
+  			<li>
+  				<a href="" data-ng-click="getMap('live')">
+  					<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+  				</a>
+  			</li>
 		</ul>
 	</div>
 	<div class="col-md-8" id="arrivals">
 		<ul class="lines nav nav-pills nav-justified">
 			<li class="line" data-ng-repeat="(line,platforms) in station.lines">
-				<span data-ng-click="filters.setFilters(line,'')">{{line.substr(0,3)}}</span>
+				<a class="bg-{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">{{line.substr(0,3)}} <sup>{{(arrivals|filter:{lineName:line}).length}}</sup></a>
 				<ul class="platforms nav nav-pills nav-justified">
-					<li class="platform" data-ng-repeat="platform in platforms" class="platform">
-						<a href="" class="" data-ng-click="filters.setFilters(line,platform)">
-							{{(arrivals|filter:{lineName:line, platformName:platform}).length}}
-							<sup class="fa {{platform | arrowDirection}} {{line | stnName}}"></sup>
+					<li class="platform" data-ng-repeat="platform in platforms">
+						<a href="" data-ng-click="filters.setFilters(line,platform)">
+							<i class="fa {{platform | arrowDirection}} {{line | stnName}}"></i>
+							<span>{{(arrivals|filter:{lineName:line, platformName:platform}).length}}</span>
 						</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 		<ul id="arrival-list">
-			<li class="bd-{{arrival.lineId}} arrival fadeInUp animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
+			<li class="arrival fadeInUp animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
 				<span class="badge" style="text-align:right;">
 					{{arrival.timeToStation | convertTime}}
 				</span>

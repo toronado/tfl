@@ -20,7 +20,7 @@
   color: #893267 !important; }
 
 .northern {
-  color: #fff !important; }
+  color: #000 !important; }
 
 .piccadilly {
   color: #0450A1 !important; }
@@ -124,24 +124,30 @@ nav h1 {
   font-size: 20px;
   margin: 14px 0; }
 
+sup {
+  font-size: 85%; }
+
 #tfl-data {
-  padding: 0; }
+  padding: 0;
+  margin-top: 55px; }
 
 .navbar {
   border: none;
   margin: 0;
-  background-color: #000;
+  background-color: #222;
   border-radius: 0; }
 
 .navbar-text {
   margin: 5px 0; }
 
-.navbar-brand {
-  /*background:url(../images/logo.gif) no-repeat; padding-left:60px;*/
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 500; }
+.navbar-right {
+  font-size: 1.5em;
+  margin: 0.7em 0;
+  text-transform: lowercase;
+  color: #fff; }
+
+.navbar-right sup {
+  font-size: 95%; }
 
 #nav-line-list li {
   height: 20px;
@@ -156,6 +162,12 @@ nav h1 {
   font-size: 0.65em;
   border: none;
   border-radius: 0; }
+
+span.filter {
+  color: #fff; }
+
+a.clear-filter {
+  color: #f33; }
 
 .btn, .list-group-item, .pagination li a, .nav-justified li a {
   border-radius: 0 !important; }
@@ -188,8 +200,7 @@ a.btn {
 
 #arrivals {
   color: #fff;
-  background-color: #2f353f;
-  /*margin-top:-69px; background-image: url(../images/noise.png),-webkit-radial-gradient(center,ellipse cover,$col1 10%,$col2 100%);*/ }
+  background-color: #2f353f; }
 
 h2 {
   margin: 0;
@@ -208,7 +219,7 @@ a#counter {
   font-size: .8em;
   font-weight: 400; }
 
-a#counter.status-1 {
+a#counter.status-1 sup {
   color: #f33; }
 
 #station-list, #arrival-list {
@@ -233,10 +244,8 @@ a#counter.status-1 {
   text-decoration: none; }
 
 #arrival-list li {
-  background-color: #2f353f;
-  border-bottom: 1px solid #363D47 !important;
-  padding: 15px 20px;
-  border-right: 5px solid #222; }
+  border-bottom: 1px solid #363D47;
+  padding: 15px 20px; }
 
 #station-list a {
   color: #777; }
@@ -245,8 +254,6 @@ a#counter.status-1 {
   background-color: #f5f5f5; }
 
 #arrival-list .fa {
-  font-size: 1.3em;
-  vertical-align: text-top;
   min-width: 25px; }
 
 #arrival-list small {
@@ -255,20 +262,49 @@ a#counter.status-1 {
   font-size: 13px;
   margin-left: 29px; }
 
-.lines li.line {
-  padding-top: 5px;
-  color: #ccc; }
+.nav > li > a {
+  padding: 20px 5px;
+  background-color: transparent;
+  line-height: 1.2; }
 
-.lines {
-  border-bottom: #363D47 solid 1px;
-  background-color: #2f353f; }
+.nav > li.active > a {
+  background-color: #1a90db; }
 
 .lines li {
-  border-right: #363D47 solid 1px;
-  text-align: center; }
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden; }
 
-.lines li:last-child {
+li.line {
+  border-bottom: 1px solid #363D47 !important; }
+
+li.line a {
+  color: #fff; }
+
+li.line > a {
+  text-transform: uppercase;
+  font-size: .8em;
+  letter-spacing: 1px;
+  font-weight: 500; }
+
+li.line > a sup {
+  font-size: 1.02em; }
+
+ul.platforms li {
+  border-right: #363D47 solid 1px; }
+
+ul.lines li:last-child ul li:last-child {
   border: none; }
+
+li.platform a {
+  padding: 15px 5px;
+  background-color: #262A30; }
+
+li.platform a:hover {
+  background-color: #2f353f; }
+
+li.platform span {
+  font-size: 12px; }
 
 #station {
   padding: 0 20px;
@@ -298,14 +334,10 @@ h2 small {
   background-color: transparent; }
 
 .platform .fa {
-  font-size: 1.1em; }
+  font-size: .9em; }
 
 .platform a {
   color: #7e8084; }
-
-table#compass td {
-  text-align: center;
-  width: 50px; }
 
 @-webkit-keyframes fadein {
   from {
@@ -343,14 +375,6 @@ span.station-id {
   height: 20px;
   border: #222 solid 2px;
   margin: 0; }
-
-.nav > li > a {
-  padding: 15px 5px;
-  background-color: transparent;
-  line-height: 1.2; }
-
-.nav > li.active > a {
-  background-color: #1a90db; }
 
 @media (max-width: 768px) {
   #station-data, #stations, #arrivals {
