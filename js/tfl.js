@@ -1,4 +1,4 @@
-var tubeApp = angular.module('tubeApp', ['ngRoute', 'ngSanitize']);
+var tubeApp = angular.module('tubeApp', ['ngRoute']);
 
 tubeApp.config(function ($routeProvider) {
     $routeProvider.
@@ -29,7 +29,7 @@ tubeApp.factory('appData', function ($http) {
     };
 });
 
-tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, $sce, appData) {
+tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, appData) {
 
     appData.fetch('stations', null, true, function (data) {
         $scope.station = data[$routeParams.sid];
@@ -49,6 +49,14 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
         }
     }
 
+    $scope.active = 'road';
+    function setActive (id) {
+        $scope.active = id;
+    };
+    $scope.isActive = function(id){
+        return $scope.active === id;
+    };
+
     var params, counter;
     params = {
         stopPointId : '940GZZLU' + $routeParams.sid,
@@ -57,30 +65,31 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
 
     appData.fetch('stopPoint', {ids:params.stopPointId}, true, function (data) {
         $scope.coord = [data.lat,data.lon];
-        //var src = 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
-        //var src = 'https://maps.googleapis.com/maps/api/staticmap?scale=2&center='+lat+','+lon+'&zoom=17&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&markers=size:tiny&size=640x640&key=AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
-        //$scope.mapUrl = src;
         $scope.getMap('road');
 
     });
 
     $scope.getMap = function(type) {
-        var lat = $scope.coord[0];
-        var lon = $scope.coord[1];
-        var key = 'AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI';
-        var opts = {
-            'live' : 'https://www.google.com/maps/embed/v1/view?maptype=satellite&zoom=18&center='+lat+'%2C'+lon+'&key='+key,
-            'street' : 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key='+key,
-            'road' : 'https://maps.googleapis.com/maps/api/staticmap?scale=2&zoom=17&markers=size:tiny&size=640x640&center='+lat+','+lon+'&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&key='+key
-        }
-        $scope.iframe = false;
-        if (type === 'live') {
-            $scope.iframe = true;
-            $scope.mapUrl = $sce.trustAsResourceUrl(opts[type]);
+        var lat = $scope.coord[0],
+            lon = $scope.coord[1],
+            key = 'AIzaSyAimk7IRO6oecHWOQv5bIhlrdf8B3P0eNI',
+            opts = {
+                'street' : 'http://maps.googleapis.com/maps/api/streetview?scale=2&size=640x640&location='+lat+',%20'+lon+'&key='+key,
+                'road' : 'https://maps.googleapis.com/maps/api/staticmap?scale=2&zoom=17&markers=size:tiny&size=640x640&center='+lat+','+lon+'&markers=color:blue%7Clabel:X%7C'+lat+','+lon+'&key='+key
+        };
+        if (type === 'map') {
+            google.load('maps', '3', { other_params: 'sensor=false', callback: function() {
+                    var mapOptions = {
+                        zoom: 18,
+                        center: new google.maps.LatLng(lat, lon)
+                    };
+                    var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+                }
+            });
         } else {
             $scope.mapData = opts[type];
-            $scope.iframe = false;
         }
+        setActive(type);
     }
 
     function getArrivals() {
@@ -130,9 +139,7 @@ tubeApp.controller('arrivalListCtrl', function ($scope, $routeParams, $timeout, 
 tubeApp.directive('filterList', function () {
     return {
         link: function (scope, element, attrs) {
-            
             var li = Array.prototype.slice.call(element[0].children);
-            
             function filterBy (value) {
                 li.forEach(function (el) {
                     if (el.children[0].textContent.toLowerCase().indexOf(value.toLowerCase()) !== -1) {
@@ -142,7 +149,6 @@ tubeApp.directive('filterList', function () {
                     }
                 });
             }
-            
             scope.$watch(attrs.filterList, function(newVal, oldVal) {
                 if (newVal !== oldVal) {
                     filterBy(newVal);

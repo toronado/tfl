@@ -67,9 +67,9 @@ h1 { text-transform: capitalize; font-size:40px; }
 h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
 sup { font-size:85%; }
-#tfl-data { padding:0; margin-top:55px; }
-.navbar { border:none; margin:0; background-color:#222; border-radius:0; }
-.navbar-text { margin: 5px 0; }
+#tfl-data { padding:0; margin-top:60px; }
+.navbar { border:none; margin:0; background-color:#222; border-radius:0; min-height:60px; }
+.navbar-inverse .navbar-text { margin: 5px 0; color:#fff; }
 .navbar-right { font-size: 1.5em; margin: 0.7em 0; text-transform: lowercase; color: #fff; }
 .navbar-right sup { font-size:95%; }
 #nav-line-list li { height:20px; overflow: hidden; }
@@ -80,13 +80,14 @@ a.clear-filter { color:#f33; }
 .btn { border:none; margin-right: 1px; text-transform: lowercase; }
 a.btn { color:#fff; border:none; }
 
-#station-data, #stations, #arrivals { padding: 0; /*height:100vh;*/ height:calc(100vh - 50px); overflow:scroll;}
-#station { height:calc(100vh-480px); }
+#station-data, #stations, #arrivals { padding: 0; /*height:100vh;*/ height:calc(100vh - 60px); overflow:scroll;}
+#station { height:calc(100vh); }
 #stations { position: absolute; top:0; left:0; z-index: 1; background-color:#eee; width:100%; }
 #arrivals { color:#fff; background-color:$col2; }
 h2 { margin: 0; font-weight: 300; padding: 10px 0; color:#fff; line-height:1; font-size: 25px; }
 #arrivals h2 { background-color:#1c2026; }
-a#counter { color:#777; text-decoration: none; font-size:.8em; font-weight:400; }
+a#counter { color:#fff; text-decoration: none; font-size:.8em; font-weight:400; }
+a#counter.status-0 sup { color:#777; }
 a#counter.status-1 sup { color: #f33; }
 
 //lists
@@ -101,13 +102,13 @@ a#counter.status-1 sup { color: #f33; }
 #arrival-list small { color:#7e8084; display:block; font-size:13px; margin-left: 29px; }
 
 //station
-.nav>li>a { padding:20px 5px; background-color:transparent; line-height: 1.2;  }
-.nav>li.active>a { background-color:#1a90db; }
+.nav li a { padding:15px 5px; background-color:transparent;}
+.nav li.active a { background-color:#1a90db !important; }
 .lines li { text-align: center; white-space: nowrap; overflow: hidden; }
 li.line { border-bottom:1px solid $col1 !important;}
 li.line a { color:#fff; }
 li.line sup {  }
-li.line>a { text-transform: uppercase; font-size: .8em; letter-spacing: 1px; font-weight: 500;}
+li.line>a { text-transform: uppercase; font-size: .8em; letter-spacing: 1px; font-weight: 500; }
 li.line>a sup {font-size:1.02em; }
 ul.platforms li { border-right:$col1 solid 1px; }
 ul.lines li:last-child ul li:last-child { border:none; }

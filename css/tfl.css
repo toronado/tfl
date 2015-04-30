@@ -129,16 +129,18 @@ sup {
 
 #tfl-data {
   padding: 0;
-  margin-top: 55px; }
+  margin-top: 60px; }
 
 .navbar {
   border: none;
   margin: 0;
   background-color: #222;
-  border-radius: 0; }
+  border-radius: 0;
+  min-height: 60px; }
 
-.navbar-text {
-  margin: 5px 0; }
+.navbar-inverse .navbar-text {
+  margin: 5px 0;
+  color: #fff; }
 
 .navbar-right {
   font-size: 1.5em;
@@ -184,11 +186,11 @@ a.btn {
 #station-data, #stations, #arrivals {
   padding: 0;
   /*height:100vh;*/
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   overflow: scroll; }
 
 #station {
-  height: calc(100vh-480px); }
+  height: calc(100vh); }
 
 #stations {
   position: absolute;
@@ -214,10 +216,13 @@ h2 {
   background-color: #1c2026; }
 
 a#counter {
-  color: #777;
+  color: #fff;
   text-decoration: none;
   font-size: .8em;
   font-weight: 400; }
+
+a#counter.status-0 sup {
+  color: #777; }
 
 a#counter.status-1 sup {
   color: #f33; }
@@ -262,13 +267,12 @@ a#counter.status-1 sup {
   font-size: 13px;
   margin-left: 29px; }
 
-.nav > li > a {
-  padding: 20px 5px;
-  background-color: transparent;
-  line-height: 1.2; }
+.nav li a {
+  padding: 15px 5px;
+  background-color: transparent; }
 
-.nav > li.active > a {
-  background-color: #1a90db; }
+.nav li.active a {
+  background-color: #1a90db !important; }
 
 .lines li {
   text-align: center;

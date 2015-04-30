@@ -21,34 +21,36 @@
     	<h2 class="navbar-text pull-right" style="text-transform:lowercase">
 			<a href="" id="counter" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
 				{{timestamp | date:'h:mma'}}
-				<sup><span data-ng-bind="count"></span></sup>
+				<sup><span data-ng-bind="count"><i class="fa fa-cog fa-spin"></i></span></sup>
 			</a>
     	</h2>
   	</div>
 </nav>
 <div class="container-fluid" id="tfl-data">
-	<div class="col-md-4 fadeInRight animated" style="padding:0;" id="station-data">
-		<div>
-			<iframe data-ng-show="iframe" data-ng-src="{{mapUrl}}" width="100%" height="400" frameborder="0" style="border:0 background: #000000;" allowtransparency="true"></iframe>
-			<img data-ng-src="{{mapData}}" width="100%">
-		</div>
+	<div class="col-md-4 fadeInRight animated" id="station-data">
 		<ul class="nav nav-pills nav-justified">
-			<li class="active">
+			<li data-ng-class="{'active':isActive('road')}">
 				<a href="" data-ng-click="getMap('road')">
-					<span class="glyphicon glyphicon-road" aria-hidden="true"></span>
+					<i class="fa fa-map-marker"></i>
 				</a>
 			</li>
-  			<li>
+  			<li data-ng-class="{'active':isActive('street')}">
   				<a href="" data-ng-click="getMap('street')">
-  					<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+  					<i class="fa fa-street-view"></i>
   				</a>
   			</li>
-  			<li>
-  				<a href="" data-ng-click="getMap('live')">
+  			<li data-ng-class="{'active':isActive('map')}">
+  				<a href="" data-ng-click="getMap('map')">
   					<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
   				</a>
   			</li>
 		</ul>
+		<div>
+			<div id="map-canvas" style="width: 100%; height: 100vh">
+				<img data-ng-src="{{mapData}}" width="100%">
+			</div>
+			<!--<iframe data-ng-src="{{mapUrl}}" width="100%" height="400" frameborder="0" allowtransparency="true"></iframe>-->
+		</div>
 	</div>
 	<div class="col-md-8" id="arrivals">
 		<ul class="lines nav nav-pills nav-justified">
@@ -66,7 +68,7 @@
 		</ul>
 		<ul id="arrival-list">
 			<li class="arrival fadeInUp animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
-				<span class="badge" style="text-align:right;">
+				<span class="badge">
 					{{arrival.timeToStation | convertTime}}
 				</span>
 				<i class="{{arrival.lineId}} fa {{arrival.platformName.split('-')[0].trim() | arrowDirection}}"></i>
