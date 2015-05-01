@@ -27,35 +27,10 @@
   	</div>
 </nav>
 <div class="container-fluid" id="tfl-data">
-	<div class="col-md-4 fadeInRight animated" id="station-data">
-		<ul class="nav nav-pills nav-justified">
-			<li data-ng-class="{'active':isActive('road')}">
-				<a href="" data-ng-click="getMap('road')">
-					<i class="fa fa-map-marker"></i>
-				</a>
-			</li>
-  			<li data-ng-class="{'active':isActive('street')}">
-  				<a href="" data-ng-click="getMap('street')">
-  					<i class="fa fa-street-view"></i>
-  				</a>
-  			</li>
-  			<li data-ng-class="{'active':isActive('map')}">
-  				<a href="" data-ng-click="getMap('map')">
-  					<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
-  				</a>
-  			</li>
-		</ul>
-		<div>
-			<div id="map-canvas" style="width: 100%; height: 100vh">
-				<img data-ng-src="{{mapData}}" width="100%">
-			</div>
-			<!--<iframe data-ng-src="{{mapUrl}}" width="100%" height="400" frameborder="0" allowtransparency="true"></iframe>-->
-		</div>
-	</div>
 	<div class="col-md-8" id="arrivals">
 		<ul class="lines nav nav-pills nav-justified">
 			<li class="line" data-ng-repeat="(line,platforms) in station.lines">
-				<a class="bg-{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">{{line.substr(0,3)}} <sup>{{(arrivals|filter:{lineName:line}).length}}</sup></a>
+				<a class="bg-{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">{{(arrivals|filter:{lineName:line}).length}}</a>
 				<ul class="platforms nav nav-pills nav-justified">
 					<li class="platform" data-ng-repeat="platform in platforms">
 						<a href="" data-ng-click="filters.setFilters(line,platform)">
@@ -78,5 +53,26 @@
 				</small>
 			</li>
 		</ul>
+	</div>
+	<div class="col-md-4 fadeIn animated" id="station-data">
+		<!--<img data-ng-src="{{mapData}}" width="100%" height="350px">-->
+		<div id="map-canvas" style="width: 100%; height: 100vh; background-color:transparent;"></div>
+		<!--<ul class="nav nav-pills nav-justified">
+			<li data-ng-class="{'active':isActive('road')}">
+				<a href="" data-ng-click="getMap('road')">
+					<i class="fa fa-map-marker"></i>
+				</a>
+			</li>
+  			<li data-ng-class="{'active':isActive('street')}">
+  				<a href="" data-ng-click="getMap('street')">
+  					<i class="fa fa-street-view"></i>
+  				</a>
+  			</li>
+  			<li data-ng-class="{'active':isActive('map')}">
+  				<a href="" data-ng-click="getMap('map')">
+  					<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+  				</a>
+  			</li>
+		</ul>-->
 	</div>
 </div>

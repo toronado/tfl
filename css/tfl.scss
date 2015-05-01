@@ -68,7 +68,7 @@ h1 small { color:#7e8084; }
 nav h1 { font-size:20px; margin: 14px 0; }
 sup { font-size:85%; }
 #tfl-data { padding:0; margin-top:60px; }
-.navbar { border:none; margin:0; background-color:#222; border-radius:0; min-height:60px; }
+.navbar { border:none; margin:0; background-color:#202020; border-radius:0; min-height:60px; }
 .navbar-inverse .navbar-text { margin: 5px 0; color:#fff; }
 .navbar-right { font-size: 1.5em; margin: 0.7em 0; text-transform: lowercase; color: #fff; }
 .navbar-right sup { font-size:95%; }
@@ -108,7 +108,7 @@ a#counter.status-1 sup { color: #f33; }
 li.line { border-bottom:1px solid $col1 !important;}
 li.line a { color:#fff; }
 li.line sup {  }
-li.line>a { text-transform: uppercase; font-size: .8em; letter-spacing: 1px; font-weight: 500; }
+li.line>a { text-transform: uppercase; font-size: .9em; letter-spacing: 1px; font-weight: 500; }
 li.line>a sup {font-size:1.02em; }
 ul.platforms li { border-right:$col1 solid 1px; }
 ul.lines li:last-child ul li:last-child { border:none; }

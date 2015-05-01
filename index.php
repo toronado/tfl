@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="nofollow" />
     <title>TFL BETA</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/tfl.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tfl.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <div data-ng-view></div>
