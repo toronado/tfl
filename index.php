@@ -16,5 +16,5 @@
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
     <script src="js/tfl.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="js/google-api.min.js"></script>
 </html>
