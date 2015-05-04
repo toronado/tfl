@@ -332,6 +332,15 @@ input#station-search:-ms-input-placeholder {
   float: right; }
 
 @media (max-width: 768px) {
+  #nav-arrivals {
+    position: static; }
+
+  #arrivals {
+    padding-top: 0; }
+
+  #google-map {
+    display: none; }
+
   #station-list li {
     float: none;
     width: 100%; }
