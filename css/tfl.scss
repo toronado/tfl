@@ -85,29 +85,31 @@ a#counter.status-1 sup { color: #f33; }
 #station-list span.line { margin-right: 3px; font-size:12px; }
 
 #arrivals { padding:0; padding-top:400px; }
-#arrival-list { margin:0; padding:0; list-style: none; background-color:$col2; color:#fff; }
-#arrival-list li { padding:15px 20px; border-bottom:1px solid $col1; font-size:15px; font-weight:500; }
+#arrival-list { margin:0; padding:0; list-style: none; color:#fff; background-color:$col1;}
+#arrival-list li { padding:15px 20px; border-bottom:1px solid $col1; background-color:$col2; font-size:15px; font-weight:500; }
 #arrival-list small { color:#7e8084; display:block; font-size:13px; margin-left: 29px; }
 #arrival-list .fa { min-width:25px; }
 
 //station
 
-#google-map { height:365px; position:fixed; top:60px; width:100%; }
+#google-map { height:365px; position:fixed; top:60px; width:100%; text-align: center; }
 #map-canvas { height:100%; width:100%; background:none !important; }
 
 .nav li a { padding:15px 5px; background-color:#262A30;}
 .nav li.active a { background-color:#1a90db !important; }
+ul.lines { box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.25); }
 .lines li { text-align: center; white-space: nowrap; overflow: hidden; }
-li.line { border-bottom:1px solid $col1 !important;}
+li.line {}
 li.line a { color:#fff; }
-li.line sup {  }
+li.line sup,  {  }
 li.line>a { text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; font-weight: 500; }
 li.line>a sup {font-size:1.02em; }
-ul.platforms li { border-right:$col1 solid 1px; }
+ul.platforms li { border-right:$col2 solid 1px; }
 ul.lines li:last-child ul li:last-child { border:none; }
 li.platform a { padding:15px 5px; background-color:#262A30; }
 li.platform a:hover { background-color:$col2; }
-li.platform span { font-size:12px; }
+li.platform { font-size:12px; }
+li.platform span, li.platform sup, li.platform sub { font-size:85%; }
 #station { padding:0 20px; background-color:#1c2026; }
 #station h2 {padding:15px 0;}
 h2 small { text-transform: lowercase; }
@@ -133,12 +135,9 @@ input#station-search:-ms-input-placeholder { color: #555; }
     }
     #arrivals {
       padding-top:0;
-      padding-bottom:375px;
     }
     #google-map {
-      top:auto;
-      bottom:-25px;
-      height:400px;
+      position: static;
     }
     #station-list li {
       float: none;

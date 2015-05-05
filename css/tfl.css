@@ -196,12 +196,13 @@ a#counter.status-1 sup {
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: #2f353f;
-  color: #fff; }
+  color: #fff;
+  background-color: #363D47; }
 
 #arrival-list li {
   padding: 15px 20px;
   border-bottom: 1px solid #363D47;
+  background-color: #2f353f;
   font-size: 15px;
   font-weight: 500; }
 
@@ -218,7 +219,8 @@ a#counter.status-1 sup {
   height: 365px;
   position: fixed;
   top: 60px;
-  width: 100%; }
+  width: 100%;
+  text-align: center; }
 
 #map-canvas {
   height: 100%;
@@ -232,13 +234,13 @@ a#counter.status-1 sup {
 .nav li.active a {
   background-color: #1a90db !important; }
 
+ul.lines {
+  box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.25); }
+
 .lines li {
   text-align: center;
   white-space: nowrap;
   overflow: hidden; }
-
-li.line {
-  border-bottom: 1px solid #363D47 !important; }
 
 li.line a {
   color: #fff; }
@@ -253,7 +255,7 @@ li.line > a sup {
   font-size: 1.02em; }
 
 ul.platforms li {
-  border-right: #363D47 solid 1px; }
+  border-right: #2f353f solid 1px; }
 
 ul.lines li:last-child ul li:last-child {
   border: none; }
@@ -265,8 +267,11 @@ li.platform a {
 li.platform a:hover {
   background-color: #2f353f; }
 
-li.platform span {
+li.platform {
   font-size: 12px; }
+
+li.platform span, li.platform sup, li.platform sub {
+  font-size: 85%; }
 
 #station {
   padding: 0 20px;
@@ -334,13 +339,10 @@ input#station-search:-ms-input-placeholder {
     position: static; }
 
   #arrivals {
-    padding-top: 0;
-    padding-bottom: 375px; }
+    padding-top: 0; }
 
   #google-map {
-    top: auto;
-    bottom: -25px;
-    height: 400px; }
+    position: static; }
 
   #station-list li {
     float: none;

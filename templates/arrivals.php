@@ -21,26 +21,26 @@
     	<h2 class="navbar-text pull-right" style="text-transform:lowercase; width:40%; text-align:right;">
 			<a href="" id="counter" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
 				{{timestamp | date:'h:mma'}}
-				<sup><span data-ng-bind="count"><i class="fa fa-cog fa-spin"></i></span></sup>
+				<sup>
+					<span data-ng-bind="count"></span>
+					<i class="fa fa-cog fa-spin" data-ng-show="!count"></i>
+				</sup>
 			</a>
     	</h2>
   	</div>
 </nav>
-<div id="google-map">
-	<div id="map-canvas"></div>
-</div>
 <div class="container-fluid" id="arrivals">
-	<div class="col-md-12" style="padding:0;">
+	<div class="col-md-12" style="padding:0; z-index:1;">
 		<ul class="lines nav nav-pills nav-justified">
 			<li class="line" data-ng-repeat="(line,platforms) in station.lines">
-				<a class="bg-{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">
+				<!--<a class="{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">
 					{{(arrivals|filter:{lineName:line}).length}} {{line.substr(0,3)}}
-				</a>
+				</a>-->
 				<ul class="platforms nav nav-pills nav-justified">
 					<li class="platform" data-ng-repeat="platform in platforms">
-						<a href="" data-ng-click="filters.setFilters(line,platform)">
-							<i class="fa {{platform | arrowDirection}} {{line | stnName}}"></i>
-							<span>{{(arrivals|filter:{lineName:line, platformName:platform}).length}}</span>
+						<a href="" data-ng-click="filters.setFilters(line,platform)" class="bg-{{line | stnName}}">
+							{{(arrivals|filter:{lineName:line, platformName:platform}).length}}
+							<sup><i class="fa {{platform | arrowDirection}}"></i></sup>
 						</a>
 					</li>
 				</ul>
@@ -58,5 +58,11 @@
 				</small>
 			</li>
 		</ul>
+	</div>
+</div>
+<div id="google-map">
+	<div id="map-canvas">
+		<i class="fa fa-cog fa-spin" style="margin-top:170px; color:#fff; font-size:20px"></i>
+		<button class="btn" data-ng-click="getMap()" style="background-color:#ff3; margin-top:145px; opacity: 0.8; font-weight: 600;" data-ng-show="mobile">Load Map</button>
 	</div>
 </div>
