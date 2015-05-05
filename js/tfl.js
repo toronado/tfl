@@ -60,10 +60,10 @@ tubeApp.controller('arrivalsCtrl', function ($scope, $routeParams, $timeout, app
             $scope.arrivals = data;
             $scope.timestamp = new Date();
             liveArrivals.start();
-            getMap();
         });
     }
     getArrivals();
+    getMap();
 
     var liveArrivals = {
         start : function () {
@@ -94,6 +94,7 @@ tubeApp.controller('arrivalsCtrl', function ($scope, $routeParams, $timeout, app
 
     function getMap() {
         appData.fetch('stopPoint', {ids:params.stopPointId}, true, function (data) {
+            console.log(data.lat + '-' + data.lon);
             google.load('maps', '3', { callback: function() {
                 var myLatlng = new google.maps.LatLng(data.lat,data.lon);
                 var mapOptions = {
