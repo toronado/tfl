@@ -139,10 +139,6 @@ a.clear-filter {
 #station-data, #arrivals {
   padding: 0; }
 
-#arrival-list {
-  color: #fff;
-  background-color: #2f353f; }
-
 h2 {
   margin: 0;
   font-weight: 300;
@@ -199,7 +195,9 @@ a#counter.status-1 sup {
 #arrival-list {
   margin: 0;
   padding: 0;
-  list-style: none; }
+  list-style: none;
+  background-color: #2f353f;
+  color: #fff; }
 
 #arrival-list li {
   padding: 15px 20px;
@@ -336,10 +334,13 @@ input#station-search:-ms-input-placeholder {
     position: static; }
 
   #arrivals {
-    padding-top: 0; }
+    padding-top: 0;
+    padding-bottom: 375px; }
 
   #google-map {
-    display: none; }
+    top: auto;
+    bottom: -25px;
+    height: 400px; }
 
   #station-list li {
     float: none;

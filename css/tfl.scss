@@ -71,7 +71,6 @@ a.clear-filter { color:#f33; }
 .list-group-item, .nav-justified li a {  border-radius:0 !important; }
 
 #station-data, #arrivals { padding: 0; }
-#arrival-list { color:#fff; background-color:$col2; }
 h2 { margin: 0; font-weight: 300; padding: 10px 0; color:#fff; line-height:1; font-size: 25px; }
 a#counter { color:#fff; text-decoration: none; font-size:0.8em; font-weight:400; }
 a#counter.status-0 sup { color:#777; }
@@ -86,7 +85,7 @@ a#counter.status-1 sup { color: #f33; }
 #station-list span.line { margin-right: 3px; font-size:12px; }
 
 #arrivals { padding:0; padding-top:400px; }
-#arrival-list { margin:0; padding:0; list-style: none; }
+#arrival-list { margin:0; padding:0; list-style: none; background-color:$col2; color:#fff; }
 #arrival-list li { padding:15px 20px; border-bottom:1px solid $col1; font-size:15px; font-weight:500; }
 #arrival-list small { color:#7e8084; display:block; font-size:13px; margin-left: 29px; }
 #arrival-list .fa { min-width:25px; }
@@ -134,9 +133,12 @@ input#station-search:-ms-input-placeholder { color: #555; }
     }
     #arrivals {
       padding-top:0;
+      padding-bottom:375px;
     }
     #google-map {
-      display: none;
+      top:auto;
+      bottom:-25px;
+      height:400px;
     }
     #station-list li {
       float: none;
