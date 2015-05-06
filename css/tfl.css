@@ -201,19 +201,19 @@ a#counter.status-1 sup {
 
 #arrival-list li {
   padding: 15px 20px;
-  border-bottom: 1px solid #363D47;
+  margin-bottom: 1px;
   background-color: #2f353f;
+  border-left: #2f353f solid 10px;
   font-size: 15px;
   font-weight: 500; }
 
 #arrival-list small {
   color: #7e8084;
   display: block;
-  font-size: 13px;
-  margin-left: 29px; }
+  font-size: 13px; }
 
 #arrival-list .fa {
-  min-width: 25px; }
+  padding-left: 5px; }
 
 #google-map {
   height: 365px;
@@ -255,14 +255,10 @@ li.line > a sup {
   font-size: 1.02em; }
 
 ul.platforms li {
-  border-right: #2f353f solid 1px; }
+  border-right: #363D47 solid 1px; }
 
 ul.lines li:last-child ul li:last-child {
   border: none; }
-
-li.platform a {
-  padding: 15px 5px;
-  background-color: #262A30; }
 
 li.platform a:hover {
   background-color: #2f353f; }

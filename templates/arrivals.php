@@ -19,11 +19,11 @@
 			</small>
     	</h2>
     	<h2 class="navbar-text pull-right" style="text-transform:lowercase; width:40%; text-align:right;">
-			<a href="" id="counter" class="status-{{liveStatus}}" data-ng-click="switchLive(1-liveStatus)">
+			<a href="" id="counter" class="status-{{live}}" data-ng-click="switchLive(1-live)">
 				{{timestamp | date:'h:mma'}}
 				<sup>
 					<span data-ng-bind="count"></span>
-					<i class="fa fa-cog fa-spin" data-ng-show="!count"></i>
+					<i class="fa fa-cog fa-spin" data-ng-show="loading"></i>
 				</sup>
 			</a>
     	</h2>
@@ -33,25 +33,25 @@
 	<div class="col-md-12" style="padding:0; z-index:1;">
 		<ul class="lines nav nav-pills nav-justified">
 			<li class="line" data-ng-repeat="(line,platforms) in station.lines">
-				<!--<a class="{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">
+				<a class="bg-{{line | stnName}}" href="" data-ng-click="filters.setFilters(line,'')">
 					{{(arrivals|filter:{lineName:line}).length}} {{line.substr(0,3)}}
-				</a>-->
+				</a>
 				<ul class="platforms nav nav-pills nav-justified">
 					<li class="platform" data-ng-repeat="platform in platforms">
-						<a href="" data-ng-click="filters.setFilters(line,platform)" class="bg-{{line | stnName}}">
+						<a href="" data-ng-click="filters.setFilters(line,platform)">
 							{{(arrivals|filter:{lineName:line, platformName:platform}).length}}
-							<sup><i class="fa {{platform | arrowDirection}}"></i></sup>
+							<sup class="{{line | stnName}}"><i class="fa {{platform | arrowDirection}}"></i></sup>
 						</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 		<ul id="arrival-list">
-			<li class="arrival fadeInUp animated" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
+			<li class="arrival fadeInUp animated bd-{{arrival.lineId}}" data-ng-repeat="arrival in filtered = (arrivals | orderBy:'-timeToStation':true | filter:filters )">
 				<span class="badge">
 					{{arrival.timeToStation | convertTime}}
+					<i class="{{arrival.lineId}} fa {{arrival.platformName | arrowDirection}}"></i>
 				</span>
-				<i class="{{arrival.lineId}} fa {{arrival.platformName | arrowDirection}}"></i>
 				{{arrival.towards}}
 				<small>
 					{{arrival.platformName.split(' ')[0]}}, {{arrival.currentLocation}}

@@ -86,9 +86,9 @@ a#counter.status-1 sup { color: #f33; }
 
 #arrivals { padding:0; padding-top:400px; }
 #arrival-list { margin:0; padding:0; list-style: none; color:#fff; background-color:$col1;}
-#arrival-list li { padding:15px 20px; border-bottom:1px solid $col1; background-color:$col2; font-size:15px; font-weight:500; }
-#arrival-list small { color:#7e8084; display:block; font-size:13px; margin-left: 29px; }
-#arrival-list .fa { min-width:25px; }
+#arrival-list li { padding:15px 20px; margin-bottom:1px; background-color:$col2; border-left:$col2 solid 10px; font-size:15px; font-weight:500; }
+#arrival-list small { color:#7e8084; display:block; font-size:13px; }
+#arrival-list .fa { padding-left:5px; }
 
 //station
 
@@ -99,14 +99,11 @@ a#counter.status-1 sup { color: #f33; }
 .nav li.active a { background-color:#1a90db !important; }
 ul.lines { box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.25); }
 .lines li { text-align: center; white-space: nowrap; overflow: hidden; }
-li.line {}
 li.line a { color:#fff; }
-li.line sup,  {  }
 li.line>a { text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; font-weight: 500; }
 li.line>a sup {font-size:1.02em; }
-ul.platforms li { border-right:$col2 solid 1px; }
+ul.platforms li { border-right:$col1 solid 1px; }
 ul.lines li:last-child ul li:last-child { border:none; }
-li.platform a { padding:15px 5px; background-color:#262A30; }
 li.platform a:hover { background-color:$col2; }
 li.platform { font-size:12px; }
 li.platform span, li.platform sup, li.platform sub { font-size:85%; }
