@@ -103,6 +103,10 @@ tubeApp.controller('arrivalsCtrl', function ($scope, $routeParams, $timeout, app
         liveArrivals.stop();
     });
 
+    $scope.getMap = function() {
+        getMap();
+    }
+
     function getMap() {
         google.load('maps', '3', { callback: function() {
             var myLatlng = new google.maps.LatLng($scope.station.lat,$scope.station.lon);

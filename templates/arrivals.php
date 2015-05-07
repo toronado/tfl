@@ -62,7 +62,6 @@
 </div>
 <div id="google-map">
 	<div id="map-canvas">
-		<i class="fa fa-cog fa-spin" style="margin-top:170px; color:#fff; font-size:20px"></i>
 		<button class="btn" data-ng-click="getMap()" style="background-color:#ff3; margin-top:145px; opacity: 0.8; font-weight: 600;" data-ng-show="mobile">Load Map</button>
 	</div>
 </div>
