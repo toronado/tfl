@@ -203,7 +203,7 @@ a#counter.status-1 sup {
   padding: 15px 20px;
   margin-bottom: 1px;
   background-color: #2f353f;
-  border-left: #2f353f solid 10px;
+  border-left: #2f353f solid 3px;
   font-size: 15px;
   font-weight: 500; }
 

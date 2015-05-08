@@ -42,7 +42,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.513098,
+      "lon":-0.124431
    },
    "ERC":{  
       "name":"Edgware Road (Circle Line)",
@@ -324,7 +326,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.495639,
+      "lon":-0.324941
    },
    "BBN":{  
       "name":"Barbican",
@@ -688,7 +692,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.552702,
+      "lon":-0.113239
    },
    "MBA":{  
       "name":"Marble Arch",
@@ -749,7 +755,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.503039,
+      "lon":-0.152438
    },
    "NHG":{  
       "name":"Notting Hill Gate",
@@ -849,7 +857,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.501008,
+      "lon":-0.307425
    },
    "LNB":{  
       "name":"London Bridge",
@@ -1030,7 +1040,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.540633,
+      "lon":-0.29961
    },
    "ERB":{  
       "name":"Edgware Road (Bakerloo)",
@@ -1213,7 +1225,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.548524,
+      "lon":-0.118489
    },
    "FYR":{  
       "name":"Finchley Road",
@@ -1582,7 +1596,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.466751,
+      "lon":-0.423181
    },
    "STM":{  
       "name":"Stanmore",
@@ -1654,7 +1670,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.471239,
+      "lon":-0.452256
    },
    "WYC":{  
       "name":"Wembley Central",
@@ -1763,7 +1781,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.471299,
+      "lon":-0.366581
    },
    "MED":{  
       "name":"Mile End",
@@ -1804,7 +1824,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.473217,
+      "lon":-0.356476
    },
    "WYP":{  
       "name":"Wembley Park",
@@ -1841,7 +1863,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.473473,
+      "lon":-0.386533
    },
    "RKW":{  
       "name":"Rickmansworth",
@@ -1945,7 +1969,9 @@
             "WestBound",
             "EastBound"
          ]
-      }
+      },
+      "lat":51.570744,
+      "lon":-0.096113
    },
    "RBG":{  
       "name":"Redbridge",
@@ -1966,7 +1992,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.499324,
+      "lon":-0.31472
    },
    "SSQ":{  
       "name":"Sloane Square",
@@ -2124,7 +2152,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.632323,
+      "lon":-0.127811
    },
    "VIC":{  
       "name":"Victoria",
@@ -2221,7 +2251,9 @@
             "EastBound",
             "WestBound"
          ]
-      }
+      },
+      "lat":51.590279,
+      "lon":-0.102947
    },
    "WIM":{  
       "name":"Wimbledon",
@@ -2357,7 +2389,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.647734,
+      "lon":-0.132177
    },
    "CGT":{  
       "name":"Canning Town",
@@ -2412,7 +2446,9 @@
          "Piccadilly":[  
             "Westbound"
          ]
-      }
+      },
+      "lat":51.458527,
+      "lon":-0.445762
    },
    "RMD":{  
       "name":"Richmond",
@@ -2432,7 +2468,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.501673,
+      "lon":-0.160504
    },
    "QWY":{  
       "name":"Queensway",
@@ -2488,7 +2526,9 @@
          "Piccadilly":[  
             "Westbound"
          ]
-      }
+      },
+      "lat":51.651519,
+      "lon":-0.149167
    },
    "GPS":{  
       "name":"Great Portland Street",
@@ -2516,7 +2556,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.470056,
+      "lon":-0.490552
    },
    "ASG":{  
       "name":"Arnos Grove",
@@ -2525,7 +2567,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.616454,
+      "lon":-0.133058
    },
    "SKT":{  
       "name":"South Kenton",
@@ -2598,7 +2642,9 @@
             "WestBound",
             "EastBound"
          ]
-      }
+      },
+      "lat":51.597486,
+      "lon":-0.109881
    },
    "SJP":{  
       "name":"St. James's Park",
@@ -2623,7 +2669,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.558661,
+      "lon":-0.107452
    },
    "AGL":{  
       "name":"Angel",
@@ -2708,7 +2756,9 @@
             "WestBound",
             "EastBound"
          ]
-      }
+      },
+      "lat":51.607042,
+      "lon":-0.12423
    },
    "KEN":{  
       "name":"Kenton",
@@ -3058,7 +3108,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.51751,
+      "lon":-0.288868
    },
    "RVY":{  
       "name":"Roding Valley",
@@ -3091,7 +3143,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.481278,
+      "lon":-0.352226
    },
    "SNB":{  
       "name":"Snaresbrook",
@@ -3112,7 +3166,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.527129,
+      "lon":-0.284341
    },
    "SRP":{  
       "name":"South Ruislip",
@@ -3161,7 +3217,9 @@
             "Westbound",
             "Eastbound"
          ]
-      }
+      },
+      "lat":51.523077,
+      "lon":-0.124281
    },
    "SHH":{  
       "name":"South Harrow",
@@ -3170,7 +3228,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.564894,
+      "lon":-0.352494
    },
    "UPB":{  
       "name":"Upminster Bridge",
@@ -3235,7 +3295,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.556952,
+      "lon":-0.336437
    },
    "SUT":{  
       "name":"Sudbury Town",
@@ -3244,7 +3306,9 @@
             "Eastbound",
             "Westbound"
          ]
-      }
+      },
+      "lat":51.550821,
+      "lon":-0.315746
    },
    "MTC":{  
       "name":"Mornington Crescent",
