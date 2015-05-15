@@ -48,7 +48,7 @@
         };
         var myStyles = [{"featureType":"administrative","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","stylers":[{"visibility":"on"}]},{"featureType":"road","stylers":[{"color":"#2f353f"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#eeeeee"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#222222"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#999999"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2f353f"}]}];
 
-        var stnId = 'OXC';
+        var stnId = 'KSX';
         var station;
         var stations;
         var markers = {};
@@ -79,7 +79,7 @@
 
         function getArrivals() {
             var url = 'http://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stnId;
-            if (!stnId) {
+            if (stnId) {
                 url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
             }
             var jqxhr = $.ajax(url).done(function (data) {
@@ -98,25 +98,30 @@
                                 location = stnLookup(currentLocationStr);
                         }
                     }
-                    var markerObj = {
-                        id: data[i]['vehicleId'],
-                        data: data[i],
-                        lat: location['lat'],
-                        lon: location['lon'],
-                        title: data[i]['vehicleId'] + ': ' + data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'],
-                        color: colors[data[i]['lineId']],
-                        status: null
-                    };
-                    if (!markers[data[i]['vehicleId']]) {
-                        markerObj['status'] = 'new';
+                    if (!isNaN(location['lat']) && !isNaN(location['lon'])) {
+                    // If a marker for the train exists already, move it.
+                        if (markers[data[i].id] && count > 1) {
+                            markers[data[i].id].setPosition(new google.maps.LatLng(location['lat'], location['lon']));
+                            markers[data[i].id].status = count;
+                            markers[data[i].id].title = data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'];
+                                //console.log(markers[data[i]['id']] + ' moved');
+                        } else {
+                            var markerObj = {
+                                id: data[i]['id'],
+                                data: data[i],
+                                lat: location['lat'],
+                                lon: location['lon'],
+                                title: data[i]['id'] + ': ' + data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'],
+                                color: colors[data[i]['lineId']],
+                                status: 'new'
+                            };
+                            markers[data[i]['id']] = markerObj;
+                        }
                     }
-                    if (markers[data[i]['vehicleId']]) {
-                        markerObj['status'] = 'move';
-                    }
-                    markers[data[i]['vehicleId']] = markerObj;
                 }
                 placeMarkers();
                 count++;
+                console.log(markers);
             });
         }
         function stnLookup(str) {
@@ -138,21 +143,30 @@
         }
         function placeMarkers() {
             for (var key in markers) {
-                var location = new google.maps.LatLng(markers[key]['lat'],markers[key]['lon']);
-                markers[key] = new google.maps.Marker({
-                    position: location,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 8,
-                        fillOpacity: 1,
-                        fillColor: markers[key]['color'],
-                        strokeColor: '#202020',
-                        strokeWeight:1
-                    },
-                    map: map,
-                    title: markers[key]['title']
-                });
-                markers[key].setMap(map);
+                if (markers[key]['status'] === 'new') {
+
+                        //console.log(markers[key]['id'] + ' added');
+                        var location = new google.maps.LatLng(markers[key]['lat'],markers[key]['lon']);
+                        markers[key] = new google.maps.Marker({
+                            position: location,
+                            icon: {
+                                path: google.maps.SymbolPath.CIRCLE,
+                                scale: 8,
+                                fillOpacity: 1,
+                                fillColor: markers[key]['color'],
+                                strokeColor: '#202020',
+                                strokeWeight:1
+                            },
+                            map: map,
+                            title: markers[key]['title']
+                        });
+
+                    //markers[key].setMap(map);
+                } else {
+                    //console.log(markers[key] + ' deleted');
+                    markers[key].setMap(null);
+                    delete markers[key];
+                }
             }
         }
 
