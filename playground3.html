@@ -51,8 +51,6 @@
         var stnId = 'KSX';
         var station;
         var stations;
-        var markers = {};
-        var count = 1;
         function getStation() {
             var jqxhr;
             jqxhr = $.ajax( "data/stations.min.json").done(function (data) {
@@ -77,13 +75,16 @@
             getArrivals();
         }
 
+        var gObj = [];
         function getArrivals() {
             var url = 'http://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stnId;
             if (stnId) {
-                url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
+                //url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
+                url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=victoria';
             }
+            var mObj = {}
             var jqxhr = $.ajax(url).done(function (data) {
-                for (var i=0; i<data.length; i++) {
+                for (var i=0; i<3; i++) {
                     var location;
                     var currentLocationStr = data[i]["currentLocation"];
                     if (currentLocationStr === 'At Platform') {
@@ -97,32 +98,39 @@
                             default:
                                 location = stnLookup(currentLocationStr);
                         }
-                    }
-                    if (!isNaN(location['lat']) && !isNaN(location['lon'])) {
-                    // If a marker for the train exists already, move it.
-                        if (markers[data[i].id] && count > 1) {
-                            markers[data[i].id].setPosition(new google.maps.LatLng(location['lat'], location['lon']));
-                            markers[data[i].id].status = count;
-                            markers[data[i].id].title = data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'];
-                                //console.log(markers[data[i]['id']] + ' moved');
-                        } else {
-                            var markerObj = {
-                                id: data[i]['id'],
-                                data: data[i],
-                                lat: location['lat'],
-                                lon: location['lon'],
-                                title: data[i]['id'] + ': ' + data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'],
-                                color: colors[data[i]['lineId']],
-                                status: 'new'
-                            };
-                            markers[data[i]['id']] = markerObj;
-                        }
+                    }                    // If a marker for the train exists already, move it.
+
+                    var markerObj = {
+                        id: data[i]['id'],
+                        data: data[i],
+                        lat: location['lat'],
+                        lon: location['lon'],
+                        title: data[i]['id'] + ': ' + data[i]['lineName'] + ' line towards ' + data[i]['towards'] + '. ' + data[i]['currentLocation'],
+                        color: colors[data[i]['lineId']],
+                        status: 'new'
+                    };
+                    mObj[data[i]['id']] = markerObj;
+                }
+                xx(mObj);
+            });
+        }
+        function xx(mObj) {
+            if (gObj.length) {
+                for (var i=0; i<gObj.length; i++) {
+                    if (mObj[gObj[i]['id']]) {
+                        moveMarker(gObj[i], mObj[gObj[i]['id']]['lat'], mObj[gObj[i]['id']]['lon']);
+                        console.log('moved' + gObj[i]);
+                    } else {
+                        console.log('deleted' + gObj[i]);
+                        gObj[i].setMap(null);
+                        delete gObj[i];
                     }
                 }
-                placeMarkers();
-                count++;
-                console.log(markers);
-            });
+            } else {
+                for (var key in mObj) {
+                    addMarker(mObj[key]);
+                }
+            }
         }
         function stnLookup(str) {
             var stn;
@@ -141,33 +149,28 @@
                 'lon': lon
             };
         }
-        function placeMarkers() {
-            for (var key in markers) {
-                if (markers[key]['status'] === 'new') {
-
-                        //console.log(markers[key]['id'] + ' added');
-                        var location = new google.maps.LatLng(markers[key]['lat'],markers[key]['lon']);
-                        markers[key] = new google.maps.Marker({
-                            position: location,
-                            icon: {
-                                path: google.maps.SymbolPath.CIRCLE,
-                                scale: 8,
-                                fillOpacity: 1,
-                                fillColor: markers[key]['color'],
-                                strokeColor: '#202020',
-                                strokeWeight:1
-                            },
-                            map: map,
-                            title: markers[key]['title']
-                        });
-
-                    //markers[key].setMap(map);
-                } else {
-                    //console.log(markers[key] + ' deleted');
-                    markers[key].setMap(null);
-                    delete markers[key];
-                }
-            }
+        function addMarker(mObj) {
+            var location = new google.maps.LatLng(mObj['lat'],mObj['lon']);
+            marker = new google.maps.Marker({
+                position: location,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 8,
+                    fillOpacity: 1,
+                    fillColor: mObj['color'],
+                    strokeColor: '#202020',
+                    strokeWeight:1
+                },
+                map: map,
+                title: mObj['title']
+            });
+            marker.id = mObj['id'];
+            gObj.push(marker);
+        }
+        function moveMarker(gObj, lat, lon) {
+            //console.log(markerObj);
+            console.log(gObj + '-' + lat + '-' + lon);
+            gObj.setPosition(new google.maps.LatLng(lat, lon));
         }
 
         //google.maps.event.addDomListener(window, 'load', getStation('OXC'));
