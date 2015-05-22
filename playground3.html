@@ -9,16 +9,11 @@
                 padding: 0px
             }
             #map-canvas {
-                background:url(images/bg-body.gif) repeat #363D47;
+                background:url(images/bg-body.gif) repeat #000000;
             }
             #panel {
                 position: absolute;
-                top: 5px;
-                left: 50%;
-                margin-left: -180px;
                 z-index: 5;
-                padding: 5px;
-                border: 1px solid #999;
             }
         </style>
     </head>
@@ -48,7 +43,7 @@
         var myStyles2 = [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}];
 
 
-        var stnId = 'KSX';
+        var stnId = 'OXC';
         var station;
         var stations;
         function getStation() {
@@ -68,11 +63,35 @@
                 zoom: 12,
                 backgroundColor: '#000000',
                 center: center,
-                styles : myStyles2
+                styles : myStyles,
+                disableDefaultUI: true
             };
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
             //var transitLayer = new google.maps.TransitLayer();
             //transitLayer.setMap(map);
+            google.maps.event.addListenerOnce(map, 'idle', function(){
+                getStars();
+            });
+        }
+
+        function getStars() {
+            for (var key in stations) {
+                //if (stations[key]['lines']['Central']) {
+                    var scale = Math.round(Math.random()*2) + 1;
+                    var location = new google.maps.LatLng(stations[key]['lat'],stations[key]['lon']);
+                    var marker = new google.maps.Marker({
+                        position: location,
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: scale,
+                            fillOpacity: 1,
+                            fillColor: '#ffffff',
+                            strokeWeight:0
+                        },
+                        map: map
+                    });
+                //}
+            }
             getArrivals();
         }
 
@@ -81,8 +100,8 @@
         function getArrivals() {
             var url = 'http://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stnId;
             if (stnId) {
-                //url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
-                url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=central';
+                url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
+                //url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=central';
             }
             var mObj = {}
             var jqxhr = $.ajax(url).done(function (data) {
@@ -164,25 +183,34 @@
             };
         }
         function addMarker(mObj) {
+            var scale = Math.round(Math.random()*5) + 2;
             var location = new google.maps.LatLng(mObj['lat'],mObj['lon']);
-            marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: location,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 3,
+                    scale: scale,
                     fillOpacity: 1,
                     fillColor: mObj['color'],
                     strokeWeight:0
                 },
-                map: map,
+                map: map
                 //animation: google.maps.Animation.DROP,
-                title: mObj['title']
+                //title: mObj['title']
             });
             marker.id = mObj['id'];
             marker.mData = mObj['data'];
             gObj[mObj['id']] = marker;
-            google.maps.event.addListener(marker, 'click', function() {
-                console.log(this.mData);
+
+            var infowindow = new google.maps.InfoWindow({
+                content: mObj['title'],
+                maxWidth: 200
+            });
+            google.maps.event.addListener(marker, 'mouseover', function () {
+                infowindow.open(map,marker);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function () {
+                infowindow.close(map,marker);
             });
         }
         function moveMarker(gObj, lat, lon, title) {
