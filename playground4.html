@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>London</title>
+    </head>
+    </body>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="data/stations.min.js"></script>
+        <script type="text/javascript">
+            
+            $.ajax({
+                url: 'https://api.tfl.gov.uk/Line/%7Bid%7D/Timetable/%7BfromStopPointId%7D',
+                type: 'GET',
+                data: { 
+                    fromStopPointId: "940GZZLUSTD",
+                    direction: "inbound",
+                    id : "jubilee"
+                }
+            }).done(function (data) {
+                var dataArr = data.timetable.routes[0].stationIntervals;
+                for (var i=0; i<dataArr.length; i++) {
+                    doit(dataArr[i].intervals);
+                }
+            });
+
+            function doit(json) {
+
+                var i;
+                var jsonLen = json.length;
+                var stnObj = {};
+
+                for (i = 0; i < jsonLen; i++) {
+
+                    var sid = json[i]['stopId'].substring(8);
+                    var thisTime = json[i]['timeToArrival'];
+
+                    stnObj[sid] = {}; 
+
+                    if (i > 0) {
+                        //stnObj[sid]['Westbound'] = {};
+                        stnObj[sid][json[i-1]['stopId'].substring(8)] = Math.round((thisTime - json[i-1]['timeToArrival']) * 60);
+                    }
+                    if (i < jsonLen-1) {
+                        //stnObj[sid]['Eastbound'] = {};
+                        stnObj[sid][json[i+1]['stopId'].substring(8)] = Math.round((json[i+1]['timeToArrival'] - thisTime) * 60);
+                    }
+                }
+                console.log(stnObj);
+            }
+        </script>
+    </body>
+</html>
