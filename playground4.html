@@ -4,11 +4,12 @@
         <title>London</title>
     </head>
     </body>
-        <button onClick="logData();">Log</button>
+        <button onclick="logData()">Log</button>
         <script src="js/jquery-2.1.3.min.js"></script>
         <script src="data/stations.min.js"></script>
         <script type="text/javascript">
             
+            var stnObj = {};
             var endPoints = {
                 'central': ['HLT','EPG','EBY','WRP'],
                 'bakerloo': ['HAW','EAC'],
@@ -23,68 +24,83 @@
                 'victoria': ['WWL','BXN'],
                 'waterloo-city': ['BNK','WLO']
             };
-            var stnObj = {};
 
-            for (var line in endPoints) {
-                for (var stn in endPoints[line]) {
+            var line, sid;
+
+            for (line in endPoints) {
+                for (sid in endPoints[line]) {
                     $.ajax({
                         url: 'https://api.tfl.gov.uk/Line/%7Bid%7D/Timetable/%7BfromStopPointId%7D',
                         type: 'GET',
                         data: { 
-                            fromStopPointId: "940GZZLU"+endPoints[line][stn],
+                            fromStopPointId: "940GZZLU"+endPoints[line][sid],
                             id: line
                         }
                     }).done(function (data) {
+                        var i;
                         var dataArr = data.timetable.routes[0].stationIntervals;
-                        for (var i=0; i<dataArr.length; i++) {
-                            doit(dataArr[i].intervals);
+                        var dataLen = dataArr.length;
+                        for (i=0; i<dataLen; i++) {
+                            process(dataArr[i].intervals);
                         }
                     });
                 }
             }
 
-            function doit(data) {
-                var i;
+            function process(data) {
+
                 var dataLen = data.length;
+                var i,
+                    sid, // This station id
+                    pid, // Previous station id
+                    nid, // Next station id
+                    ttp, // Time to previous station
+                    ttn; // Time to next station
+
                 for (i = 0; i < dataLen; i++) {
 
-                    var stid = data[i]['stopId'].substring(8);
+                    sid = data[i]['stopId'].substring(8);
                    
-                    if (!stnObj[stid]) {
-                        stnObj[stid] = {};
+                    // Check if station exists in station object. If not, create it.
+                    if (!stnObj[sid]) {
+                        stnObj[sid] = {};
                     }
-                    //has a previous station
-                    if (i > 0) {
-                        var prev = data[i-1]['stopId'].substring(8);
-                        var time = Math.round((data[i]['timeToArrival']-data[i-1]['timeToArrival'])*10)/10;
-                        if (stnObj[stid][prev]) {
-                            stnObj[stid][prev].push(time);
+
+                    // Has a previous station
+                    if (i) {
+                        pid = data[i-1]['stopId'].substring(8);
+                        ttp = Math.round((data[i]['timeToArrival']-data[i-1]['timeToArrival'])*10)/10;
+                        if (stnObj[sid][pid]) {
+                            stnObj[sid][pid].push(ttp);
                         } else {
-                            stnObj[stid][prev] = [time];
+                            stnObj[sid][pid] = [ttp];
                         }
                     }
-                    // has a next station
+
+                    // Has a next station
                     if (i < dataLen-1) {
-                        var next = data[i+1]['stopId'].substring(8);
-                        var time = Math.round((data[i+1]['timeToArrival']-data[i]['timeToArrival'])*10)/10;
-                        if (stnObj[stid][next]) {
-                            stnObj[stid][next].push(time);
+                        nid = data[i+1]['stopId'].substring(8);
+                        ttn = Math.round((data[i+1]['timeToArrival']-data[i]['timeToArrival'])*10)/10;
+                        if (stnObj[sid][nid]) {
+                            stnObj[sid][nid].push(ttn);
                         } else {
-                            stnObj[stid][next] = [time];
+                            stnObj[sid][nid] = [ttn];
                         }
                     }
+
                 }
             }
 
             function logData() {
-                for (var stn in stnObj) {
-                    for (var adj in stnObj[stn]) {
-                        var count = 0;
+                var i, stn, adj, total;
+                for (stn in stnObj) {
+                    for (adj in stnObj[stn]) {
+                        total = 0;
                         var adjLen = stnObj[stn][adj].length;
-                        for (var i=0; i<adjLen; i++) {
-                            count += stnObj[stn][adj][i];
+                        for (i=0; i<adjLen; i++) {
+                            total += stnObj[stn][adj][i];
                         }
-                        stnObj[stn][adj] = Math.round((count/adjLen)*60);
+                        stnObj[stn][adj] = Math.round((total/adjLen)*60);
                     }
                 }
                 console.log(stnObj);
