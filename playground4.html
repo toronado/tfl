@@ -10,6 +10,7 @@
         <script type="text/javascript">
             
             var endPoints = {
+                'central': ['HLT','EPG','EBY','WRP'],
                 'bakerloo': ['HAW','EAC'],
                 'central': ['HLT','EPG','EBY','WRP'],
                 'circle': ['HSC'],
@@ -31,7 +32,7 @@
                         type: 'GET',
                         data: { 
                             fromStopPointId: "940GZZLU"+endPoints[line][stn],
-                            id : line
+                            id: line
                         }
                     }).done(function (data) {
                         var dataArr = data.timetable.routes[0].stationIntervals;
@@ -42,46 +43,50 @@
                 }
             }
 
-            function doit(json) {
+            function doit(data) {
                 var i;
-                var jsonLen = json.length;
+                var dataLen = data.length;
+                for (i = 0; i < dataLen; i++) {
 
-                for (i = 0; i < jsonLen; i++) {
-
-                    var sid = json[i]['stopId'].substring(8);
-                    var tti = json[i]['timeToArrival'];
-
-                    if (!stnObj[sid]) {
-                        stnObj[sid] = {};
+                    var stid = data[i]['stopId'].substring(8);
+                   
+                    if (!stnObj[stid]) {
+                        stnObj[stid] = {};
                     }
-                    
-                    if (i) {
-                        var ttn = Math.round((tti - json[i-1]['timeToArrival']) * 60);
-                        var ttc = stnObj[sid][json[i-1]['stopId'].substring(8)];
-                        if (ttc) {
-                            stnObj[sid][json[i-1]['stopId'].substring(8)] = Math.round((ttn+ttc)/2);
+                    //has a previous station
+                    if (i > 0) {
+                        var prev = data[i-1]['stopId'].substring(8);
+                        var time = Math.round((data[i]['timeToArrival']-data[i-1]['timeToArrival'])*10)/10;
+                        if (stnObj[stid][prev]) {
+                            stnObj[stid][prev].push(time);
                         } else {
-                            stnObj[sid][json[i-1]['stopId'].substring(8)] = ttn;
+                            stnObj[stid][prev] = [time];
                         }
                     }
-
-                    if (i < jsonLen-1) {
-                        var ttp = Math.round((json[i+1]['timeToArrival'] - tti) * 60);
-                        var ttc2 = stnObj[sid][json[i+1]['stopId'].substring(8)];
-                        if (ttc2) {
-                            stnObj[sid][json[i+1]['stopId'].substring(8)] = Math.round((ttp+ttc2)/2);
+                    // has a next station
+                    if (i < dataLen-1) {
+                        var next = data[i+1]['stopId'].substring(8);
+                        var time = Math.round((data[i+1]['timeToArrival']-data[i]['timeToArrival'])*10)/10;
+                        if (stnObj[stid][next]) {
+                            stnObj[stid][next].push(time);
                         } else {
-                            stnObj[sid][json[i+1]['stopId'].substring(8)] = ttp;
+                            stnObj[stid][next] = [time];
                         }
                     }
                 }
             }
+
             function logData() {
-                var i=0;
-                for (var key in stnObj) {
-                    i++;
+                for (var stn in stnObj) {
+                    for (var adj in stnObj[stn]) {
+                        var count = 0;
+                        var adjLen = stnObj[stn][adj].length;
+                        for (var i=0; i<adjLen; i++) {
+                            count += stnObj[stn][adj][i];
+                        }
+                        stnObj[stn][adj] = Math.round((count/adjLen)*60);
+                    }
                 }
-                console.log(i);
                 console.log(stnObj);
             }
         </script>
