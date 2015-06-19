@@ -4,11 +4,14 @@
         <title>London</title>
     </head>
     </body>
+        <button onclick="getLiveData()">Get Live</button>
         <button onclick="logData()">Log</button>
         <script src="js/jquery-2.1.3.min.js"></script>
         <script src="data/stations.min.js"></script>
+        <script src="data/station-route.js"></script>
         <script type="text/javascript">
             
+            //var stationsObj = station.min.js
             var stnObj = {};
             var endPoints = {
                 'central': ['HLT','EPG','EBY','WRP'],
@@ -24,26 +27,89 @@
                 'victoria': ['WWL','BXN'],
                 'waterloo-city': ['BNK','WLO']
             };
+            var startPoints = {
+                'central': {
+                    'inbound': {
+                        'westbound': ['HLT','EPG']
+                    },
+                    'outbound': {
+                        'eastbound': ['EBY','WRP']
+                    }
+                },
+                'bakerloo': {
+                    'inbound': ['HAW'],
+                    'outbound': ['EAC']
+                },
+                'district': {
+                    'inbound': ['UPM','ERC'],
+                    'outbound': ['RMD','WIM','KOY']
+                },
+                'hammersmith-city': {
+                    'inbound': ['BKG'],
+                    'outbound': ['HSC','BKG']
+                },
+                'jubilee': {
+                    'inbound': ['STD'],
+                    'outbound': ['STM']
+                },
+                'metropolitan': {
+                    'inbound': ['ALD'],
+                    'outbound': ['UXB','CSM','AMS']
+                },
+                'northern': {
+                    'inbound': ['HBT','EGW','MHL'],
+                    'outbound': ['MDN']
+                },
+                'piccadilly': {
+                    'inbound': ['CKS'],
+                    'outbound': ['UXB','HR5']
+                },
+                'victoria': {
+                    'inbound': ['WWL'],
+                    'outbound': ['BXN']
+                },
+                'waterloo-city': {
+                    'inbound': ['BNK'],
+                    'outbound': ['WLO']
+                },
+                'circle': {
+                    'outbound': ['HSC']
+                }
+            };
 
-            var line, sid;
+            function mergeData() {
+                for (var key in routeObj) {
+                    for (var adj in routeObj[key]) {
+                        if (!stationsObj[key]['route']) {
+                            stationsObj[key]['route'] = {};
+                        }
+                        stationsObj[key]['route'][adj] = routeObj[key][adj];
+                    } 
+                }
+                console.log(stationsObj);
+            }
 
-            for (line in endPoints) {
-                for (sid in endPoints[line]) {
-                    $.ajax({
-                        url: 'https://api.tfl.gov.uk/Line/%7Bid%7D/Timetable/%7BfromStopPointId%7D',
-                        type: 'GET',
-                        data: { 
-                            fromStopPointId: "940GZZLU"+endPoints[line][sid],
-                            id: line
-                        }
-                    }).done(function (data) {
-                        var i;
-                        var dataArr = data.timetable.routes[0].stationIntervals;
-                        var dataLen = dataArr.length;
-                        for (i=0; i<dataLen; i++) {
-                            process(dataArr[i].intervals);
-                        }
-                    });
+            function getLiveData() {
+                var line, sid;
+
+                for (line in endPoints) {
+                    for (sid in endPoints[line]) {
+                        $.ajax({
+                            url: 'https://api.tfl.gov.uk/Line/%7Bid%7D/Timetable/%7BfromStopPointId%7D',
+                            type: 'GET',
+                            data: { 
+                                fromStopPointId: "940GZZLU"+endPoints[line][sid],
+                                id: line
+                            }
+                        }).done(function (data) {
+                            var i;
+                            var dataArr = data.timetable.routes[0].stationIntervals;
+                            var dataLen = dataArr.length;
+                            for (i=0; i<dataLen; i++) {
+                                process(dataArr[i].intervals);
+                            }
+                        });
+                    }
                 }
             }
 

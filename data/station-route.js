@@ -1,4 +1,4 @@
-{  
+var routeObj = {  
    "THB":{  
       "DBN":214,
       "EPG":183
