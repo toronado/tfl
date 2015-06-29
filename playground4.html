@@ -14,7 +14,7 @@
             //var sObj = {sid:{},sidLookup:{}} = stationData.min.js
             var stnObj = {};
             var endPoints = {
-                'central': ['HLT','EPG','EBY','WRP']/*,
+                'central': ['HLT','EPG','EBY','WRP'],
                 'bakerloo': ['HAW','EAC'],
                 'central': ['HLT','EPG','EBY','WRP'],
                 'circle': ['HSC'],
@@ -25,10 +25,10 @@
                 'northern': ['MDN','HBT','EGW','MHL'],
                 'piccadilly': ['CKS','UXB','HR5'],
                 'victoria': ['WWL','BXN'],
-                'waterloo-city': ['BNK','WLO']*/
+                'waterloo-city': ['BNK','WLO']
             };
 
-            var validRoutes = {"bakerloo":{"inbound":{"HAW":["EAC"]},"outbound":{"EAC":["HAW"]}},"central":{"inbound":{"HLT":["WRP","EBY"],"EPG":["WRP","EBY"]},"outbound":{"WRP":["HLT","EPG"],"EBY":["HLT","EPG"]}},"district":{"inbound":{"UPM":["WIM","EBY","RMD"],"ERC":["WIM","KOY","EBY","RMD"]},"outbound":{"WIM":["UPM","ERC"],"KOY":["UPM","ERC"],"EBY":["UPM","ERC"],"RMD":["UPM","ERC"]}}/*,"hammersmith-city":{"inbound":{"BKG":["HSC"]},"outbound":{"HSC":["BKG"]}}*/,"jubilee":{"inbound":{"STD":["STM"]},"outbound":{"STM":["STD"]}},"metropolitan":{"inbound":{"ALD":["UXB","WAF","AMS","CSM"],"WAF":["RKW"]},"outbound":{"UXB":["ALD"],"CSM":["WAF","ALD"],"WAF":["ALD"],"AMS":["ALD"]}},"northern":{"inbound":{"EGW":["MDN"],"HBT":["MDN"],"MHL":["MDN"]},"outbound":{"MDN":["EGW","HBT","MHL"]}},"piccadilly":{"inbound":{"CKS":["UXB","HRC","HR5"]},"outbound":{"UXB":["CKS"],"HR5":["CKS"],"HR4":["CKS"]}},"victoria":{"inbound":{"WWL":["BXN"]},"outbound":{"BXN":["WWL"]}},"waterloo-city":{"inbound":{"BNK":["WLO"]},"outbound":{"WLO":["BNK"]}/*,"circle":{"inbound":{"ERC":["HSC"]},"outbound":{"HSC":["ERC"]}}*/}};
+            var validRoutes = {"bakerloo":{"inbound":{"HAW":["EAC"]},"outbound":{"EAC":["HAW"]}},"central":{"inbound":{"HLT":["WRP","EBY"],"EPG":["WRP","EBY"]},"outbound":{"WRP":["HLT","EPG"],"EBY":["HLT","EPG"]}},"district":{"inbound":{"UPM":["WIM","EBY","RMD"],"ERC":["WIM","KOY","EBY","RMD"]},"outbound":{"WIM":["UPM","ERC"],"KOY":["UPM","ERC"],"EBY":["UPM","ERC"],"RMD":["UPM","ERC"]}},"hammersmith-city":{"inbound":{"BKG":["HSC"]},"outbound":{"HSC":["BKG"]}},"jubilee":{"inbound":{"STD":["STM"]},"outbound":{"STM":["STD"]}},"metropolitan":{"inbound":{"ALD":["UXB","WAF","AMS","CSM"],"WAF":["RKW"]},"outbound":{"UXB":["ALD"],"CSM":["WAF","ALD"],"WAF":["ALD"],"AMS":["ALD"]}},"northern":{"inbound":{"EGW":["MDN"],"HBT":["MDN"],"MHL":["MDN"]},"outbound":{"MDN":["EGW","HBT","MHL"]}},"piccadilly":{"inbound":{"CKS":["UXB","HRC","HR5"]},"outbound":{"UXB":["CKS"],"HR5":["CKS"],"HR4":["CKS"]}},"victoria":{"inbound":{"WWL":["BXN"]},"outbound":{"BXN":["WWL"]}},"waterloo-city":{"inbound":{"BNK":["WLO"]},"outbound":{"WLO":["BNK"]}},"circle":{"inbound":{"ERC":["HSC"]},"outbound":{"HSC":["ERC"]}}};
 
             var boundObj = {
                 'central': {
@@ -70,11 +70,11 @@
                 'waterloo-city': {
                     'inbound': ['eastbound'],
                     'outbound': ['westbound']
-                }/*,
+                },
                 'circle': {
                     'inbound':['westbound', 'southbound'],
                     'outbound':['eastbound', 'northbound']
-                }*/
+                }
             };
 
             var dataObj = {};
@@ -107,13 +107,10 @@
                                     var sid = routesArr[i].substring(8);
                                     var possDirectionArr = boundObj[line][bound];
                                     var actDirectionArr = sObj['sid'][sid]['lines'][line];
-                                    /*console.log(possDirectionArr + '-' + actDirectionArr);
-                                    continue;*/
                                     var direction = null;
                                     for (var j=0; j<possDirectionArr.length; j++) {
                                         if (actDirectionArr.indexOf(possDirectionArr[j]) > -1) {
                                             direction = boundObj[line][bound][j];
-                                            //console.log(direction);
                                         } else {
 
                                         }
@@ -122,14 +119,6 @@
                                     if (i<routeLen-1) {
                                         nid = routesArr[i+1].substring(8);
                                     }
-                                
-                                    
-                                    /*if (pid) {
-                                        if (!dataObj[sid][direction]) dataObj[sid][direction] = {};
-                                        if (!dataObj[sid][direction][pid]) {
-                                            dataObj[sid][direction][pid] = sObj['sid'][sid]['route'][pid];
-                                        }
-                                    }*/
                                     if (nid) {
                                         if (!dataObj[sid]) dataObj[sid] = {};
                                         if (!dataObj[sid][line]) dataObj[sid][line] = {};
@@ -146,9 +135,9 @@
                                 
                             }
                         }
-                        console.log(dataObj);
                     });
                 }
+                console.log(dataObj);
             }
 
             function mergeData() {
