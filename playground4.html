@@ -6,9 +6,9 @@
     </body>
         <button onclick="getLiveData()">Get Live</button>
         <button onclick="logData()">Log</button>
-        <button onclick="clicked()">isaac</button>
+        <button onclick="compassBound()">Test</button>
         <script src="js/jquery-2.1.3.min.js"></script>
-        <script src="data/stationData.min.js"></script>
+        <script src="data/stationData2.js"></script>
         <script type="text/javascript">
             
             //var sObj = {sid:{},sidLookup:{}} = stationData.min.js
@@ -28,235 +28,127 @@
                 'waterloo-city': ['BNK','WLO']*/
             };
 
-            var directions = {
+            var validRoutes = {"bakerloo":{"inbound":{"HAW":["EAC"]},"outbound":{"EAC":["HAW"]}},"central":{"inbound":{"HLT":["WRP","EBY"],"EPG":["WRP","EBY"]},"outbound":{"WRP":["HLT","EPG"],"EBY":["HLT","EPG"]}},"district":{"inbound":{"UPM":["WIM","EBY","RMD"],"ERC":["WIM","KOY","EBY","RMD"]},"outbound":{"WIM":["UPM","ERC"],"KOY":["UPM","ERC"],"EBY":["UPM","ERC"],"RMD":["UPM","ERC"]}}/*,"hammersmith-city":{"inbound":{"BKG":["HSC"]},"outbound":{"HSC":["BKG"]}}*/,"jubilee":{"inbound":{"STD":["STM"]},"outbound":{"STM":["STD"]}},"metropolitan":{"inbound":{"ALD":["UXB","WAF","AMS","CSM"],"WAF":["RKW"]},"outbound":{"UXB":["ALD"],"CSM":["WAF","ALD"],"WAF":["ALD"],"AMS":["ALD"]}},"northern":{"inbound":{"EGW":["MDN"],"HBT":["MDN"],"MHL":["MDN"]},"outbound":{"MDN":["EGW","HBT","MHL"]}},"piccadilly":{"inbound":{"CKS":["UXB","HRC","HR5"]},"outbound":{"UXB":["CKS"],"HR5":["CKS"],"HR4":["CKS"]}},"victoria":{"inbound":{"WWL":["BXN"]},"outbound":{"BXN":["WWL"]}},"waterloo-city":{"inbound":{"BNK":["WLO"]},"outbound":{"WLO":["BNK"]}/*,"circle":{"inbound":{"ERC":["HSC"]},"outbound":{"HSC":["ERC"]}}*/}};
+
+            var boundObj = {
                 'central': {
-                    'inbound': {
-                        'start': ['HLT','EPG'],
-                        'direction': ['Wesbound']
-                    },
-                    'outbound': {
-                        'start': ['EBY','WRP'],
-                        'direction': ['Eastbound']
-                    }
+                    'inbound': ['westbound'],
+                    'outbound': ['eastbound']
                 },
                 'bakerloo': {
-                    'inbound': {
-                        'start': ['HAW'],
-                        'direction': ['Southbound']
-                    },
-                    'outbound': {
-                        'start': ['EAC'],
-                        'direction': ['Northbound']
-                    }
+                    'inbound': ['southbound'],
+                    'outbound': ['northbound']
                 },
                 'district': {
-                    'inbound': {
-                        'start': ['UPM','ERC'],
-                        'direction': ['Westbound']
-                    },
-                    'outbound': {
-                        'start': ['RMD','WIM','KOY'],
-                        'direction': ['Eastbound']
-                    }
+                    'inbound': ['westbound'],
+                    'outbound': ['eastbound']
                 },
                 'hammersmith-city': {
-                    'inbound': {
-                        'start': ['BKG'],
-                        'direction': ['Westbound', 'Southbound']
-                    },
-                    'outbound': {
-                        'start': ['HSC'],
-                        'direction': ['Northbound', 'Eastbound']
-                    }
+                    'inbound': ['westbound', 'southbound'],
+                    'outbound': ['northbound', 'eastbound']
                 },
                 'jubilee': {
-                    'inbound': {
-                        'start': ['STD'],
-                        'direction': ['Westbound', 'Northbound']
-                    },
-                    'outbound': {
-                        'start': ['STM'],
-                        'direction': ['Eastbound', 'Southbound']
-                    }
+                    'inbound': ['westbound', 'northbound'],
+                    'outbound': ['eastbound', 'southbound']
                 },
                 'metropolitan': {
-                    'inbound': {
-                        'start': ['HBT','EGW','MHL'],
-                        'direction': ['Eastbound', 'Northbound']
-                    },
-                    'outbound': {
-                        'start': ['UXB','CSM','AMS'],
-                        'direction': ['Westbound','Southbound']
-                    }
+                    'outbound': ['eastbound', 'southbound'],
+                    'inbound': ['westbound','northbound']
                 },
                 'northern': {
-                    'inbound': {
-                        'start': ['ALD'],
-                        'direction': ['Southbound']
-                    },
-                    'outbound': {
-                        'start': ['MDN'],
-                        'direction': ['Northbound']
-                    }
+                    'inbound': ['southbound'],
+                    'outbound': ['northbound']
                 },
                 'piccadilly': {
-                    'inbound': {
-                        'start': ['CKS'],
-                        'direction': ['Southbound']
-                    },
-                    'outbound': {
-                        'start': ['UXB','HR5'],
-                        'direction': ['Northbound']
-                    }
+                    'inbound': ['westbound'],
+                    'outbound': ['eastbound']
                 },
                 'victoria': {
-                    'inbound': {
-                        'start': ['WWL'],
-                        'direction': ['Southbound']
-                    },
-                    'outbound': {
-                        'start': ['BXN'],
-                        'direction': ['Northbound']
-                    }
+                    'inbound': ['southbound'],
+                    'outbound': ['northbound']
                 },
                 'waterloo-city': {
-                    'inbound': {
-                        'start': ['BNK'],
-                        'direction': ['Eastbound']
-                    },
-                    'outbound': {
-                        'start': ['WLO'],
-                        'direction': ['Westbound']
-                    }
-                }
-            };
-            var startPoints = {
-                'central': {
-                    'inbound': ['HLT','EPG'], //Westbound
-                    'outbound': ['EBY','WRP'] //Eastbound
-                },
-                'bakerloo': {
-                    'inbound': ['HAW'], //Southbound
-                    'outbound': ['EAC'] //Northbound
-                },
-                'district': {
-                    'inbound': ['UPM','ERC'], //Westbound
-                    'outbound': ['RMD','WIM','KOY'] //Eastbound
-                },
-                'hammersmith-city': {
-                    'inbound': ['BKG'], //Westbound || Southbound
-                    'outbound': ['HSC'] //Northbound || Eastbound
-                },
-                'jubilee': {
-                    'inbound': ['STD'], //Westbound || Northbound
-                    'outbound': ['STM'] //Eastbound || Southbound
-                },
-                'metropolitan': {
-                    'inbound': ['ALD'], //Eastbound || Northbound
-                    'outbound': ['UXB','CSM','AMS'] //Westbound || Southbound 
-                },
-                'northern': {
-                    'inbound': ['HBT','EGW','MHL'], //Southbound
-                    'outbound': ['MDN'] //Northbound
-                },
-                'piccadilly': {
-                    'inbound': ['CKS'], //Southbound
-                    'outbound': ['UXB','HR5'] //Northbound
-                },
-                'victoria': {
-                    'inbound': ['WWL'], //Soundbound
-                    'outbound': ['BXN'] //Northbound
-                },
-                'waterloo-city': {
-                    'inbound': ['BNK'], //Eastbound
-                    'outbound': ['WLO'] //Westbound
-                },
+                    'inbound': ['eastbound'],
+                    'outbound': ['westbound']
+                }/*,
                 'circle': {
-                    'outbound': ['HSC'] //???
-                }
+                    'inbound':['westbound', 'southbound'],
+                    'outbound':['eastbound', 'northbound']
+                }*/
             };
 
-            var newObj = {};
-
-            function isaac(journey, line) {
-                var startPoint = journey[0].substring(8);
-                var compassArr = null;
-                var bound = null;
-                for (var a in startPoints[line]) {
-                    if (a.indexOf(startPoint) >-1) {
-                        compassArr = directions[line][a];
-                        bound = a;
-                    }
-                }
-                if (!compassArr) {
-                    console.log('error');
-                    return;
-                }
-
-                /*for (var k=0; k<2; k++) {
-                    var bound = 'eastbound';
-                    if (k) {
-                        journey.reverse();
-                        bound = 'westbound';
-                    }*/
-
-                    for (var i=0; i<journey.length; i++) {
-
-                        var stn = journey[i].substring(8);
-
-                        if (!newObj[stn]) newObj[stn] = sObj['sid'][stn];
-
-                        if (i<journey.length-1) {
-
-                            if (!newObj[stn][bound]) newObj[stn][bound] = {};
-
-                            var nstn = journey[i+1].substring(8);
-
-                            if (!newObj[stn][bound][nstn]) { 
-                                newObj[stn][bound][nstn] = sObj['sid'][stn]['route'][nstn];
-                            }
-                        }
-                    }
-                //}
-            }
-
-            function getCompass() {
-                var myObj = {};
-                for (var key in sObj['sid']) {
-                    for (var line in sObj['sid'][key]['lines']) {
-                        if (!myObj[line]) {
-                            myObj[line] = {};
-                        }
-                        for (var i=0; i<sObj['sid'][key]['lines'][line].length; i++) {
-                            myObj[line][sObj['sid'][key]['lines'][line][i]] = 0;
-                        }
-                    }
-                }
-                console.log(myObj);
-            }
-
-            function getDirectionData() {
-
-                for (var line in endPoints) {
+            var dataObj = {};
+            function compassBound() {
+                //Get valie routes
+                for (var line in validRoutes) {
                     $.ajax({
                         url: 'https://api.tfl.gov.uk/Line/%7Bid%7D/Route/Sequence/%7Bdirection%7D',
                         type: 'GET',
-                        data: { 
+                        data: {
                             id: line
                         },
                         async: false
                     }).done(function (data) {
-                        var dataArr = data.orderedLineRoutes;
-                        for (var j=0; j<dataArr.length; j++) {
-                            isaac(dataArr[j]['naptanIds'], line);
+                        
+                        var routesObj = data['orderedLineRoutes'];
+                        for (var k=0; k<2; k++) {
+                            for (var key in routesObj) {
+                                var routesArr = routesObj[key]['naptanIds'];
+                                if (k) routesArr.reverse();
+                                var routeLen = routesArr.length;
+                                var origin = routesArr[0].substring(8);
+
+                                var bound = 'inbound';
+                                if (validRoutes[line]['outbound'][origin]) {
+                                    bound = 'outbound';
+                                }
+
+                                for (var i=0; i<routeLen; i++) {
+                                    var sid = routesArr[i].substring(8);
+                                    var possDirectionArr = boundObj[line][bound];
+                                    var actDirectionArr = sObj['sid'][sid]['lines'][line];
+                                    /*console.log(possDirectionArr + '-' + actDirectionArr);
+                                    continue;*/
+                                    var direction = null;
+                                    for (var j=0; j<possDirectionArr.length; j++) {
+                                        if (actDirectionArr.indexOf(possDirectionArr[j]) > -1) {
+                                            direction = boundObj[line][bound][j];
+                                            //console.log(direction);
+                                        } else {
+
+                                        }
+                                    }
+                                    var nid = null;
+                                    if (i<routeLen-1) {
+                                        nid = routesArr[i+1].substring(8);
+                                    }
+                                
+                                    
+                                    /*if (pid) {
+                                        if (!dataObj[sid][direction]) dataObj[sid][direction] = {};
+                                        if (!dataObj[sid][direction][pid]) {
+                                            dataObj[sid][direction][pid] = sObj['sid'][sid]['route'][pid];
+                                        }
+                                    }*/
+                                    if (nid) {
+                                        if (!dataObj[sid]) dataObj[sid] = {};
+                                        if (!dataObj[sid][line]) dataObj[sid][line] = {};
+                                        if (!direction) {
+                                            console.log(line + '-> ' + sid + '-' + nid + ' s:' + possDirectionArr + ' sObj:' + actDirectionArr);
+                                            continue;
+                                        }
+                                        if (!dataObj[sid][line][direction]) dataObj[sid][line][direction] = {};
+                                        if (!dataObj[sid][line][direction][nid]) {
+                                            dataObj[sid][line][direction][nid] = sObj['sid'][sid]['route'][nid];
+                                        }
+                                    }
+                                }
+                                
+                            }
                         }
+                        console.log(dataObj);
                     });
                 }
-                
-            }
-            getDirectionData();
-            function clicked() {
-                console.log(newObj);
             }
 
             function mergeData() {
@@ -288,8 +180,7 @@
                             var dataArr = data.timetable.routes[0].stationIntervals;
                             var dataLen = dataArr.length;
                             for (i=0; i<dataLen; i++) {
-                                //process(dataArr[i].intervals);
-                                isaac(dataArr[i].intervals);
+                                process(dataArr[i].intervals);
                             }
                         });
                     }
