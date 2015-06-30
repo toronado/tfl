@@ -8,8 +8,7 @@
         <button onclick="logData()">Log</button>
         <button onclick="theEnd()">Test</button>
         <script src="js/jquery-2.1.3.min.js"></script>
-        <script src="data/stationData2.js"></script>
-        <script src="data/stationData3.min.js"></script>
+        <script src="data/stationData2.min.js"></script>
         <script type="text/javascript">
             
             //var sObj = {sid:{},sidLookup:{}} = stationData.min.js
@@ -79,13 +78,21 @@
             };
 
             function theEnd() {
-                for (var key in sObj['sid']) {
-                    delete sObj['sid'][key]['lines'];
-                    delete sObj['sid'][key]['id'];
-                    delete sObj['sid'][key]['route'];
-                    sObj['sid'][key]['line'] = routeLookup[key];
-                }
-                console.log(JSON.stringify(sObj['sid']));
+                /*var loop = ["RVY","GTH","WSD","GGH","HLT","NBP","RBG","BKE","CWL","FLP"];
+                for (var i=0; i<10; i++) {
+                    var sid = loop[i];
+                    var tte = sObj['sid'][sid]['line']['central']['eastbound'] || null;
+                    var ttw = sObj['sid'][sid]['line']['central']['westbound'] || null;
+                    if (tte) {
+                        delete sObj['sid'][sid]['line']['central']['eastbound'];
+                        sObj['sid'][sid]['line']['central']['inner'] = tte;
+                    }
+                    if (ttw) {
+                        delete sObj['sid'][sid]['line']['central']['westbound'];
+                        sObj['sid'][sid]['line']['central']['outer'] = ttw;
+                    }
+                }*/
+                console.log(sObj['sid']);
             }
 
             var dataObj = {};
