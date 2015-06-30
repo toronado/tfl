@@ -6,9 +6,10 @@
     </body>
         <button onclick="getLiveData()">Get Live</button>
         <button onclick="logData()">Log</button>
-        <button onclick="compassBound()">Test</button>
+        <button onclick="theEnd()">Test</button>
         <script src="js/jquery-2.1.3.min.js"></script>
         <script src="data/stationData2.js"></script>
+        <script src="data/stationData3.min.js"></script>
         <script type="text/javascript">
             
             //var sObj = {sid:{},sidLookup:{}} = stationData.min.js
@@ -76,6 +77,16 @@
                     'outbound':['eastbound', 'northbound']
                 }
             };
+
+            function theEnd() {
+                for (var key in sObj['sid']) {
+                    delete sObj['sid'][key]['lines'];
+                    delete sObj['sid'][key]['id'];
+                    delete sObj['sid'][key]['route'];
+                    sObj['sid'][key]['line'] = routeLookup[key];
+                }
+                console.log(JSON.stringify(sObj['sid']));
+            }
 
             var dataObj = {};
             function compassBound() {
