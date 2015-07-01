@@ -78,21 +78,24 @@
             };
 
             function theEnd() {
-                /*var loop = ["RVY","GTH","WSD","GGH","HLT","NBP","RBG","BKE","CWL","FLP"];
-                for (var i=0; i<10; i++) {
-                    var sid = loop[i];
-                    var tte = sObj['sid'][sid]['line']['central']['eastbound'] || null;
-                    var ttw = sObj['sid'][sid]['line']['central']['westbound'] || null;
-                    if (tte) {
-                        delete sObj['sid'][sid]['line']['central']['eastbound'];
-                        sObj['sid'][sid]['line']['central']['inner'] = tte;
+                for (var stn in sObj['sid']) {
+                    var lines = sObj['sid'][stn]['line'];
+                    for (var line in lines) {
+                        var platforms = lines[line];
+                        //var routes = [];
+                        for (var routes in platforms) {
+                            var route = platforms[routes];
+                            var sids = [];
+                            for (var sid in route) {
+                                sids.push(sid);
+                            }
+                            if (sids.length > 1) {
+                                console.log(sids);
+                            }
+                        }
                     }
-                    if (ttw) {
-                        delete sObj['sid'][sid]['line']['central']['westbound'];
-                        sObj['sid'][sid]['line']['central']['outer'] = ttw;
-                    }
-                }*/
-                console.log(sObj['sid']);
+                }
+                //console.log(sObj['sid']);
             }
 
             var dataObj = {};
