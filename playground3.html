@@ -10,6 +10,7 @@
             }
             #map-canvas {
                 background:url(images/bg-body.gif) repeat #000000;
+                background: black;
             }
             #panel {
                 position: absolute;
@@ -38,12 +39,9 @@
             'victoria' : '#009FE0',
             'waterloo-city' : '#70C3CE'
         };
-        var hiddenStyle = [{"featureType":"all","stylers":[{"visibility":"off"}]}];
-        var myStyles = [{"featureType":"administrative","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.rail","stylers":[{"visibility":"on"}]},{"featureType":"road","stylers":[{"color":"#2f353f"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#eeeeee"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#222222"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#999999"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#2f353f"}]}];
-        var myStyles2 = [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}];
+        var myStyles = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2},{"visibility":"off"}]},{"featureType":"administrative","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"administrative.locality","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21},{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"transit.line","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#ff0000"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#272727"}]},{"featureType":"water","elementType":"labels.text","stylers":[{"visibility":"off"}]}];
 
-
-        var stnId = 'OXC';
+        var stnId = 'KSX';
         var station;
         var stations;
         function getStation() {
@@ -70,11 +68,11 @@
             //var transitLayer = new google.maps.TransitLayer();
             //transitLayer.setMap(map);
             google.maps.event.addListenerOnce(map, 'idle', function(){
-                getStars();
+                getStations();
             });
         }
 
-        function getStars() {
+        function getStations() {
             for (var key in stations) {
                 //if (stations[key]['lines']['Central']) {
                     var scale = Math.round(Math.random()*2) + 1;
@@ -83,12 +81,17 @@
                         position: location,
                         icon: {
                             path: google.maps.SymbolPath.CIRCLE,
-                            scale: scale,
+                            scale: 4,
                             fillOpacity: 1,
                             fillColor: '#ffffff',
-                            strokeWeight:0
+                            strokeWeight:2,
+                            strokeColor: '#000000'
                         },
                         map: map
+                    });
+                    marker.mData = stations[key];
+                    google.maps.event.addListener(marker, 'click', function () {
+                        getArrivals(this.mData.id);
                     });
                 //}
             }
@@ -97,14 +100,18 @@
 
         var started = false;
         var gObj = {};
-        function getArrivals() {
-            var url = 'http://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stnId;
-            if (stnId) {
-                url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
-                //url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=central';
+        function getArrivals(stationId) {
+            if (started) {
+                var url = 'https://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stationId;
+            } else {
+                var url = 'https://api.tfl.gov.uk/StopPoint/%7Bids%7D/Arrivals?ids=940GZZLU'+stnId;
+                //if (!stnId) {
+                    //url = 'https://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?app_id=3a9a79b8&app_key=028f9bbc54baa89d77c46b9b2b5ba833&ids=bakerloo%2Ccentral%2Ccircle%2Cdistrict%2Chammersmith-city%2Cjubilee%2Cmetropolitan%2Cnorthern%2Cpiccadilly%2Cvictoria%2Cwaterloo-city';
+                    //url = 'http://api.tfl.gov.uk/Line/%7Bids%7D/Arrivals?ids=central';
+                //}
             }
             var mObj = {}
-            var jqxhr = $.ajax(url).done(function (data) {
+            var jqxhr = $.getJSON(url).done(function (data) {
                 for (var i=0; i<data.length; i++) {
                     var location;
                     var currentLocationStr = data[i]["currentLocation"];
@@ -189,9 +196,10 @@
                 position: location,
                 icon: {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: scale,
+                    scale: 5,
                     fillOpacity: 1,
                     fillColor: mObj['color'],
+                    strokeColor: '#2E2E2E',
                     strokeWeight:0
                 },
                 map: map
